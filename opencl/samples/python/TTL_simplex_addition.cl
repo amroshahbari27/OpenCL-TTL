@@ -1,9 +1,10 @@
 #include "TTL/TTL.h"
 
-// Increase memory size to accommodate 9x9 matrices (81 elements)
-#define MEMSZ 81
+// Define a larger MEMSZ to accommodate various matrix sizes and strides
+// This should be enough for matrices up to 32x32 with stride up to 64
+#define MEMSZ 2048
 
-
+// Tensor type definitions
 #undef TTL_EXT_TENSOR_TYPE
 #define TTL_EXT_TENSOR_TYPE __TTL_tensor_name(TTL_, , ext_, TEST_TENSOR_TYPE, , _t)
 
@@ -25,27 +26,39 @@ __kernel void TTL_simplex_addition(__global TEST_TENSOR_TYPE *restrict ext_base_
                                    __global TEST_TENSOR_TYPE *restrict ext_base_B, int external_stride_B,
                                    __global TEST_TENSOR_TYPE *restrict ext_base_C, int external_stride_C,
                                    int width, int height) {
+    // Validate that local memory is sufficient for the requested dimensions
+    const int required_memory = width * height * sizeof(TEST_TENSOR_TYPE);
+    if (required_memory > MEMSZ * sizeof(TEST_TENSOR_TYPE)) {
+        // In a real application, we'd want to handle this error more gracefully
+        return;
+    }
+    
     // Allocate local memory for internal tensors
     __local TEST_TENSOR_TYPE local_A[MEMSZ];
     __local TEST_TENSOR_TYPE local_B[MEMSZ];
     __local TEST_TENSOR_TYPE local_C[MEMSZ];
 
-    // Logical shapes.
+    // Logical shapes for the visible portion of the matrices
     const TTL_shape_t tensor_shape = TTL_create_shape(width, height);
 
-    // External layouts.
+    // External layouts with custom strides
     const TTL_layout_t ext_layout_A = TTL_create_layout(external_stride_A);
     const TTL_layout_t ext_layout_B = TTL_create_layout(external_stride_B);
     const TTL_layout_t ext_layout_C = TTL_create_layout(external_stride_C);
 
-    // External tensors.
+    // Internal layouts - we use width as the stride for internal tensors
+    // This ensures dense packing in local memory
+    const TTL_layout_t int_layout = TTL_create_layout(width);
+
+    // External tensors with custom strides
     const TTL_EXT_TENSOR_TYPE ext_tensor_A = TTL_create_ext_tensor(ext_base_A, tensor_shape, ext_layout_A);
     const TTL_EXT_TENSOR_TYPE ext_tensor_B = TTL_create_ext_tensor(ext_base_B, tensor_shape, ext_layout_B);
     const TTL_EXT_TENSOR_TYPE ext_tensor_C = TTL_create_ext_tensor(ext_base_C, tensor_shape, ext_layout_C);
 
-    TTL_INT_TENSOR_TYPE int_tensor_A = TTL_create_int_tensor(local_A, tensor_shape);
-    TTL_INT_TENSOR_TYPE int_tensor_B = TTL_create_int_tensor(local_B, tensor_shape);
-    TTL_INT_TENSOR_TYPE int_tensor_C = TTL_create_int_tensor(local_C, tensor_shape);
+    // Internal tensors with explicit layouts
+    TTL_INT_TENSOR_TYPE int_tensor_A = TTL_create_int_tensor(local_A, tensor_shape, int_layout);
+    TTL_INT_TENSOR_TYPE int_tensor_B = TTL_create_int_tensor(local_B, tensor_shape, int_layout);
+    TTL_INT_TENSOR_TYPE int_tensor_C = TTL_create_int_tensor(local_C, tensor_shape, int_layout);
 
     // Import external tensors to internal memory
     TTL_event_t event_A = TTL_get_event();

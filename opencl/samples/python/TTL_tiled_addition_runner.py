@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# ttl_sample_runner.py
+# TTL_tiled_addition_runner.py
 #
 # Copyright (c) 2023 Mobileye
 #
@@ -22,7 +22,6 @@ import os
 import sys
 import random
 import argparse
-import time
 
 def Read(byte_array, i, j, stride, element_size):
     """Read a value from a byte array using the specified stride.
@@ -76,13 +75,16 @@ def PrintMatrix(byte_array, width, height, stride, element_size, name="Matrix"):
             row.append(str(Read(byte_array, i, j, stride, element_size)))
         print(" ".join(row))
 
-def TestTTL(program_name, width=9, height=9, stride_a=None, stride_b=None, stride_c=None):
-    """Test a TTL program with custom strides.
+def TestTiledAddition(program_name, width=24, height=24, tile_width=8, tile_height=8,
+                      stride_a=None, stride_b=None, stride_c=None):
+    """Test a TTL tiled addition program with custom strides and tile sizes.
     
     Args:
         program_name: Name of the OpenCL program file
-        width: Width of the matrix (default: 9)
-        height: Height of the matrix (default: 9)
+        width: Width of the matrix (default: 24)
+        height: Height of the matrix (default: 24)
+        tile_width: Width of each tile (default: 8)
+        tile_height: Height of each tile (default: 8)
         stride_a: Stride for matrix A (default: width)
         stride_b: Stride for matrix B (default: width)
         stride_c: Stride for output matrix C (default: width)
@@ -127,6 +129,7 @@ def TestTTL(program_name, width=9, height=9, stride_a=None, stride_b=None, strid
 
         print(f"Testing {program_name} with {test_tensor_type} Tensors")
         print(f"Matrix dimensions: {width}x{height}")
+        print(f"Tile dimensions: {tile_width}x{tile_height}")
         print(f"Strides: A={stride_a}, B={stride_b}, C={stride_c}")
         
         # Create input buffers with space for strides
@@ -160,18 +163,9 @@ def TestTTL(program_name, width=9, height=9, stride_a=None, stride_b=None, strid
         input_buffer_b = cl.Buffer(context, cl.mem_flags.READ_ONLY | cl.mem_flags.COPY_HOST_PTR, hostbuf=input_data_b)
         output_buffer = cl.Buffer(context, cl.mem_flags.READ_WRITE, len(output_data))
 
-        # Use tile size equal to tensor size for simplicity
-        tile_width = width
-        tile_height = height
-
-        # Create a cl.Event to measure execution time
-        exec_event = cl.Event()
-
-        # Start timing
-        start_time = time.time()
-
-        # Call the kernel with the specified strides
-        getattr(program, program_name)(
+        # Call the kernel with the specified strides and tile sizes
+        kernel_name = "TTL_simplex_addition_tiled"
+        getattr(program, kernel_name)(
             queue,
             (1,),
             None,
@@ -182,15 +176,9 @@ def TestTTL(program_name, width=9, height=9, stride_a=None, stride_b=None, strid
             output_buffer,
             numpy.int32(stride_c),
             numpy.int32(width),
-            numpy.int32(height))
-
-        queue.finish()  # Ensure the kernel is completed
-
-        # End timing
-        end_time = time.time()
-        execution_time = (end_time - start_time) * 1000  # Convert to milliseconds
-
-        #print(f"\nTested Tensor size [{width}, {height}] Tile size [{tile_width}, {tile_height}] Type {test_tensor_type}")
+            numpy.int32(height),
+            numpy.int32(tile_width),
+            numpy.int32(tile_height))
 
         cl.enqueue_copy(queue, output_data, output_buffer)
 
@@ -226,18 +214,18 @@ def TestTTL(program_name, width=9, height=9, stride_a=None, stride_b=None, strid
                     error = True
 
         if error:
+            print(f"{program_name} FAILED with dimensions [{width}, {height}] and strides [A={stride_a}, B={stride_b}, C={stride_c}]")
             exit(-1)
 
-        print(f"{program_name} Passed with dimensions [{width}, {height}] and strides [A={stride_a}, B={stride_b}, C={stride_c}]")
-        print(f"Execution time: {execution_time:.4f} ms")
-        
-        return execution_time  # Return the execution time for benchmarking
+        print(f"{program_name} Passed with dimensions [{width}, {height}], tiles [{tile_width}, {tile_height}], and strides [A={stride_a}, B={stride_b}, C={stride_c}]")
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Run TTL addition tests with custom strides')
+    parser = argparse.ArgumentParser(description='Run TTL tiled addition tests with custom strides and tile sizes')
     parser.add_argument('program', nargs='+', help='OpenCL program file(s) to test')
-    parser.add_argument('--width', type=int, default=9, help='Width of the matrices (default: 9)')
-    parser.add_argument('--height', type=int, default=9, help='Height of the matrices (default: 9)')
+    parser.add_argument('--width', type=int, default=24, help='Width of the matrices (default: 24)')
+    parser.add_argument('--height', type=int, default=24, help='Height of the matrices (default: 24)')
+    parser.add_argument('--tile-width', type=int, default=8, help='Width of each tile (default: 8)')
+    parser.add_argument('--tile-height', type=int, default=8, help='Height of each tile (default: 8)')
     parser.add_argument('--stride-a', type=int, help='Stride for matrix A (default: width)')
     parser.add_argument('--stride-b', type=int, help='Stride for matrix B (default: width)')
     parser.add_argument('--stride-c', type=int, help='Stride for output matrix C (default: width)')
@@ -245,11 +233,13 @@ if __name__ == '__main__':
     args = parser.parse_args()
     
     for program_name in args.program:
-        TestTTL(
+        TestTiledAddition(
             program_name, 
             width=args.width, 
             height=args.height, 
+            tile_width=args.tile_width,
+            tile_height=args.tile_height,
             stride_a=args.stride_a, 
             stride_b=args.stride_b, 
             stride_c=args.stride_c
-        )
+        ) 
