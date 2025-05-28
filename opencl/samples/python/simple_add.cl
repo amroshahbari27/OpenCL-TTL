@@ -1,83 +1,126 @@
 #include "TTL/TTL.h"
 #include "compute_cross.h"
 
-// Tensor type configuration
 #undef TTL_EXT_TENSOR_TYPE
 #define TTL_EXT_TENSOR_TYPE __TTL_tensor_name(TTL_, , ext_, TEST_TENSOR_TYPE, , _t)
 
 // -----------------------------------------------
-// Loop Metadata (Affine Structured Representation)
+// TTL Loop Kind Enum
 // -----------------------------------------------
 typedef enum {
-    LOOP_1D = 0,
-    LOOP_2D = 1,
-    LOOP_3D = 2
-} loop_affine_dim_t;
-
-typedef struct {
-    volatile loop_affine_dim_t dim;
-    volatile int x_start, x_end, x_step, x;  // i
-    volatile int y_start, y_end, y_step, y;  // j
-    volatile int z_start, z_end, z_step, z;  // k
-} loop_affine_t;
+    TTL_LOOP_1D = 1,
+    TTL_LOOP_2D = 2,
+    TTL_LOOP_3D = 3
+} TTL_loop_kind_t;
 
 // -----------------------------------------------
-// Tensor Metadata
-// Supports strided access in up to 3D
+// TTL Loop Metadata
+// -----------------------------------------------
+typedef struct {
+    TTL_loop_kind_t dim;
+    volatile int x_start, x_end, x_step, x;
+    volatile int y_start, y_end, y_step, y;
+    volatile int z_start, z_end, z_step, z;
+} TTL_loop_affine_t;
+
+// -----------------------------------------------
+// TTL Tensor Rank Enum
+// -----------------------------------------------
+typedef enum {
+    TTL_TENSOR_RANK_1D = 1,
+    TTL_TENSOR_RANK_2D = 2,
+    TTL_TENSOR_RANK_3D = 3
+} TTL_tensor_rank_t;
+
+// -----------------------------------------------
+// TTL Affine Access Metadata (Explicit Dimensions)
 // -----------------------------------------------
 typedef struct {
     __global TEST_TENSOR_TYPE* restrict base;
-    int row_stride;    // stride in dim-1 (Y)
-    int plane_stride;  // stride in dim-2 (Z)
-} tensor_access_t;
+    TTL_tensor_rank_t rank;
+
+    int x_stride;
+    int y_stride;
+    int z_stride;
+
+    int x_index;
+    int y_index;
+    int z_index;
+} TTL_affine_access_t;
 
 // -----------------------------------------------
-// Affine Loop Body: Matrix Multiplication
-// C[i][j] += A[i][k] * B[k][j]
+// TTL Affine Index Helper
 // -----------------------------------------------
-void loop_affine_matmul_body(
-    loop_affine_t loop,
-    tensor_access_t A,
-    tensor_access_t B,
-    tensor_access_t C)
-{
-    TTL_layout_t layout_A = TTL_create_layout(A.row_stride, A.plane_stride);
-    TTL_layout_t layout_B = TTL_create_layout(B.row_stride, B.plane_stride);
-    TTL_layout_t layout_C = TTL_create_layout(C.row_stride, C.plane_stride);
-
-    TTL_offset_t offset_A = TTL_create_offset(loop.x, loop.z, 0); // A[i][k]
-    TTL_offset_t offset_B = TTL_create_offset(loop.z, loop.y, 0); // B[k][j]
-    TTL_offset_t offset_C = TTL_create_offset(loop.x, loop.y, 0); // C[i][j]
-
-    int idx_A = TTL_linearize(offset_A, layout_A);
-    int idx_B = TTL_linearize(offset_B, layout_B);
-    int idx_C = TTL_linearize(offset_C, layout_C);
-
-    C.base[idx_C] += A.base[idx_A] * B.base[idx_B];
+int TTL_affine_compute_index(const TTL_affine_access_t* access) {
+    return access->x_index * access->x_stride
+         + access->y_index * access->y_stride
+         + access->z_index * access->z_stride;
 }
 
 // -----------------------------------------------
-// Entry Kernel
-// Structured representation only — not executable
-// Meant for static lowering into affine.for
+// TTL Loop Body
 // -----------------------------------------------
-__kernel void matmul_kernel(
+void TTL_loop_affine_matmul_body(
+    TTL_loop_affine_t loop,
+    TTL_affine_access_t access_A,
+    TTL_affine_access_t access_B,
+    TTL_affine_access_t access_C)
+{
+    int idx_A = TTL_affine_compute_index(&access_A);
+    int idx_B = TTL_affine_compute_index(&access_B);
+    int idx_C = TTL_affine_compute_index(&access_C);
+
+    access_C.base[idx_C] += access_A.base[idx_A] * access_B.base[idx_B];
+}
+
+// -----------------------------------------------
+// TTL Entry Kernel
+// -----------------------------------------------
+__kernel void TTL_matmul_kernel(
     __global TEST_TENSOR_TYPE* restrict A_base, int A_row_stride, int A_plane_stride,
     __global TEST_TENSOR_TYPE* restrict B_base, int B_row_stride, int B_plane_stride,
     __global TEST_TENSOR_TYPE* restrict C_base, int C_row_stride, int C_plane_stride,
     int M, int N, int K)
 {
-    
-    loop_affine_t loop = {
-        .dim = LOOP_3D,
-        .x_start = 1, .x_end = M, .x_step = 3, .x = 0,  // i
-        .y_start = 2, .y_end = N, .y_step = 2, .y = 0,  // j
-        .z_start = 3, .z_end = K, .z_step = 1, .z = 0   // k
+    TTL_loop_affine_t loop = {
+        .dim = TTL_LOOP_3D,
+        .x_start = 0, .x_end = M, .x_step = 2, .x = 0, // i x=0 -> outer loop
+        .y_start = 0, .y_end = N, .y_step = 3, .y = 1, // j y=1 -> inner loop
+        .z_start = 0, .z_end = K, .z_step = 4, .z = 2  // k z=2 -> innermost loop
     };
 
-    tensor_access_t A = { A_base, 0, 1 };
-    tensor_access_t B = { B_base, B_row_stride, B_plane_stride };
-    tensor_access_t C = { C_base, C_row_stride, C_plane_stride };
+    TTL_affine_access_t access_A = {
+        .base = A_base,
+        .rank = TTL_TENSOR_RANK_2D,
+        .x_stride = 1,
+        .y_stride = A_row_stride,
+        .z_stride = 0,
+        .x_index = loop.x, // i
+        .y_index = loop.z, // k
+        .z_index = 0
+    };
 
-    loop_affine_matmul_body(loop, A, B, C);
+    TTL_affine_access_t access_B = {
+        .base = B_base,
+        .rank = TTL_TENSOR_RANK_2D,
+        .x_stride = 1,
+        .y_stride = B_row_stride,
+        .z_stride = 0,
+        .x_index = loop.z, // k
+        .y_index = loop.y, // j
+        .z_index = 0
+    };
+
+    TTL_affine_access_t access_C = {
+        .base = C_base,
+        .rank = TTL_TENSOR_RANK_2D,
+        .x_stride = 1,
+        .y_stride = C_row_stride,
+        .z_stride = 0,
+        .x_index = loop.x, // i 
+        .y_index = loop.y, // j
+        .z_index = 0
+    };
+
+    TTL_loop_affine_matmul_body(loop, access_A, access_B, access_C);
 }
