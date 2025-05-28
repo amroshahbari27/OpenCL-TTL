@@ -1,0 +1,1075 @@
+cd ~/msc && clang -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTTL_TARGET=opencl -target spir64-unknown-unknown -S -emit-llvm TTL/matmul_TTL_mini.ii -o TTL/matmul_TTL_mini.ll
+cd ~/msc && clang -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTTL_TARGET=opencl -target spir64-unknown-unknown -S -emit-llvm TTL/matmul_TTL_mini.ii -o TTL/matmul_TTL_mini.ll && syclops TTL/matmul_TTL_mini.ll -emit-mlir -o TTL/matmul_TTL_mini.mlir
+cat TTL/matmul_TTL_mini.mlir
+cat TTL/matmul_TTL_mini.ll
+cd ~/msc && clang -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTTL_TARGET=opencl -target spir64-unknown-unknown -S -emit-llvm TTL/matmul_TTL_mini.ii -o TTL/matmul_TTL_mini.ll && syclops TTL/matmul_TTL_mini.ll -emit-mlir -o TTL/matmul_TTL_mini.mlir
+ls
+rm -rf ~
+ls
+rm -rf '~'
+ls
+cd work
+ls
+cd ..
+ls
+rm -rf work
+ls
+cd TTL
+ls
+مس
+ls
+cat ~/.bash_history > my_full_history.txt 
+cd ~/msc && clang -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTTL_TARGET=opencl -target spir64-unknown-unknown -S -emit-llvm TTL/matmul_TTL_mini.ii -o TTL/matmul_TTL_mini.ll
+clear
+cd ~/msc && clang -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTTL_TARGET=opencl -target spir64-unknown-unknown -S -emit-llvm TTL/matmul_TTL_mini.ii -o TTL/matmul_TTL_mini.ll
+syclops new_ttl.ll -emit-mlir -o new_ttl.mlir 
+syclops matmul_TTL_mini.ll -emit-mlir -o matmul_TTL_mini.mlir 
+cd TTL
+syclops matmul_TTL_mini.ll -emit-mlir -o matmul_TTL_mini.mlir 
+rm -rf ~/.vscode-server/~
+rm -rf ~/.cursor-server/~
+rm -rf  ~/.cursor-server/
+sudo cat /var/log/auth.log | grep sshd
+whoami
+mkdir -p ~/.ssh
+nano ~/.ssh/authorized_keys
+[200~chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+nano ~/.ssh/authorized_keys
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+cd ~/msc && clang -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTTL_TARGET=opencl -target spir64-unknown-unknown -S -emit-llvm matmul_TTL_mini.ii -o matmul_TTL_mini.ll
+syclops matmul_TTL_mini.ll -emit-mlir -o matmul_TTL_mini.mlir 
+cd ~/msc && clang -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTTL_TARGET=opencl -target spir64-unknown-unknown -S -emit-llvm matmul_TTL_mini.ii -o matmul_TTL_mini.ll
+syclops matmul_TTL_mini.ll -emit-mlir -o matmul_TTL_mini.mlir 
+cd TTL
+cd ~/msc && clang -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTTL_TARGET=opencl -target spir64-unknown-unknown -S -emit-llvm matmul_TTL_mini.ii -o matmul_TTL_mini.ll
+syclops matmul_TTL_mini.ll -emit-mlir -o matmul_TTL_mini.mlir 
+clang -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTTL_TARGET=opencl -target spir64-unknown-unknown -S -emit-llvm matmul_TTL_mini.ii -o matmul_TTL_mini.ll
+ls
+rm matmul_TTL_mini.
+rm matmul_TTL_mini.ll
+rm matmul_TTL_mini.ii
+clang -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTTL_TARGET=opencl -target spir64-unknown-unknown -S -emit-llvm matmul_TTL_mini.ii -o matmul_TTL_mini.ll
+cd TTL
+clang -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTTL_TARGET=opencl -target spir64-unknown-unknown -S -emit-llvm matmul_TTL_mini.ii -o matmul_TTL_mini.ll
+syclops matmul_TTL_mini.ll -emit-mlir -o matmul_TTL_mini.mlir 
+clang -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTTL_TARGET=opencl -target spir64-unknown-unknown -S -emit-llvm matmul_TTL_mini.ii -o matmul_TTL_mini.ll
+syclops matmul_TTL_mini.ll -emit-mlir -o matmul_TTL_mini.mlir 
+clang -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTTL_TARGET=opencl -target spir64-unknown-unknown -S -emit-llvm matmul_TTL_mini.ii -o matmul_TTL_mini.ll
+syclops matmul_TTL_mini.ll -emit-mlir -o matmul_TTL_mini.mlir 
+clang -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTTL_TARGET=opencl -target spir64-unknown-unknown -S -emit-llvm matmul_TTL_mini.ii -o matmul_TTL_mini.ll
+syclops matmul_TTL_mini.ll -emit-mlir -o matmul_TTL_mini.mlir 
+clang -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTTL_TARGET=opencl -target spir64-unknown-unknown -S -emit-llvm matmul_TTL_mini.ii -o matmul_TTL_mini.ll
+syclops matmul_TTL_mini.ll -emit-mlir -o matmul_TTL_mini.mlir 
+clang -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTTL_TARGET=opencl -target spir64-unknown-unknown -S -emit-llvm matmul_TTL_mini.ii -o matmul_TTL_mini.ll
+syclops matmul_TTL_mini.ll -emit-mlir -o matmul_TTL_mini.mlir 
+clang -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTTL_TARGET=opencl -target spir64-unknown-unknown -S -emit-llvm matmul_TTL_tiled.ii -o matmul_TTL_tiled.ll
+wget https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.0/clang+llvm-18.1.0-x86_64-linux-gnu-ubuntu-22.04.tar.xz
+wget https://apt.llvm.org/llvm.sh
+chmod +x llvm.sh
+sudo ./llvm.sh 18
+which clang
+clang-18 --version
+ls
+git clone https://github.com/llvm/llvm-project.git && cd llvm-project && mkdir build && cd build && cmake -G Ninja ../llvm -DLLVM_ENABLE_PROJECTS="mlir" -DCMAKE_BUILD_TYPE=Release -DLLVM_TARGETS_TO_BUILD="X86;AMDGPU" -DCMAKE_INSTALL_PREFIX=../install && ninja && ninja install
+ls
+ls ..
+sudo apt update
+sudo apt install -y   cmake ninja-build clang build-essential python3 python3-pip   libedit-dev libncurses5-dev libxml2-dev zlib1g-dev
+git clone https://github.com/llvm/llvm-project.git
+cd llvm-project
+git checkout llvmorg-18.1.0  # Or latest stable
+git switch -c TTLOps
+cursor build.sh
+git status
+ls
+./build.sh
+chmod +x build.sh
+./build.sh
+sudo apt update
+sudo apt install -y pybind11-dev
+./build.sh
+sudo apt install -y pybind11-dev
+./build.sh
+ls
+cd mlir/
+ls
+cd bin
+cd ..
+ls
+cd build
+ls
+cd bin
+ls
+cd ..
+ls
+ls lib
+cd ..
+cd tools/mlir/python_packages
+cd tools/mlir/
+ls
+cd mlir/
+ls
+cd tools
+ls
+cd ..
+cd mlir-opt
+ls
+cd tools
+ls
+cd mlir-opt
+ls
+cd ..
+ls
+cd lib/
+ls
+cd Bindings/
+ls
+cd Python/Y
+cd Python/
+LS
+ls
+cd ..
+ls
+cd ..
+ls
+cd Tools/
+ls
+cd PDLL/
+LS
+ls
+cd ..
+ls
+cd ..
+ls
+cd lib/
+l
+ls
+LS
+ls
+cd ..
+ls
+cd utils/
+ls
+cd ..
+which python3
+cd ..
+ls
+cd clang-tools-extra/
+ls
+CD ..
+cd ..
+cd mlir/
+ls
+cd python/
+ls
+cd mlir/
+ls
+cd ..
+cd mlir/
+ls
+cd _mlir_libs/
+ls
+cd _mlir/
+ls
+cd ..
+ls
+cd runtime/
+ls
+cd ..
+ls
+cd ..
+ls
+python -m pip install -r mlir/python/requirements.txt
+python3 -m pip install -r mlir/python/requirements.txt
+ls
+cd mlir/
+ls
+cd ..
+ls
+cd..
+ls
+cd ..
+ls
+cd tools/
+ls
+cd ..
+cd lib/
+ls
+cd ..
+ls
+cd build/
+;s
+ls
+cd bin
+ls
+cls
+cd ..
+ls
+cd ..
+ls
+cd mlir/
+ls
+cursor README.md 
+cd tools
+ls
+cd ..
+ls
+cd examples/
+ls
+cd minimal-opt/
+ls
+cd ..
+cd..
+cd ..
+ls
+cd include/
+ls
+cd mlir
+ls
+cd ..
+ls
+cd ..
+ls
+cd python/
+ls
+cd mlir/
+ls
+cd ..
+ls
+cd ..
+ls
+cd mlir/
+ls
+cd lib
+ls
+cd pass 
+ls
+cd ..
+ls
+cd ..
+mkdir -p TTL/lib/DummyPass
+mkdir -p TTL/include/TTL
+curosr TTL/lib/DummyPass/DummyPass.cpp
+cursor TTL/lib/DummyPass/DummyPass.cpp
+rm -rf TTL/
+LS
+ls
+cursor TTL/lib/TTLopsPass/TTLopsPass.cpp
+cursor .gitignore 
+cursor TTL/include/TTL/TTLopsPass.h
+cursor TTL/lib/TTLopsPass/CMakeLists.txt
+LS
+ls
+cd build/
+ls
+cd ..
+ls
+ubuntu@ip-172-31-40-172:~/msc/llvm-project/build$ ls
+CMakeCache.txt  CPackConfig.cmake        benchmarks  build.ninja  cmake_install.cmake    docs      include               lib        pdll_compile_commands.yml  runtimes                       test         tools      utils
+CMakeFiles      CPackSourceConfig.cmake  bin         cmake        compile_commands.json  examples  install_manifest.txt  llvm.spec  projects                   tablegen_compile_commands.yml  third-party  unittestsmkdir -p mlir/include/mlir/Dialect/TTL/Transforms          mlir/lib/Dialect/TTL/Transforms && mv TTL/include/TTL/TTLopsPass.h mlir/include/mlir/Dialect/TTL/Transforms/ && mv TTL/lib/TTLopsPass/TTLopsPass.cpp mlir/lib/Dialect/TTL/Transforms/ && mv TTL/lib/TTLopsPass/CMakeLists.txt mlir/lib/Dialect/TTL/Transforms/
+mkdir -p mlir/include/mlir/Dialect/TTL/Transforms          mlir/lib/Dialect/TTL/Transforms && mv TTL/include/TTL/TTLopsPass.h mlir/include/mlir/Dialect/TTL/Transforms/ && mv TTL/lib/TTLopsPass/TTLopsPass.cpp mlir/lib/Dialect/TTL/Transforms/ && mv TTL/lib/TTLopsPass/CMakeLists.txt mlir/lib/Dialect/TTL/Transforms/
+cd /home/ubuntu/msc/llvm-project/mlir/lib/Dialect/TTL
+ls
+mv Transforms/TTLopsPass.cpp .
+cp /home/ubuntu/msc/llvm-project/mlir/lib/Dialect/Utils/CMakeLists.txt CMakeLists.txt
+cp /home/ubuntu/msc/llvm-project/mlir/include/mlir/Dialect/TTL/Transforms/TTLopsPass.h /home/ubuntu/msc/llvm-project/mlir/include/mlir/Dialect/TTL/TTLopsPass.h
+cd /home/ubuntu/msc/llvm-project/mlir/include/mlir/Dialect/TTL/
+cursor CMakeLists.txt
+ced ..
+cd ..
+ls
+cd ..
+ls
+./build.sh
+git status
+git push --force
+git push --set-upstream origin TTLOps
+git remote add myfork https://github.com/amroshahbari27/llvm-project.git
+git checkout -b TTLOps
+git push --set-upstream myfork TTLOps
+git status
+git push --force
+git status
+git log
+git reset HEAD~1
+./build.sh
+git push --force
+./build.sh
+cd TTL
+code test1.cl
+cursor test1.cl
+clang -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S matmul_TTL.cl -o matmul_TTL.ll  -I/home/ubuntu/msc
+clang -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc
+syclops test1.ll -emit-mlir -o test1.mlir  
+clang -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc
+syclops test1.ll -emit-mlir -o test1.mlir  
+mlir-translate --version
+mlir-translate-15 --version
+mlir-translate-15 --import-llvm
+mlir-translate-15 --import-llvm test1.ll -o test1.mlir
+which mlir-translate-15
+clang --version
+clang-15 --version
+clang-15 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc
+mlir-translate-15 --import-llvm test1.ll -o test1.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc
+mlir-translate-18 --import-llvm test1.ll -o test1.mlir
+../llvm-project/build/bin/mlir-translate --import-llvm test1.ll -o test1.mlir
+../llvm-project/build/bin/mlir-translate --version
+../llvm-project/build/bin/mlir-translate --import-llvm test1.ll -o test1.mlir
+code TTLops.py
+cursor TTLops.py
+python3 TTLops.py 
+syclops test1.ll -emit-mlir -o test1_sycl.mlir  
+ls
+../llvm-project/build/bin/mlir-translate --import-llvm test1.ll -o test1.mlir
+../llvm-project/build/bin/mlir-translate 
+../llvm-project/build/bin/mlir-translate -ttl-ops 
+../llvm-project/build/bin/
+ls ../llvm-project/build/bin/
+ls 
+../llvm-project/build/bin/mlir-opt 
+../llvm-project/build/bin/mlir-opt --ttl-ops
+../llvm-project/build/bin/mlir-opt --ttl-ops test1.mlir
+git status
+../llvm-project/build/bin/mlir-opt --ttl-ops test1.mlir
+../llvm-project/build/bin/mlir-opt --ttl-ops test1.mlir --debug
+../llvm-project/build/bin/mlir-opt -debug-only=TTLOps --ttl-ops test1.mlir
+../llvm-project/build/bin/mlir-opt -debug-pass=TTLOps --ttl-ops test1.mlir
+../llvm-project/build/bin/mlir-opt -debug --ttl-ops test1.mlir
+../llvm-project/build/bin/mlir-opt --ttl-ops test1.mlir 
+../llvm-project/build/bin/mlir-opt --ttl-ops test1.mlir --debug
+../llvm-project/build/bin/mlir-opt -debug --ttl-ops test1.mlir
+../llvm-project/build/bin/mlir-
+../llvm-project/build/bin/mlir-opt -debug --ttl-ops test1.mlir
+../llvm-project/build/bin/mlir-opt -debug-only=ttl-ops --ttl-ops test1.mlir
+../llvm-project/build/bin/mlir-opt --debug-pass=ttl-ops --ttl-ops test1.mlir
+../llvm-project/build/bin/mlir-opt --ttl-ops test1.mlir 
+../llvm-project/build/bin/mlir-opt --ttl-ops test1.mlir --debug
+../llvm-project/build/bin/mlir-opt --ttl-ops --debug-onlyytest1.mlir 
+../llvm-project/build/bin/mlir-opt --ttl-ops --debug-only test1.mlir 
+../llvm-project/build/bin/mlir-opt --ttl-ops --debug-pass test1.mlir 
+../llvm-project/build/bin/mlir-opt --ttl-ops --debug-pass ttl-ops test1.mlir 
+../llvm-project/build/bin/mlir-opt --ttl-ops --debug-pass  test1.mlir 
+../llvm-project/build/bin/mlir-opt --ttl-ops --debug-pass  --help
+../llvm-project/build/bin/mlir-opt --ttl-ops --debug-pass  
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc
+../llvm-project/build/bin/mlir-translate --import-llvm test1.ll -o test1.mlir
+../llvm-project/build/bin/mlir-opt --ttl-ops test1.mlir
+cd TTL/
+ls
+cd ../llvm-project/
+ls
+./build.sh
+./build.sh~/msc/llvm-project$ ./build.sh
+~/msc/llvm-project$ ./build.sh
+./build.sh
+git status
+git log
+git reset --soft HEAD^
+./build.sh
+clear
+./build.sh
+cursor build.sh
+./build.sh
+ls
+cd TTL/
+ls
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc
+../llvm-project/build/bin/mlir-opt --ttl-ops test1.mlir
+mlir-opt --debug-only=ttl-ops --ttl-ops input.mlir
+../llvm-project/build/bin/mlir-opt --debug-only=ttl-ops --ttl-ops input.mlir
+mlir-opt --mlir-print-ir-before-all --ttl-ops input.mlir
+mlir-opt --mlir-print-ir-before-all --ttl-ops input.mlir
+../llvm-project/build/bin/mlir-opt --mlir-print-ir-before-all --ttl-ops input.mlir
+../llvm-project/build/bin/mlir-opt --mlir-print-ir-before-all --ttl-ops test1.mlir
+../llvm-project/build/bin/mlir-opt test1.mlir -ttl-ops -debug
+../llvm-project/build/bin/mlir-opt test1.mlir -ttl-ops 
+../llvm-project/build/bin/mlir-opt test1.mlir -ttl-ops -debug
+../llvm-project/build/bin/mlir-opt --mlir-print-ir-before-all --ttl-ops test1.mlir
+../llvm-project/build/bin/mlir-opt test1.mlir -ttl-ops 
+cd TTL
+ls
+grep -r 'TTL_create_ext_tensor' .
+grep -r 'TTL_create_ext_tensor' . &> dump.mlir
+grep -r 'TTL_create_ext_tensor' opencl &> dump.mlir
+grep -r 'TTL_read' opencl &> dump.mlir
+grep -r 'TTL_read' opencl
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc &> dump.mlir
+grep -r 'TTL_ext_int_tensor_t' opencl
+grep -r 'TTL_ext' opencl
+grep -r 'TTL_ext_int_tensor_t' opencl
+grep -r 'TTL_ext_int_tensor_t' .
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc &> dump.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc 
+grep -r 'TTL_ext_int_tensor_t' .
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc 
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0   -Dcl_clang_storage_class_specifiers   -DTEST_TENSOR_TYPE=int   -DTTL_COPY_3D   -target spir64-unknown-unknown   -E test1.cl -o test1.ii   -I/home/ubuntu/msc
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc 
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0   -Dcl_clang_storage_class_specifiers   -DTEST_TENSOR_TYPE=int   -DTTL_COPY_3D   -target spir64-unknown-unknown   -E test1.cl -o test1.ii   -I/home/ubuntu/msc
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc 
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc  &> dump.mlir
+grep -r 'TTL_read_ext_tensor' .
+grep -r 'TTL_read_' .
+grep -r 'TTL_read_' TTL_EXT_TENSOR_TYPE
+grep -r 'TTL_EXT_TENSOR_TYPE' .
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc  &> dump.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc  
+grep -r 'TTL_create_int_tensor' .
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc  
+grep -r 'TTL_int_int_tensor_t' .
+git log
+git reset --soft HEAD^
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc  
+grep -r 'TTL_int_int_tensor_t' .
+grep -r 'TTL_create_int_tensor' .
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc  
+grep -r 'TTL_create_int_tensor' .
+grep -r 'TTL_int_tensor_t' .
+grep -r 'TTL_create_int_tensor .
+grep -r 'TTL_create_int_tensor' .
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc  
+grep -r 'TTL_read' .
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc  
+clear
+grep -r 'TTL_create_int_tensor' .
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc  
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc   -I/home/ubuntu/msc/TTL/opencl/samples/cpp
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc   
+grep -r 'TTL_create_ext_tensor' .
+../llvm-project/build/bin/mlir-opt --mlir-print-ir-before-all --ttl-ops test1.mlir
+ls
+cd TTL/
+../llvm-project/build/bin/mlir-opt --mlir-print-ir-before-all --ttl-ops test1.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc
+cd TTL
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc
+../llvm-project/build/bin/mlir-translate --import-llvm test1.ll -o test1.mlir
+ls opencl/
+ls opencl/samples/cpp/
+ls
+ls opencl/samples/python/
+TTL_INCLUDE_PATH=/home/ubuntu/msc ./opencl/samples/python/TTL_sample_runner.py opencl/samples/python/TTL_simplex_buffering.cl
+cd opencl/
+cd samples/
+cd python/
+TTL_INCLUDE_PATH=/home/ubuntu/msc ./opencl/samples/python/TTL_sample_runner.py opencl/samples/python/TTL_simplex_buffering.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc TTL_sample_runner.py TTL_simplex_buffering.cl
+ls
+TTL_INCLUDE_PATH=/home/ubuntu/msc TTL_sample_runner.py TTL_simplex_buffering.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc ./TTL_sample_runner.py TTL_simplex_buffering.cl
+cp ~/msc/TTL/
+cp ~/msc/TTL/test1.cl .
+TTL_INCLUDE_PATH=/home/ubuntu/msc ./TTL_sample_runner.py test1.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc ./TTL_sample_runner.py simplex_addition.cl 
+TTL_INCLUDE_PATH=/home/ubuntu/msc ./TTL_sample_runner.py TTL_simplex_addition.cl 
+cp TTL_sample_runner.py TTL_amro_runner.py
+TTL_INCLUDE_PATH=/home/ubuntu/msc ./TTL_amro_runner.py TTL_simplex_addition.cl 
+clear
+TTL_INCLUDE_PATH=/home/ubuntu/msc ./TTL_amro_runner.py TTL_simplex_addition.cl 
+cursor TTL_blur.cl
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S TTL_blur.cl -o test1.ll  -I/home/ubuntu/msc
+mv TTL_amro_runner.py TTL_addition_runner.py
+TTL_INCLUDE_PATH=/home/ubuntu/msc ./TTL_addition_runner.py TTL_simplex_addition.cl 
+git push --force
+git status
+mv TTL_blur.cl TTL_matmul.cl
+cp TTL_addition_runner.py TTL_matmul_runner.py 
+TTL_INCLUDE_PATH=/home/ubuntu/msc ./TTL_matmul_runner.py TTL_matmul.cl 
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S TTL_matmul.cl -o TTL_matmul.ll  -I/home/ubuntu/msc
+TTL_INCLUDE_PATH=/home/ubuntu/msc ./TTL_matmul_runner.py TTL_matmul.cl 
+git push --force
+cp TTL_matmul.cl TTL_matmul_tiled.cl 
+TTL_INCLUDE_PATH=/home/ubuntu/msc ./TTL_matmul_runner.py TTL_matmul_tiled.cl 
+cp TTL_matmul.cl TTL_matmul_tiled.cl 
+TTL_INCLUDE_PATH=/home/ubuntu/msc ./TTL_matmul_runner.py TTL_matmul_tiled.cl 
+TTL_INCLUDE_PATH=/home/ubuntu/msc ./TTL_matmul_runner.py TTL_matmul.cl 
+TTL_INCLUDE_PATH=/home/ubuntu/msc ./TTL_matmul_runner.py TTL_matmul_tiled.cl 
+TTL_INCLUDE_PATH=/home/ubuntu/msc python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+git push --force
+TTL_INCLUDE_PATH=/home/ubuntu/msc python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc python3 TTL_matmul_runner.py TTL_matmul.cl
+#include "TTL/TTL.h"
+#define MEMSZ 1024
+#define TILE_SIZE 8
+#undef TTL_EXT_TENSOR_TYPE
+#define TTL_EXT_TENSOR_TYPE __TTL_tensor_name(TTL_, , ext_, TEST_TENSOR_TYPE, , _t)
+#undef TTL_INT_TENSOR_TYPE
+#define TTL_INT_TENSOR_TYPE __TTL_tensor_name(TTL_, , int_, TEST_TENSOR_TYPE, , _t)
+void compute_matmul_tile(TTL_INT_TENSOR_TYPE A, TTL_INT_TENSOR_TYPE B, TTL_INT_TENSOR_TYPE C, int tile_size) {
+}
+__kernel void TTL_matmul_tiled(__global TEST_TENSOR_TYPE *restrict ext_base_A, int stride_A,
+}
+perf stat -e cache-references,cache-misses ./TTL_matmul_runner.py TTL_matmul.cl
+perf stat -e cache-references,cache-misses ./TTL_matmul_runner.py TTL_matmul_tiled.cl
+perf stat -e cache-references,cache-misses ./TTL_matmul_runner.py TTL_matmul.cl
+perf stat -e cache-references,cache-misses ./TTL_matmul_runner.py TTL_matmul_tiled.cl
+Error:
+Access to performance monitoring and observability operations is limited.
+Consider adjusting /proc/sys/kernel/perf_event_paranoid setting to open
+access to performance monitoring and observability operations for processes
+without CAP_PERFMON, CAP_SYS_PTRACE or CAP_SYS_ADMIN Linux capability.
+More information can be found at 'Perf events and tool security' document:
+https://www.kernel.org/doc/html/latest/admin-guide/perf-security.html
+perf_event_paranoid setting is 4:
+>= 0: Disallow raw and ftrace function tracepoint access
+>= 1: Disallow CPU event access
+>= 2: Disallow kernel profiling
+To make the adjusted perf_event_paranoid setting permanent preserve it
+in /etc/sysctl.conf (e.g. kernel.perf_event_paranoid = <setting>)
+Error:
+Access to performance monitoring and observability operations is limited.
+Consider adjusting /proc/sys/kernel/perf_event_paranoid setting to open
+access to performance monitoring and observability operations for processes
+without CAP_PERFMON, CAP_SYS_PTRACE or CAP_SYS_ADMIN Linux capability.
+More information can be found at 'Perf events and tool security' document:
+https://www.kernel.org/doc/html/latest/admin-guide/perf-security.html
+perf_event_paranoid setting is 4:
+>= 0: Disallow raw and ftrace function tracepoint access
+>= 1: Disallow CPU event access
+>= 2: Disallow kernel profiling
+To make the adjusted perf_event_paranoid setting permanent preserve it
+in /etc/sysctl.conf (e.g. kernel.perf_event_paranoid = <setting>)
+sudo sysctl kernel.perf_event_paranoid=-1
+perf stat -e cache-references,cache-misses ./TTL_matmul_runner.py TTL_matmul.cl
+perf stat -e cache-references,cache-misses ./TTL_matmul_runner.py TTL_matmul_tiled.cl
+perf stat -e cache-references,cache-misses ./TTL_matmul_runner.py TTL_matmul.cl
+./TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+perf stat -e cache-references,cache-misses TTL_INCLUDE_PATH=/home/ubuntu/msc python3 TTL_matmul_runner.py TTL_matmul.cl
+perf stat -e cache-references,cache-misses python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc perf stat -e cache-references,cache-misses  python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc perf stat -e cache-references,cache-misses  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+psutilpython3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc   python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc   python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc   python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc   python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc   python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+sudo apt update
+sudo apt install linux-tools-common linux-tools-`uname -r`
+sudo yum groupinstall "Development Tools"
+sudo yum install perf
+TTL_INCLUDE_PATH=/home/ubuntu/msc perf stat -e cache-references,cache-misses  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+sudo sysctl -w kernel.perf_event_paranoid=-1
+TTL_INCLUDE_PATH=/home/ubuntu/msc perf stat -e cache-references,cache-misses  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+sudo apt update
+sudo apt install linux-tools-common linux-tools-`uname -r`
+sudo yum groupinstall "Development Tools"
+sudo apt update
+sudo apt install linux-tools-common linux-tools-$(uname -r) linux-tools-generic
+TTL_INCLUDE_PATH=/home/ubuntu/msc perf stat -e cache-references,cache-misses  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc sudo perf stat -e cache-references,cache-misses python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc perf stat -e cache-references,cache-misses python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+sudo TTL_INCLUDE_PATH=/home/ubuntu/msc perf stat -e cache-references,cache-misses python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+perf list
+git push --force 
+git log
+git reset --soft HEAD^
+sudo TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 ./TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc python3 TTL_matmul_runner.py TTL_matmul_tiled.cl &> dump.mlir
+cd TTL/opencl/samples/python && TTL_INCLUDE_PATH=/home/ubuntu/msc python3 TTL_matmul_runner.py TTL_matmul_tiled.cl &> dump.mlir
+cd TTL
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl
+cd TTL
+cd openCL
+cd opencl
+cd samples
+cd python
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl
+clear
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+clear
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl &> dump.mlir
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl 
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl &> dump.mlir
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl 
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl &> dump.mlir
+rm -rf ~/.cache/pyopencl/ TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl &> dump.mlir
+rm -rf ~/.cache/pyopencl/ TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl 
+cd opencl/samples/python/ && TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul_tiled.cl 
+cd opencl/samples/python/ && TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl 
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl 
+ls
+cd llvm-project/
+ls
+sudo apt update
+sudo apt install oclgrind
+oclgrind --version
+ls
+cd ..
+ls
+mkdir oclgrind
+code add_test.cl
+cursor add_test.cl
+cursor run_grind.cl
+chmod +x run_opencl.sh
+./run_opencl.sh main.cpp vector_add.cl
+code test.cpp
+cursor test.cpp
+mv run_grind.cl run_grind.sh
+ls
+mv test.cpp oclgrind/
+mv run_grind.sh  oclgrind/
+mv test1.cl  oclgrind/
+./rungrind.sh test.cpp test1.cl
+./run_grind.sh test.cpp test1.cl
+cd oclgrind/
+./run_grind.sh test.cpp test1.cl
+chmod -R 777 .
+./run_grind.sh test.cpp test1.cl
+rm add_test.cl
+rm ../add_test.cl
+./run_grind.sh test.cpp test1.cl
+mv test1.cl test.cl
+./run_grind.sh test.cpp test.cl
+OCLGRIND_KERNEL_DEBUG=1 oclgrind ./ocl_exec
+oclgrind --print-data-accesses ./ocl_exec
+oclgrind --data-races ./ocl_exec
+OCLGRIND_KERNEL_DEBUG=1 oclgrind --data-races ./ocl_exec
+oclgrind  A
+OCLGRIND_KERNEL_DEBUG=1 oclgrind --log --data-races ./ocl_exec 
+./run_grind.shun_grind.sh test.cpp test.cl
+./run_grind.sh  test.cpp test.cl
+./run_grind.shun_grind.sh test.cpp test.cl
+./run_grind.sh  test.cpp test.cl
+oclgrind --help
+./run_grind.sh  test.cpp test.cl
+ls [200 ~/.ssh/authorized_keys~
+ls  ~/.ssh/authorized_keys~
+ls  ~/.ssh
+ls  ~/.ssh/authorized_keys~
+ls  ~/.ssh/authorized_keys
+cat /home/ubuntu/.ssh/authorized_keys.
+cat /home/ubuntu/.ssh/authorized_keys
+ls
+cd opencl/samples/python/
+ls
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_matmul_runner.py TTL_matmul.cl 
+ls
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_addition_runner.py  TTL_simplex_add.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_addition_runner.py  TTL_simplex_addition.cl
+ls
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_addition_runner.py  TTL_simplex_addition.cl
+chmod +x test_stride_variations.sh
+./test_stride_variations.sh
+chmod +x test_stride_variations.sh
+./test_stride_variations.sh
+ls
+cd opencl/samples/python/
+./test_stride_variations.sh
+chmod +x opencl/samples/python/test_tiled_stride_variations.sh
+./opencl/samples/python/test_tiled_stride_variations.sh
+read the whole TTL library index fverey file, udnrestand how tiling works exactly and deeply analyse it
+chmod +x opencl/samples/python/test_tiled_stride_variations.sh
+test_tiled_stride_variations.sh
+cd opencl/samples/python/
+test_tiled_stride_variations.sh
+./test_tiled_stride_variations.sh
+./opencl/samples/python/test_tiled_stride_variations.sh
+test_tiled_stride_variations.sh
+/test_tiled_stride_variations.sh
+./test_tiled_stride_variations.sh
+cd ..
+ls
+cd ..
+ls
+sudo apt install -y git cmake ninja-build build-essential python3 python3-pip     libedit-dev libncurses5-dev libxml2-dev zlib1g-dev libssl-dev     libffi-dev libstdc++-12-d
+sudo apt install -y git cmake ninja-build build-essential python3 python3-pip     libedit-dev libncurses5-dev libxml2-dev zlib1g-dev libssl-dev     libffi-dev libstdc++-12-devsudo apt install -y git cmake ninja-build build-essential python3 python3-pip     libedit-dev libncurses5-dev libxml2-dev zlib1g-dev libssl-dev     libffi-dev libstdc++-12-dev
+sudo apt install -y git cmake ninja-build build-essential python3 python3-pip     libedit-dev libncurses5-dev libxml2-dev zlib1g-dev libssl-dev     libffi-dev libstdc++-12-dev 
+wget https://github.com/llvm/llvm-project/releases/download/llvmorg-20.1.0/LLVM-20.1.0-Linux-X64.tar.xz
+tar -xf LLVM-20.1.0-Linux-X64.tar.xz
+ls
+sudo mv LLVM-20.1.0-Linux /opt/llvm-20
+sudo mv LLVM-20.1.0-Linux-X64 /opt/llvm-20
+export PATH=/opt/llvm-20/bin:$PATH
+export LD_LIBRARY_PATH=/opt/llvm-20/lib:$LD_LIBRARY_PATH
+export CMAKE_PREFIX_PATH=/opt/llvm-20:$CMAKE_PREFIX_PATH
+source ~/.bashrc
+clang --version
+llvm-config --version
+clang --version
+which clang
+export PATH=/opt/llvm-20/bin:$PATH
+source ~/.bashrc
+which clang
+which -a clang
+/opt/llvm-20/bin/clang --version
+mkdir toga
+cd toga
+code inliner.cpp
+/opt/llvm-20/bin/clang++ inliner.cpp -o inliner   `llvm-config --cxxflags --ldflags --system-libs --libs core irreader ipo support`   -std=c++17 
+/opt/llvm-20/bin/clang++ inliner.cpp -o inliner   `llvm-config --cxxflags --ldflags --system-libs --libs core irreader ipo support`   -std=c++17
+/opt/llvm-20/bin/clang++ inliner.cpp -o inliner   
+/opt/llvm-20/bin/clang++ inliner.cpp -o inliner   `llvm-config --cxxflags --ldflags --system-libs --libs core irreader ipo support`   
+sudo apt update
+sudo apt install libzstd-dev
+/opt/llvm-20/bin/clang++ inliner.cpp -o inliner   `llvm-config --cxxflags --ldflags --system-libs --libs core irreader ipo support`   -std=c++17
+/opt/llvm-20/bin/llvm-config --version
+/opt/llvm-20/bin/clang++ inliner.cpp -o inliner   `$HOME/opt/llvm-20/bin/llvm-config --cxxflags --ldflags --system-libs --libs core irreader ipo support`   -std=c++17
+/opt/llvm-20/bin/clang++ inliner.cpp -o inliner   `/opt/llvm-20/bin/llvm-config --cxxflags --ldflags --system-libs --libs core irreader ipo support`   -std=c++17
+ls /opt/llvm-20/include/llvm/Transforms/Utils/InlineFunction.h
+ls /opt/llvm-20/include/
+ls /opt/llvm-20/include/llvm
+ls /opt/llvm-20/include/llvm/Transforms/
+ls /opt/llvm-20/include/llvm/Transforms/Utils
+cd ..
+ls
+cd toga
+ls
+cd ..
+ls /opt/llvm-20/include/llvm/Transforms
+ls /opt/llvm-20/include/llvm/Transforms/IPO
+ls
+mkdir llvm20
+cd llvm20
+code build.sh
+ls
+./build.sh
+chmod +x build.sh
+./build.sh
+ls
+ls /opt/llvm-20-full
+ls -ld /opt/llvm-20-full
+ls -dh /opt/llvm-20-full
+export PATH=/opt/llvm-20-full/bin:$PATH
+export LD_LIBRARY_PATH=/opt/llvm-20-full/lib:$LD_LIBRARY_PATH
+export CMAKE_PREFIX_PATH=/opt/llvm-20-full:$CMAKE_PREFIX_PATH
+source ~/.bashrc
+/opt/llvm-20-full/bin/llvm-config --version     # should be 20.1.0
+ls /opt/llvm-20-full/include/llvm/Transforms/Utils/InlineFunction.h
+/opt/llvm-20/bin/clang++ inliner.cpp -o inliner   `/opt/llvm-20/bin/llvm-config --cxxflags --ldflags --system-libs --libs core irreader ipo support`   -std=c++17
+cd ../toga
+/opt/llvm-20/bin/clang++ inliner.cpp -o inliner   `/opt/llvm-20/bin/llvm-config --cxxflags --ldflags --system-libs --libs core irreader ipo support`   -std=c++17
+ls
+file /opt/llvm-20/lib/libLLVMTransformUtils.a
+rm -rf /opt/llvm-20
+ls
+/opt/llvm-20-full/bin/clang++ inliner.cpp -o inliner   `/opt/llvm-20/bin/llvm-config --cxxflags --ldflags --system-libs --libs core irreader ipo support`   -std=c++17
+/opt/llvm-20-full/bin/clang++ inliner.cpp -o inliner   `/opt/llvm-20-full/bin/llvm-config --cxxflags --ldflags --system-libs --libs core irreader ipo support`   -std=c++17
+ls
+./inliner
+code input.ll
+./inliner input.ll main > inlined.ll
+ls
+/opt/llvm-20-full/bin/clang++ inliner.cpp -o inliner   `/opt/llvm-20-full/bin/llvm-config --cxxflags --ldflags --system-libs --libs core irreader ipo support`   -std=c++17
+./inliner input.ll main 
+code invalid_ptr.ll
+/opt/llvm-20-full/bin/clang++ inliner.cpp -o inliner   `/opt/llvm-20-full/bin/llvm-config --cxxflags --ldflags --system-libs --libs core irreader ipo support`   -std=c++17
+./inliner input.ll main > inlined.ll
+./inliner invalid_ptr.ll main > inlined.ll
+code invalid_ptr.ll
+/opt/llvm-20-full/bin/clang++ inliner.cpp -o inliner   `/opt/llvm-20-full/bin/llvm-config --cxxflags --ldflags --system-libs --libs core irreader ipo support`   -std=c++17
+./inliner invalid_ptr.ll main 
+ls
+code run_inliner_test.sh
+chmod +x run_inliner_test.sh
+./run_inliner_test.sh invalid_ptr.ll main
+ls
+./run_inliner_test.sh invalid_ptr.ll main
+ls
+./run_inliner_test.sh invalid_ptr.ll main
+ls
+rm -rf inlined.ll
+./run_inliner_test.sh invalid_ptr.ll main
+code uri_example.ll
+./run_inliner_test.sh uri_example.ll A
+code simple_cycle.ll
+./run_inliner_test.sh simple_cycle.ll A
+echo "# inline-playground" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/amroshahbari27/inline-playground.git
+git push -u origin main
+git status
+code cycle_branch.ll
+./run_inliner_test.sh cycle_branch.ll Start
+ls
+git push --force
+git ls
+git status
+git add .
+ls
+git status
+git commit -m "Inliner POC"
+git push --force
+./run_inliner_test.sh cycle_branch.ll Start
+code uri_example.ll
+./run_inliner_test.sh uri_example.ll  Start
+./run_inliner_test.sh uri_example.ll main
+ls
+./run_inliner_test.sh uri_example.ll main
+ls
+rm -rf cycle_branch.ll
+rm -rf cycle_branch.ll.out 
+ls
+rm -rf simple_cycle.ll
+rm -rf simple_cycle.ll.out 
+ls
+rm -rf invalid_ptr.ll
+rm -rf invalid_ptr.ll.out 
+ls
+rm -rf input.ll 
+ls
+./run_inliner_test.sh uri_example.ll  Start
+./run_inliner_test.sh uri_example.ll  A
+./run_inliner_test.sh uri_example.ll  main
+ls
+./run_inliner_test.sh uri_example.ll  main &> dump.mlir
+ls
+./run_inliner_test.sh uri_example.ll  main 
+ls
+rm -rf dump.mlir
+ls
+git commit -m "Some CleanUp"
+git add .
+git log
+git commit -m "Some CleanUp"
+git push --force
+git log
+code cycle_example.ll
+./run_inliner_test.sh code_example.ll  main 
+./run_inliner_test.sh cycle_example.ll  main 
+ls
+rm -rf code_example.ll.out
+./run_inliner_test.sh cycle_example.ll  main 
+ls
+./run_inliner_test.sh uri_example.ll  main 
+ls
+./run_inliner_test.sh cycle_example.ll  main 
+./run_inliner_test.sh cycle_example.ll  main &> cycle_dump.mlir
+./run_inliner_test.sh uri_example.ll  main &> uri_dump.mlir
+git add .
+git status
+git commit -m "Add Cycle test"
+git push --force 
+./run_inliner_test.sh uri_example.ll  main &> uri_dump.mlir
+./run_inliner_test.sh cycle_example.ll  main &> cycle_dump.mlir
+git status
+./run_inliner_test.sh cycle_example.ll  main &> cycle_dump.mlir
+./run_inliner_test.sh uri_example.ll  main &> uri_dump.mlir
+git add .
+git commit -m "Inline All"
+git push --force
+git log
+git reset --soft HEAD^
+git log
+git reset --soft HEAD^
+git status
+git reset --soft HEAD^
+git status
+git add .
+git commit -m "Inline All"
+git push --force
+git reset --soft HEAD^
+git add .
+git commit -m "Inline All"
+git push --force
+cd ~/toga/
+./run_inliner_test.sh uri_example.ll  main 
+./run_inliner_test.sh cycle_example.ll  main 
+./run_inliner_test.sh cycle_example.ll  main &> cycle_dump.mlir
+./run_inliner_test.sh cycle_example.ll  main 
+./run_inliner_test.sh cycle_example.ll  main &> cycle_dump.mlir
+./run_inliner_test.sh uri_example.ll  main &> uri_dump.mlir
+./run_inliner_test.sh cycle_example.ll  main &> cycle_dump.mlir
+git push --force
+code addiitional_test.ll
+./run_inliner_test.sh addiitional_test.ll main
+ls
+cat ~/.bash_history > my_full_history.txt 
+ls
+cd oclgrind/
+ls
+cd ..
+mkdir ttl-examples
+cd ttl-examples/
+ls
+cursor test1.cl
+cat ~/.bash_history > my_full_history.txt 
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc
+ls
+../llvm-project/build/bin/mlir-translate --import-llvm test1.ll -o test1.mlir
+../llvm-project/build/bin/mlir-opt --ttl-ops test1.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S test1.cl -o test1.ll  -I/home/ubuntu/msc
+../llvm-project/build/bin/mlir-translate --import-llvm test1.ll -o test1.mlir
+../llvm-project/build/bin/mlir-opt --ttl-ops test1.mlir
+ls
+cd TTL
+cd //
+cd ..
+cd msc
+ls
+cd home
+ls
+cs ubuntu/
+ls
+cd ubuntu/
+ls
+cd msc
+ls
+cd ..
+cd mywork/
+ls
+cd ..
+ls
+cd llvm-project/
+;s
+ls
+cd ..
+ls
+cd msc
+ls
+cd bui
+cd build
+ls
+cd ..
+cd build
+ls
+cd bin
+ls
+cd ..
+ls
+cd ..
+ls
+cd llvm-project/
+ls
+cd ..
+cd build/
+ls
+cd bin
+ls
+clang --version
+cd ..
+ls
+cd ..
+ls
+cd llvm-project/
+ls
+git status
+../llvm-project/build/bin/mlir-opt --mlir-print-ir-before-all --ttl-ops test1.mlir
+cd ls
+cd ..
+ls
+ccd mywork
+ls
+cd mywork/
+ls
+cd ..
+ls
+cdmsc
+cd msc
+ls
+cd TTL/
+LS
+ls
+git reset --soft HEAD^
+cd ..
+ls
+cd llvm-project/
+ls
+cd ..
+ls
+cd llvm-project/
+./build.sh
+cd ls
+ls
+cd SYCLops/
+ls
+cd src
+ls
+cd ..
+cs status
+git status
+ls
+سسيسشي�سيشنميسشس  مس 
+ls
+cd ..
+ls
+cd TTL
+ls
+python3 TTL_simplex_add_runner.py TTL_simplex_add
+cd ,,
+cd ..
+ls
+cd TTL
+ls
+cd ..
+ls
+python3 TTL_simplex_add_runner.py TTL_simplex_add
+cd opencl/samples/python/
+python3 TTL_simplex_add_runner.py TTL_simplex_add
+TTL_INCLUDE_PATH=/home/ubuntu/msc python3 TTL_simplex_add_runner.py TTL_simplex_add
+ls ~/msc
+TTL_INCLUDE_PATH=/home/ubuntu/msc python3 TTL_simplex_add_runner.py TTL_simplex_addTTL_INCLUDE_PATH=/home/ubuntu/msc ./opencl/samples/python/TTL_sample_runner.py opencl/samples/python/TTL_simplex_buffering.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc ./opencl/samples/python/TTL_sample_runner.py opencl/samples/python/TTL_simplex_buffering.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc python3 TTL_simplex_add_runner.py TTL_simplex_add
+python3 TTL_simplex_add_runner.py TTL_simplex_add
+TTL_INCLUDE_PATH=/home/ubuntu/msc TTL_sample_runner.py TTL_simplex_buffering.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc ./TTL_sample_runner.py TTL_simplex_buffering.cl
+export TTL_INCLUDE_PATH=/home/ubuntu/msc
+python3 TTL_simplex_add_runner.py TTL_simplex_add
+clear
+python3 TTL_simplex_add_runner.py TTL_simplex_add
+export TTL_INCLUDE_PATH=/home/ubuntu/msc
+python3 TTL_simplex_add_runner.py TTL_simplex_add
+clear
+python3 TTL_simplex_add_runner.py TTL_simplex_add
+git status
+git push --force
+ls
+git reset --soft HEAD^
+git remote -v
+cat ~/.bash_history > my_full_history.txt 
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+cd opencl/samlpes/python/
+cd opencl
+cd samples
+cd python
+clang -E   -cl-std=CL2.0   -Xclang -cl-std=CL2.0   -Dcl_clang_storage_class_specifiers   -DTEST_TENSOR_TYPE=int   -DTTL_COPY_3D   -target spir64-unknown-unknown   simple_add.cl   -o simple_add.ii   -I/home/ubuntu/msc
+clang -E   -cl-std=CL2.0   -Xclang -cl-std=CL2.0   -Dcl_clang_storage_class_specifiers   -DTEST_TENSOR_TYPE=int   -DTTL_COPY_3D   -target spir64-unknown-unknown   TTL_simplex_add.cl   -o TTL_simplex_add.ii   -I/home/ubuntu/msc
