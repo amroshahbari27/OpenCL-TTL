@@ -15,7 +15,7 @@ typedef enum {
 } loop_affine_dim_t;
 
 typedef struct {
-    loop_affine_dim_t dim;
+    volatile loop_affine_dim_t dim;
     volatile int x_start, x_end, x_step, x;  // i
     volatile int y_start, y_end, y_step, y;  // j
     volatile int z_start, z_end, z_step, z;  // k
@@ -75,7 +75,7 @@ __kernel void matmul_kernel(
         .z_start = 3, .z_end = K, .z_step = 1, .z = 0   // k
     };
 
-    tensor_access_t A = { A_base, A_row_stride, A_plane_stride };
+    tensor_access_t A = { A_base, 0, 1 };
     tensor_access_t B = { B_base, B_row_stride, B_plane_stride };
     tensor_access_t C = { C_base, C_row_stride, C_plane_stride };
 
