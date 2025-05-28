@@ -66,11 +66,7 @@ void TTL_loop_affine_matmul_body(
     TTL_affine_access_t access_B,
     TTL_affine_access_t access_C)
 {
-    int idx_A = TTL_affine_compute_index(&access_A);
-    int idx_B = TTL_affine_compute_index(&access_B);
-    int idx_C = TTL_affine_compute_index(&access_C);
-
-    access_C.base[idx_C] += access_A.base[idx_A] * access_B.base[idx_B];
+    access_C.element += access_A.element * access_B.element;   
 }
 
 // -----------------------------------------------
