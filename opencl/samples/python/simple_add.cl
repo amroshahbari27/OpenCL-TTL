@@ -17,7 +17,7 @@ typedef enum {
 // TTL Loop Metadata
 // -----------------------------------------------
 typedef struct {
-    TTL_loop_kind_t dim;
+    volatile TTL_loop_kind_t dim;
     volatile int x_start, x_end, x_step, x;
     volatile int y_start, y_end, y_step, y;
     volatile int z_start, z_end, z_step, z;
@@ -37,15 +37,15 @@ typedef enum {
 // -----------------------------------------------
 typedef struct {
     __global TEST_TENSOR_TYPE* restrict base;
-    TTL_tensor_rank_t rank;
+    volatile TTL_tensor_rank_t rank;
 
-    int x_stride;
-    int y_stride;
-    int z_stride;
+    volatile int x_stride;
+    volatile int y_stride;
+    volatile int z_stride;
 
-    int x_index;
-    int y_index;
-    int z_index;
+    volatile int x_index;
+    volatile int y_index;
+    volatile int z_index;
 } TTL_affine_access_t;
 
 // -----------------------------------------------
@@ -84,9 +84,9 @@ __kernel void TTL_matmul_kernel(
 {
     TTL_loop_affine_t loop = {
         .dim = TTL_LOOP_3D,
-        .x_start = 0, .x_end = M, .x_step = 2, .x = 0, // i x=0 -> outer loop
-        .y_start = 0, .y_end = N, .y_step = 3, .y = 1, // j y=1 -> inner loop
-        .z_start = 0, .z_end = K, .z_step = 4, .z = 2  // k z=2 -> innermost loop
+        .x_start = 0, .x_end = M, .x_step = 1, .x = 0, // i
+        .y_start = 0, .y_end = N, .y_step = 1, .y = 1, // j
+        .z_start = 0, .z_end = K, .z_step = 1, .z = 2  // k
     };
 
     TTL_affine_access_t access_A = {

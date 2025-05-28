@@ -181,30 +181,30 @@ define internal spir_func void @_ZL16TTL_write_tensor24TTL_int_int_sub_tensor_ti
   ret void
 }
 
-; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind willreturn memory(argmem: read)
-define dso_local spir_func i32 @TTL_affine_compute_index(ptr addrspace(4) nocapture noundef readonly %0) local_unnamed_addr #6 {
+; Function Attrs: mustprogress nofree noinline norecurse nounwind willreturn memory(argmem: readwrite, inaccessiblemem: readwrite)
+define dso_local spir_func i32 @TTL_affine_compute_index(ptr addrspace(4) noundef %0) local_unnamed_addr #6 {
   %2 = getelementptr inbounds %struct.TTL_affine_access_t, ptr addrspace(4) %0, i64 0, i32 5
-  %3 = load i32, ptr addrspace(4) %2, align 8, !tbaa !15
+  %3 = load volatile i32, ptr addrspace(4) %2, align 8, !tbaa !15
   %4 = getelementptr inbounds %struct.TTL_affine_access_t, ptr addrspace(4) %0, i64 0, i32 2
-  %5 = load i32, ptr addrspace(4) %4, align 4, !tbaa !17
+  %5 = load volatile i32, ptr addrspace(4) %4, align 4, !tbaa !17
   %6 = mul nsw i32 %5, %3
   %7 = getelementptr inbounds %struct.TTL_affine_access_t, ptr addrspace(4) %0, i64 0, i32 6
-  %8 = load i32, ptr addrspace(4) %7, align 4, !tbaa !18
+  %8 = load volatile i32, ptr addrspace(4) %7, align 4, !tbaa !18
   %9 = getelementptr inbounds %struct.TTL_affine_access_t, ptr addrspace(4) %0, i64 0, i32 3
-  %10 = load i32, ptr addrspace(4) %9, align 8, !tbaa !19
+  %10 = load volatile i32, ptr addrspace(4) %9, align 8, !tbaa !19
   %11 = mul nsw i32 %10, %8
   %12 = add nsw i32 %11, %6
   %13 = getelementptr inbounds %struct.TTL_affine_access_t, ptr addrspace(4) %0, i64 0, i32 7
-  %14 = load i32, ptr addrspace(4) %13, align 8, !tbaa !20
+  %14 = load volatile i32, ptr addrspace(4) %13, align 8, !tbaa !20
   %15 = getelementptr inbounds %struct.TTL_affine_access_t, ptr addrspace(4) %0, i64 0, i32 4
-  %16 = load i32, ptr addrspace(4) %15, align 4, !tbaa !21
+  %16 = load volatile i32, ptr addrspace(4) %15, align 4, !tbaa !21
   %17 = mul nsw i32 %16, %14
   %18 = add nsw i32 %12, %17
   ret i32 %18
 }
 
-; Function Attrs: mustprogress nofree noinline norecurse nosync nounwind willreturn memory(readwrite, inaccessiblemem: none)
-define dso_local spir_func void @TTL_loop_affine_matmul_body(ptr nocapture noundef readnone byval(%struct.TTL_loop_affine_t) align 4 %0, ptr nocapture noundef readonly byval(%struct.TTL_affine_access_t) align 8 %1, ptr nocapture noundef readonly byval(%struct.TTL_affine_access_t) align 8 %2, ptr nocapture noundef readonly byval(%struct.TTL_affine_access_t) align 8 %3) local_unnamed_addr #7 {
+; Function Attrs: mustprogress nofree noinline norecurse nounwind willreturn
+define dso_local spir_func void @TTL_loop_affine_matmul_body(ptr nocapture noundef readnone byval(%struct.TTL_loop_affine_t) align 4 %0, ptr noundef byval(%struct.TTL_affine_access_t) align 8 %1, ptr noundef byval(%struct.TTL_affine_access_t) align 8 %2, ptr noundef byval(%struct.TTL_affine_access_t) align 8 %3) local_unnamed_addr #7 {
   %5 = addrspacecast ptr %1 to ptr addrspace(4)
   %6 = call spir_func i32 @TTL_affine_compute_index(ptr addrspace(4) noundef %5) #10
   %7 = addrspacecast ptr %2 to ptr addrspace(4)
@@ -236,13 +236,13 @@ define dso_local spir_kernel void @TTL_matmul_kernel(ptr addrspace(1) noalias no
   %15 = alloca %struct.TTL_affine_access_t, align 8
   %16 = alloca %struct.TTL_affine_access_t, align 8
   call void @llvm.lifetime.start.p0(i64 52, ptr nonnull %13) #10
-  store i32 3, ptr %13, align 4, !tbaa !28
+  store volatile i32 3, ptr %13, align 4, !tbaa !28
   %17 = getelementptr inbounds %struct.TTL_loop_affine_t, ptr %13, i64 0, i32 1
   store volatile i32 0, ptr %17, align 4, !tbaa !30
   %18 = getelementptr inbounds %struct.TTL_loop_affine_t, ptr %13, i64 0, i32 2
   store volatile i32 %9, ptr %18, align 4, !tbaa !31
   %19 = getelementptr inbounds %struct.TTL_loop_affine_t, ptr %13, i64 0, i32 3
-  store volatile i32 2, ptr %19, align 4, !tbaa !32
+  store volatile i32 1, ptr %19, align 4, !tbaa !32
   %20 = getelementptr inbounds %struct.TTL_loop_affine_t, ptr %13, i64 0, i32 4
   store volatile i32 0, ptr %20, align 4, !tbaa !33
   %21 = getelementptr inbounds %struct.TTL_loop_affine_t, ptr %13, i64 0, i32 5
@@ -250,7 +250,7 @@ define dso_local spir_kernel void @TTL_matmul_kernel(ptr addrspace(1) noalias no
   %22 = getelementptr inbounds %struct.TTL_loop_affine_t, ptr %13, i64 0, i32 6
   store volatile i32 %10, ptr %22, align 4, !tbaa !35
   %23 = getelementptr inbounds %struct.TTL_loop_affine_t, ptr %13, i64 0, i32 7
-  store volatile i32 3, ptr %23, align 4, !tbaa !36
+  store volatile i32 1, ptr %23, align 4, !tbaa !36
   %24 = getelementptr inbounds %struct.TTL_loop_affine_t, ptr %13, i64 0, i32 8
   store volatile i32 1, ptr %24, align 4, !tbaa !37
   %25 = getelementptr inbounds %struct.TTL_loop_affine_t, ptr %13, i64 0, i32 9
@@ -258,63 +258,63 @@ define dso_local spir_kernel void @TTL_matmul_kernel(ptr addrspace(1) noalias no
   %26 = getelementptr inbounds %struct.TTL_loop_affine_t, ptr %13, i64 0, i32 10
   store volatile i32 %11, ptr %26, align 4, !tbaa !39
   %27 = getelementptr inbounds %struct.TTL_loop_affine_t, ptr %13, i64 0, i32 11
-  store volatile i32 4, ptr %27, align 4, !tbaa !40
+  store volatile i32 1, ptr %27, align 4, !tbaa !40
   %28 = getelementptr inbounds %struct.TTL_loop_affine_t, ptr %13, i64 0, i32 12
   store volatile i32 2, ptr %28, align 4, !tbaa !41
   call void @llvm.lifetime.start.p0(i64 40, ptr nonnull %14) #10
   store ptr addrspace(1) %0, ptr %14, align 8, !tbaa !22
   %29 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %14, i64 0, i32 1
-  store i32 2, ptr %29, align 8, !tbaa !42
+  store volatile i32 2, ptr %29, align 8, !tbaa !42
   %30 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %14, i64 0, i32 2
-  store i32 1, ptr %30, align 4, !tbaa !17
+  store volatile i32 1, ptr %30, align 4, !tbaa !17
   %31 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %14, i64 0, i32 3
-  store i32 %1, ptr %31, align 8, !tbaa !19
+  store volatile i32 %1, ptr %31, align 8, !tbaa !19
   %32 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %14, i64 0, i32 4
-  store i32 0, ptr %32, align 4, !tbaa !21
+  store volatile i32 0, ptr %32, align 4, !tbaa !21
   %33 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %14, i64 0, i32 5
   %34 = load volatile i32, ptr %20, align 4, !tbaa !33
-  store i32 %34, ptr %33, align 8, !tbaa !15
+  store volatile i32 %34, ptr %33, align 8, !tbaa !15
   %35 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %14, i64 0, i32 6
   %36 = load volatile i32, ptr %28, align 4, !tbaa !41
-  store i32 %36, ptr %35, align 4, !tbaa !18
+  store volatile i32 %36, ptr %35, align 4, !tbaa !18
   %37 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %14, i64 0, i32 7
-  store i32 0, ptr %37, align 8, !tbaa !20
+  store volatile i32 0, ptr %37, align 8, !tbaa !20
   call void @llvm.lifetime.start.p0(i64 40, ptr nonnull %15) #10
   store ptr addrspace(1) %3, ptr %15, align 8, !tbaa !22
   %38 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %15, i64 0, i32 1
-  store i32 2, ptr %38, align 8, !tbaa !42
+  store volatile i32 2, ptr %38, align 8, !tbaa !42
   %39 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %15, i64 0, i32 2
-  store i32 1, ptr %39, align 4, !tbaa !17
+  store volatile i32 1, ptr %39, align 4, !tbaa !17
   %40 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %15, i64 0, i32 3
-  store i32 %4, ptr %40, align 8, !tbaa !19
+  store volatile i32 %4, ptr %40, align 8, !tbaa !19
   %41 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %15, i64 0, i32 4
-  store i32 0, ptr %41, align 4, !tbaa !21
+  store volatile i32 0, ptr %41, align 4, !tbaa !21
   %42 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %15, i64 0, i32 5
   %43 = load volatile i32, ptr %28, align 4, !tbaa !41
-  store i32 %43, ptr %42, align 8, !tbaa !15
+  store volatile i32 %43, ptr %42, align 8, !tbaa !15
   %44 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %15, i64 0, i32 6
   %45 = load volatile i32, ptr %24, align 4, !tbaa !37
-  store i32 %45, ptr %44, align 4, !tbaa !18
+  store volatile i32 %45, ptr %44, align 4, !tbaa !18
   %46 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %15, i64 0, i32 7
-  store i32 0, ptr %46, align 8, !tbaa !20
+  store volatile i32 0, ptr %46, align 8, !tbaa !20
   call void @llvm.lifetime.start.p0(i64 40, ptr nonnull %16) #10
   store ptr addrspace(1) %6, ptr %16, align 8, !tbaa !22
   %47 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %16, i64 0, i32 1
-  store i32 2, ptr %47, align 8, !tbaa !42
+  store volatile i32 2, ptr %47, align 8, !tbaa !42
   %48 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %16, i64 0, i32 2
-  store i32 1, ptr %48, align 4, !tbaa !17
+  store volatile i32 1, ptr %48, align 4, !tbaa !17
   %49 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %16, i64 0, i32 3
-  store i32 %7, ptr %49, align 8, !tbaa !19
+  store volatile i32 %7, ptr %49, align 8, !tbaa !19
   %50 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %16, i64 0, i32 4
-  store i32 0, ptr %50, align 4, !tbaa !21
+  store volatile i32 0, ptr %50, align 4, !tbaa !21
   %51 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %16, i64 0, i32 5
   %52 = load volatile i32, ptr %20, align 4, !tbaa !33
-  store i32 %52, ptr %51, align 8, !tbaa !15
+  store volatile i32 %52, ptr %51, align 8, !tbaa !15
   %53 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %16, i64 0, i32 6
   %54 = load volatile i32, ptr %24, align 4, !tbaa !37
-  store i32 %54, ptr %53, align 4, !tbaa !18
+  store volatile i32 %54, ptr %53, align 4, !tbaa !18
   %55 = getelementptr inbounds %struct.TTL_affine_access_t, ptr %16, i64 0, i32 7
-  store i32 0, ptr %55, align 8, !tbaa !20
+  store volatile i32 0, ptr %55, align 8, !tbaa !20
   tail call spir_func void @TTL_loop_affine_matmul_body(ptr noundef nonnull byval(%struct.TTL_loop_affine_t) align 4 %13, ptr noundef nonnull byval(%struct.TTL_affine_access_t) align 8 %14, ptr noundef nonnull byval(%struct.TTL_affine_access_t) align 8 %15, ptr noundef nonnull byval(%struct.TTL_affine_access_t) align 8 %16) #10
   call void @llvm.lifetime.end.p0(i64 40, ptr nonnull %16) #10
   call void @llvm.lifetime.end.p0(i64 40, ptr nonnull %15) #10
@@ -355,8 +355,8 @@ attributes #2 = { convergent nounwind "frame-pointer"="all" "no-trapping-math"="
 attributes #3 = { nofree noinline norecurse nosync nounwind memory(readwrite, inaccessiblemem: none) "frame-pointer"="all" "no-trapping-math"="true" "stack-protector-buffer-size"="8" }
 attributes #4 = { mustprogress nofree noinline norecurse nosync nounwind willreturn memory(read, inaccessiblemem: none) "frame-pointer"="all" "no-trapping-math"="true" "stack-protector-buffer-size"="8" }
 attributes #5 = { mustprogress nofree noinline norecurse nosync nounwind willreturn memory(write, argmem: readwrite, inaccessiblemem: none) "frame-pointer"="all" "no-trapping-math"="true" "stack-protector-buffer-size"="8" }
-attributes #6 = { mustprogress nofree noinline norecurse nosync nounwind willreturn memory(argmem: read) "frame-pointer"="all" "no-trapping-math"="true" "stack-protector-buffer-size"="8" }
-attributes #7 = { mustprogress nofree noinline norecurse nosync nounwind willreturn memory(readwrite, inaccessiblemem: none) "frame-pointer"="all" "no-trapping-math"="true" "stack-protector-buffer-size"="8" }
+attributes #6 = { mustprogress nofree noinline norecurse nounwind willreturn memory(argmem: readwrite, inaccessiblemem: readwrite) "frame-pointer"="all" "no-trapping-math"="true" "stack-protector-buffer-size"="8" }
+attributes #7 = { mustprogress nofree noinline norecurse nounwind willreturn "frame-pointer"="all" "no-trapping-math"="true" "stack-protector-buffer-size"="8" }
 attributes #8 = { nofree noinline norecurse nounwind "frame-pointer"="all" "no-trapping-math"="true" "stack-protector-buffer-size"="8" "uniform-work-group-size"="false" }
 attributes #9 = { convergent nounwind }
 attributes #10 = { nounwind }

@@ -1,43 +1,55 @@
 Analyzing TTL_matmul_kernel:
-x.start = 0 (constant)
-x.end = dynamic
-x.step = 2 (constant)
-x.current = 0 (constant)
-y.start = 0 (constant)
-y.end = dynamic
-y.step = 3 (constant)
-y.current = 1 (constant)
-z.start = 0 (constant)
-z.end = dynamic
-z.step = 4 (constant)
-z.current = 2 (constant)
+
+Loop x:
+  start = 0 (constant)
+  end = dynamic (dynamic)
+  step = 1 (constant)
+  loop_dimension = 0 (outer loop)
+  Accessed tensors: Tensor1 Tensor3 
+
+Loop y:
+  start = 0 (constant)
+  end = dynamic (dynamic)
+  step = 1 (constant)
+  loop_dimension = 1 (middle loop)
+  Accessed tensors: Tensor2 Tensor3 
+
+Loop z:
+  start = 0 (constant)
+  end = dynamic (dynamic)
+  step = 1 (constant)
+  loop_dimension = 2 (inner loop)
+  Accessed tensors: Tensor1 Tensor2 
 
 Analyzing Tensor1 tensor access:
-rank = 2D
-x_stride = 1 (constant)
-y_stride = dynamic
-z_stride = 0 (constant)
-x_index = x (loop var)
-y_index = z (loop var)
-z_index = 0 (constant)
+  rank = 2D
+  x_stride = 1 (constant)
+  y_stride = dynamic (dynamic)
+  z_stride = 0 (constant)
+  x_index = x (loop var)
+  y_index = z (loop var)
+  z_index = dynamic (loop var)
+  Accessed in loops: x z 
 
 Analyzing Tensor2 tensor access:
-rank = 2D
-x_stride = 1 (constant)
-y_stride = dynamic
-z_stride = 0 (constant)
-x_index = z (loop var)
-y_index = y (loop var)
-z_index = 0 (constant)
+  rank = 2D
+  x_stride = 1 (constant)
+  y_stride = dynamic (dynamic)
+  z_stride = 0 (constant)
+  x_index = z (loop var)
+  y_index = y (loop var)
+  z_index = dynamic (loop var)
+  Accessed in loops: y z 
 
 Analyzing Tensor3 tensor access:
-rank = 2D
-x_stride = 1 (constant)
-y_stride = dynamic
-z_stride = 0 (constant)
-x_index = x (loop var)
-y_index = y (loop var)
-z_index = 0 (constant)
+  rank = 2D
+  x_stride = 1 (constant)
+  y_stride = dynamic (dynamic)
+  z_stride = 0 (constant)
+  x_index = x (loop var)
+  y_index = y (loop var)
+  z_index = dynamic (loop var)
+  Accessed in loops: x y 
 #tbaa_root = #llvm.tbaa_root<id = "Simple C/C++ TBAA">
 #tbaa_type_desc = #llvm.tbaa_type_desc<id = "omnipotent char", members = {<#tbaa_root, 0>}>
 #tbaa_type_desc1 = #llvm.tbaa_type_desc<id = "any pointer", members = {<#tbaa_type_desc, 0>}>
@@ -75,7 +87,7 @@ z_index = 0 (constant)
 #tbaa_type_desc9 = #llvm.tbaa_type_desc<id = "", members = {<#tbaa_type_desc7, 0>, <#tbaa_type_desc8, 32>}>
 #tbaa_tag24 = #llvm.tbaa_tag<base_type = #tbaa_type_desc9, access_type = #tbaa_type_desc2, offset = 24>
 #tbaa_tag25 = #llvm.tbaa_tag<base_type = #tbaa_type_desc9, access_type = #tbaa_type_desc2, offset = 20>
-module attributes {dlti.dl_spec = #dlti.dl_spec<#dlti.dl_entry<f128, dense<128> : vector<2xi64>>, #dlti.dl_entry<f64, dense<64> : vector<2xi64>>, #dlti.dl_entry<f16, dense<16> : vector<2xi64>>, #dlti.dl_entry<i32, dense<32> : vector<2xi64>>, #dlti.dl_entry<i16, dense<16> : vector<2xi64>>, #dlti.dl_entry<i8, dense<8> : vector<2xi64>>, #dlti.dl_entry<i1, dense<8> : vector<2xi64>>, #dlti.dl_entry<!llvm.ptr, dense<64> : vector<4xi64>>, #dlti.dl_entry<i64, dense<64> : vector<2xi64>>, #dlti.dl_entry<"dlti.endianness", "little">>} {
+module attributes {dlti.dl_spec = #dlti.dl_spec<#dlti.dl_entry<i64, dense<64> : vector<2xi64>>, #dlti.dl_entry<i1, dense<8> : vector<2xi64>>, #dlti.dl_entry<!llvm.ptr, dense<64> : vector<4xi64>>, #dlti.dl_entry<i8, dense<8> : vector<2xi64>>, #dlti.dl_entry<i16, dense<16> : vector<2xi64>>, #dlti.dl_entry<i32, dense<32> : vector<2xi64>>, #dlti.dl_entry<f64, dense<64> : vector<2xi64>>, #dlti.dl_entry<f128, dense<128> : vector<2xi64>>, #dlti.dl_entry<f16, dense<16> : vector<2xi64>>, #dlti.dl_entry<"dlti.endianness", "little">>} {
   llvm.func local_unnamed_addr spir_funccc @_Z26async_work_group_copy_3D3DPU3AS3vmPU3AS1Kvmmmmmmmmm9ocl_event(%arg0: !llvm.ptr<3> {llvm.noundef}, %arg1: i64 {llvm.noundef}, %arg2: !llvm.ptr<1> {llvm.noundef}, %arg3: i64 {llvm.noundef}, %arg4: i64 {llvm.noundef}, %arg5: i64 {llvm.noundef}, %arg6: i64 {llvm.noundef}, %arg7: i64 {llvm.noundef}, %arg8: i64 {llvm.noundef}, %arg9: i64 {llvm.noundef}, %arg10: i64 {llvm.noundef}, %arg11: i64 {llvm.noundef}, %arg12: !llvm.target<"spirv.Event"> {llvm.returned}) -> !llvm.target<"spirv.Event"> attributes {frame_pointer = #llvm.framePointerKind<all>, passthrough = ["convergent", "noinline", "norecurse", "nounwind", ["no-trapping-math", "true"], ["stack-protector-buffer-size", "8"]]} {
     %0 = llvm.mlir.constant(0 : i64) : i64
     %1 = llvm.mlir.constant(1 : i64) : i64
@@ -208,7 +220,7 @@ module attributes {dlti.dl_spec = #dlti.dl_spec<#dlti.dl_entry<f128, dense<128> 
     llvm.call spir_funccc @_ZL16TTL_write_tensor20TTL_int_int_tensor_tijjj(%arg0, %arg1, %arg2, %arg3) : (!llvm.ptr, i32, i32, i32) -> ()
     llvm.return
   }
-  llvm.func local_unnamed_addr spir_funccc @TTL_affine_compute_index(%arg0: !llvm.ptr<4> {llvm.nocapture, llvm.noundef, llvm.readonly}) -> i32 attributes {frame_pointer = #llvm.framePointerKind<all>, memory = #llvm.memory_effects<other = none, argMem = read, inaccessibleMem = none>, passthrough = ["mustprogress", "nofree", "noinline", "norecurse", "nosync", "nounwind", "willreturn", ["no-trapping-math", "true"], ["stack-protector-buffer-size", "8"]]} {
+  llvm.func local_unnamed_addr spir_funccc @TTL_affine_compute_index(%arg0: !llvm.ptr<4> {llvm.noundef}) -> i32 attributes {frame_pointer = #llvm.framePointerKind<all>, memory = #llvm.memory_effects<other = none, argMem = readwrite, inaccessibleMem = readwrite>, passthrough = ["mustprogress", "nofree", "noinline", "norecurse", "nounwind", "willreturn", ["no-trapping-math", "true"], ["stack-protector-buffer-size", "8"]]} {
     %0 = llvm.mlir.constant(0 : i64) : i64
     %1 = llvm.mlir.constant(5 : i32) : i32
     %2 = llvm.mlir.constant(2 : i32) : i32
@@ -217,25 +229,25 @@ module attributes {dlti.dl_spec = #dlti.dl_spec<#dlti.dl_entry<f128, dense<128> 
     %5 = llvm.mlir.constant(7 : i32) : i32
     %6 = llvm.mlir.constant(4 : i32) : i32
     %7 = llvm.getelementptr inbounds %arg0[%0, 5] : (!llvm.ptr<4>, i64) -> !llvm.ptr<4>, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    %8 = llvm.load %7 {alignment = 8 : i64, tbaa = [#tbaa_tag1]} : !llvm.ptr<4> -> i32
+    %8 = llvm.load volatile %7 {alignment = 8 : i64, tbaa = [#tbaa_tag1]} : !llvm.ptr<4> -> i32
     %9 = llvm.getelementptr inbounds %arg0[%0, 2] : (!llvm.ptr<4>, i64) -> !llvm.ptr<4>, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    %10 = llvm.load %9 {alignment = 4 : i64, tbaa = [#tbaa_tag2]} : !llvm.ptr<4> -> i32
+    %10 = llvm.load volatile %9 {alignment = 4 : i64, tbaa = [#tbaa_tag2]} : !llvm.ptr<4> -> i32
     %11 = llvm.mul %10, %8 overflow<nsw>  : i32
     %12 = llvm.getelementptr inbounds %arg0[%0, 6] : (!llvm.ptr<4>, i64) -> !llvm.ptr<4>, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    %13 = llvm.load %12 {alignment = 4 : i64, tbaa = [#tbaa_tag3]} : !llvm.ptr<4> -> i32
+    %13 = llvm.load volatile %12 {alignment = 4 : i64, tbaa = [#tbaa_tag3]} : !llvm.ptr<4> -> i32
     %14 = llvm.getelementptr inbounds %arg0[%0, 3] : (!llvm.ptr<4>, i64) -> !llvm.ptr<4>, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    %15 = llvm.load %14 {alignment = 8 : i64, tbaa = [#tbaa_tag4]} : !llvm.ptr<4> -> i32
+    %15 = llvm.load volatile %14 {alignment = 8 : i64, tbaa = [#tbaa_tag4]} : !llvm.ptr<4> -> i32
     %16 = llvm.mul %15, %13 overflow<nsw>  : i32
     %17 = llvm.add %16, %11 overflow<nsw>  : i32
     %18 = llvm.getelementptr inbounds %arg0[%0, 7] : (!llvm.ptr<4>, i64) -> !llvm.ptr<4>, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    %19 = llvm.load %18 {alignment = 8 : i64, tbaa = [#tbaa_tag5]} : !llvm.ptr<4> -> i32
+    %19 = llvm.load volatile %18 {alignment = 8 : i64, tbaa = [#tbaa_tag5]} : !llvm.ptr<4> -> i32
     %20 = llvm.getelementptr inbounds %arg0[%0, 4] : (!llvm.ptr<4>, i64) -> !llvm.ptr<4>, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    %21 = llvm.load %20 {alignment = 4 : i64, tbaa = [#tbaa_tag6]} : !llvm.ptr<4> -> i32
+    %21 = llvm.load volatile %20 {alignment = 4 : i64, tbaa = [#tbaa_tag6]} : !llvm.ptr<4> -> i32
     %22 = llvm.mul %21, %19 overflow<nsw>  : i32
     %23 = llvm.add %17, %22 overflow<nsw>  : i32
     llvm.return %23 : i32
   }
-  llvm.func local_unnamed_addr spir_funccc @TTL_loop_affine_matmul_body(%arg0: !llvm.ptr {llvm.align = 4 : i64, llvm.byval = !llvm.struct<"struct.TTL_loop_affine_t", (i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32)>, llvm.nocapture, llvm.noundef, llvm.readnone}, %arg1: !llvm.ptr {llvm.align = 8 : i64, llvm.byval = !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>, llvm.nocapture, llvm.noundef, llvm.readonly}, %arg2: !llvm.ptr {llvm.align = 8 : i64, llvm.byval = !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>, llvm.nocapture, llvm.noundef, llvm.readonly}, %arg3: !llvm.ptr {llvm.align = 8 : i64, llvm.byval = !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>, llvm.nocapture, llvm.noundef, llvm.readonly}) attributes {frame_pointer = #llvm.framePointerKind<all>, memory = #llvm.memory_effects<other = readwrite, argMem = readwrite, inaccessibleMem = none>, passthrough = ["mustprogress", "nofree", "noinline", "norecurse", "nosync", "nounwind", "willreturn", ["no-trapping-math", "true"], ["stack-protector-buffer-size", "8"]]} {
+  llvm.func local_unnamed_addr spir_funccc @TTL_loop_affine_matmul_body(%arg0: !llvm.ptr {llvm.align = 4 : i64, llvm.byval = !llvm.struct<"struct.TTL_loop_affine_t", (i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32)>, llvm.nocapture, llvm.noundef, llvm.readnone}, %arg1: !llvm.ptr {llvm.align = 8 : i64, llvm.byval = !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>, llvm.noundef}, %arg2: !llvm.ptr {llvm.align = 8 : i64, llvm.byval = !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>, llvm.noundef}, %arg3: !llvm.ptr {llvm.align = 8 : i64, llvm.byval = !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>, llvm.noundef}) attributes {frame_pointer = #llvm.framePointerKind<all>, passthrough = ["mustprogress", "nofree", "noinline", "norecurse", "nounwind", "willreturn", ["no-trapping-math", "true"], ["stack-protector-buffer-size", "8"]]} {
     %0 = llvm.addrspacecast %arg1 : !llvm.ptr to !llvm.ptr<4>
     %1 = llvm.call spir_funccc @TTL_affine_compute_index(%0) : (!llvm.ptr<4>) -> i32
     %2 = llvm.addrspacecast %arg2 : !llvm.ptr to !llvm.ptr<4>
@@ -279,13 +291,13 @@ module attributes {dlti.dl_spec = #dlti.dl_spec<#dlti.dl_entry<f128, dense<128> 
     %16 = llvm.alloca %0 x !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)> {alignment = 8 : i64} : (i32) -> !llvm.ptr
     %17 = llvm.alloca %0 x !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)> {alignment = 8 : i64} : (i32) -> !llvm.ptr
     llvm.intr.lifetime.start 52, %14 : !llvm.ptr
-    llvm.store %1, %14 {alignment = 4 : i64, tbaa = [#tbaa_tag8]} : i32, !llvm.ptr
+    llvm.store volatile %1, %14 {alignment = 4 : i64, tbaa = [#tbaa_tag8]} : i32, !llvm.ptr
     %18 = llvm.getelementptr inbounds %14[%2, 1] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_loop_affine_t", (i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32)>
     llvm.store volatile %3, %18 {alignment = 4 : i64, tbaa = [#tbaa_tag9]} : i32, !llvm.ptr
     %19 = llvm.getelementptr inbounds %14[%2, 2] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_loop_affine_t", (i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32)>
     llvm.store volatile %arg9, %19 {alignment = 4 : i64, tbaa = [#tbaa_tag10]} : i32, !llvm.ptr
     %20 = llvm.getelementptr inbounds %14[%2, 3] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_loop_affine_t", (i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32)>
-    llvm.store volatile %4, %20 {alignment = 4 : i64, tbaa = [#tbaa_tag11]} : i32, !llvm.ptr
+    llvm.store volatile %0, %20 {alignment = 4 : i64, tbaa = [#tbaa_tag11]} : i32, !llvm.ptr
     %21 = llvm.getelementptr inbounds %14[%2, 4] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_loop_affine_t", (i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32)>
     llvm.store volatile %3, %21 {alignment = 4 : i64, tbaa = [#tbaa_tag12]} : i32, !llvm.ptr
     %22 = llvm.getelementptr inbounds %14[%2, 5] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_loop_affine_t", (i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32)>
@@ -293,7 +305,7 @@ module attributes {dlti.dl_spec = #dlti.dl_spec<#dlti.dl_entry<f128, dense<128> 
     %23 = llvm.getelementptr inbounds %14[%2, 6] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_loop_affine_t", (i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32)>
     llvm.store volatile %arg10, %23 {alignment = 4 : i64, tbaa = [#tbaa_tag14]} : i32, !llvm.ptr
     %24 = llvm.getelementptr inbounds %14[%2, 7] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_loop_affine_t", (i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32)>
-    llvm.store volatile %1, %24 {alignment = 4 : i64, tbaa = [#tbaa_tag15]} : i32, !llvm.ptr
+    llvm.store volatile %0, %24 {alignment = 4 : i64, tbaa = [#tbaa_tag15]} : i32, !llvm.ptr
     %25 = llvm.getelementptr inbounds %14[%2, 8] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_loop_affine_t", (i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32)>
     llvm.store volatile %0, %25 {alignment = 4 : i64, tbaa = [#tbaa_tag16]} : i32, !llvm.ptr
     %26 = llvm.getelementptr inbounds %14[%2, 9] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_loop_affine_t", (i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32)>
@@ -301,63 +313,63 @@ module attributes {dlti.dl_spec = #dlti.dl_spec<#dlti.dl_entry<f128, dense<128> 
     %27 = llvm.getelementptr inbounds %14[%2, 10] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_loop_affine_t", (i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32)>
     llvm.store volatile %arg11, %27 {alignment = 4 : i64, tbaa = [#tbaa_tag18]} : i32, !llvm.ptr
     %28 = llvm.getelementptr inbounds %14[%2, 11] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_loop_affine_t", (i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32)>
-    llvm.store volatile %5, %28 {alignment = 4 : i64, tbaa = [#tbaa_tag19]} : i32, !llvm.ptr
+    llvm.store volatile %0, %28 {alignment = 4 : i64, tbaa = [#tbaa_tag19]} : i32, !llvm.ptr
     %29 = llvm.getelementptr inbounds %14[%2, 12] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_loop_affine_t", (i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32, i32)>
     llvm.store volatile %4, %29 {alignment = 4 : i64, tbaa = [#tbaa_tag20]} : i32, !llvm.ptr
     llvm.intr.lifetime.start 40, %15 : !llvm.ptr
     llvm.store %arg0, %15 {alignment = 8 : i64, tbaa = [#tbaa_tag7]} : !llvm.ptr<1>, !llvm.ptr
     %30 = llvm.getelementptr inbounds %15[%2, 1] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    llvm.store %4, %30 {alignment = 8 : i64, tbaa = [#tbaa_tag21]} : i32, !llvm.ptr
+    llvm.store volatile %4, %30 {alignment = 8 : i64, tbaa = [#tbaa_tag21]} : i32, !llvm.ptr
     %31 = llvm.getelementptr inbounds %15[%2, 2] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    llvm.store %0, %31 {alignment = 4 : i64, tbaa = [#tbaa_tag2]} : i32, !llvm.ptr
+    llvm.store volatile %0, %31 {alignment = 4 : i64, tbaa = [#tbaa_tag2]} : i32, !llvm.ptr
     %32 = llvm.getelementptr inbounds %15[%2, 3] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    llvm.store %arg1, %32 {alignment = 8 : i64, tbaa = [#tbaa_tag4]} : i32, !llvm.ptr
+    llvm.store volatile %arg1, %32 {alignment = 8 : i64, tbaa = [#tbaa_tag4]} : i32, !llvm.ptr
     %33 = llvm.getelementptr inbounds %15[%2, 4] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    llvm.store %3, %33 {alignment = 4 : i64, tbaa = [#tbaa_tag6]} : i32, !llvm.ptr
+    llvm.store volatile %3, %33 {alignment = 4 : i64, tbaa = [#tbaa_tag6]} : i32, !llvm.ptr
     %34 = llvm.getelementptr inbounds %15[%2, 5] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
     %35 = llvm.load volatile %21 {alignment = 4 : i64, tbaa = [#tbaa_tag12]} : !llvm.ptr -> i32
-    llvm.store %35, %34 {alignment = 8 : i64, tbaa = [#tbaa_tag1]} : i32, !llvm.ptr
+    llvm.store volatile %35, %34 {alignment = 8 : i64, tbaa = [#tbaa_tag1]} : i32, !llvm.ptr
     %36 = llvm.getelementptr inbounds %15[%2, 6] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
     %37 = llvm.load volatile %29 {alignment = 4 : i64, tbaa = [#tbaa_tag20]} : !llvm.ptr -> i32
-    llvm.store %37, %36 {alignment = 4 : i64, tbaa = [#tbaa_tag3]} : i32, !llvm.ptr
+    llvm.store volatile %37, %36 {alignment = 4 : i64, tbaa = [#tbaa_tag3]} : i32, !llvm.ptr
     %38 = llvm.getelementptr inbounds %15[%2, 7] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    llvm.store %3, %38 {alignment = 8 : i64, tbaa = [#tbaa_tag5]} : i32, !llvm.ptr
+    llvm.store volatile %3, %38 {alignment = 8 : i64, tbaa = [#tbaa_tag5]} : i32, !llvm.ptr
     llvm.intr.lifetime.start 40, %16 : !llvm.ptr
     llvm.store %arg3, %16 {alignment = 8 : i64, tbaa = [#tbaa_tag7]} : !llvm.ptr<1>, !llvm.ptr
     %39 = llvm.getelementptr inbounds %16[%2, 1] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    llvm.store %4, %39 {alignment = 8 : i64, tbaa = [#tbaa_tag21]} : i32, !llvm.ptr
+    llvm.store volatile %4, %39 {alignment = 8 : i64, tbaa = [#tbaa_tag21]} : i32, !llvm.ptr
     %40 = llvm.getelementptr inbounds %16[%2, 2] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    llvm.store %0, %40 {alignment = 4 : i64, tbaa = [#tbaa_tag2]} : i32, !llvm.ptr
+    llvm.store volatile %0, %40 {alignment = 4 : i64, tbaa = [#tbaa_tag2]} : i32, !llvm.ptr
     %41 = llvm.getelementptr inbounds %16[%2, 3] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    llvm.store %arg4, %41 {alignment = 8 : i64, tbaa = [#tbaa_tag4]} : i32, !llvm.ptr
+    llvm.store volatile %arg4, %41 {alignment = 8 : i64, tbaa = [#tbaa_tag4]} : i32, !llvm.ptr
     %42 = llvm.getelementptr inbounds %16[%2, 4] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    llvm.store %3, %42 {alignment = 4 : i64, tbaa = [#tbaa_tag6]} : i32, !llvm.ptr
+    llvm.store volatile %3, %42 {alignment = 4 : i64, tbaa = [#tbaa_tag6]} : i32, !llvm.ptr
     %43 = llvm.getelementptr inbounds %16[%2, 5] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
     %44 = llvm.load volatile %29 {alignment = 4 : i64, tbaa = [#tbaa_tag20]} : !llvm.ptr -> i32
-    llvm.store %44, %43 {alignment = 8 : i64, tbaa = [#tbaa_tag1]} : i32, !llvm.ptr
+    llvm.store volatile %44, %43 {alignment = 8 : i64, tbaa = [#tbaa_tag1]} : i32, !llvm.ptr
     %45 = llvm.getelementptr inbounds %16[%2, 6] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
     %46 = llvm.load volatile %25 {alignment = 4 : i64, tbaa = [#tbaa_tag16]} : !llvm.ptr -> i32
-    llvm.store %46, %45 {alignment = 4 : i64, tbaa = [#tbaa_tag3]} : i32, !llvm.ptr
+    llvm.store volatile %46, %45 {alignment = 4 : i64, tbaa = [#tbaa_tag3]} : i32, !llvm.ptr
     %47 = llvm.getelementptr inbounds %16[%2, 7] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    llvm.store %3, %47 {alignment = 8 : i64, tbaa = [#tbaa_tag5]} : i32, !llvm.ptr
+    llvm.store volatile %3, %47 {alignment = 8 : i64, tbaa = [#tbaa_tag5]} : i32, !llvm.ptr
     llvm.intr.lifetime.start 40, %17 : !llvm.ptr
     llvm.store %arg6, %17 {alignment = 8 : i64, tbaa = [#tbaa_tag7]} : !llvm.ptr<1>, !llvm.ptr
     %48 = llvm.getelementptr inbounds %17[%2, 1] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    llvm.store %4, %48 {alignment = 8 : i64, tbaa = [#tbaa_tag21]} : i32, !llvm.ptr
+    llvm.store volatile %4, %48 {alignment = 8 : i64, tbaa = [#tbaa_tag21]} : i32, !llvm.ptr
     %49 = llvm.getelementptr inbounds %17[%2, 2] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    llvm.store %0, %49 {alignment = 4 : i64, tbaa = [#tbaa_tag2]} : i32, !llvm.ptr
+    llvm.store volatile %0, %49 {alignment = 4 : i64, tbaa = [#tbaa_tag2]} : i32, !llvm.ptr
     %50 = llvm.getelementptr inbounds %17[%2, 3] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    llvm.store %arg7, %50 {alignment = 8 : i64, tbaa = [#tbaa_tag4]} : i32, !llvm.ptr
+    llvm.store volatile %arg7, %50 {alignment = 8 : i64, tbaa = [#tbaa_tag4]} : i32, !llvm.ptr
     %51 = llvm.getelementptr inbounds %17[%2, 4] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    llvm.store %3, %51 {alignment = 4 : i64, tbaa = [#tbaa_tag6]} : i32, !llvm.ptr
+    llvm.store volatile %3, %51 {alignment = 4 : i64, tbaa = [#tbaa_tag6]} : i32, !llvm.ptr
     %52 = llvm.getelementptr inbounds %17[%2, 5] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
     %53 = llvm.load volatile %21 {alignment = 4 : i64, tbaa = [#tbaa_tag12]} : !llvm.ptr -> i32
-    llvm.store %53, %52 {alignment = 8 : i64, tbaa = [#tbaa_tag1]} : i32, !llvm.ptr
+    llvm.store volatile %53, %52 {alignment = 8 : i64, tbaa = [#tbaa_tag1]} : i32, !llvm.ptr
     %54 = llvm.getelementptr inbounds %17[%2, 6] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
     %55 = llvm.load volatile %25 {alignment = 4 : i64, tbaa = [#tbaa_tag16]} : !llvm.ptr -> i32
-    llvm.store %55, %54 {alignment = 4 : i64, tbaa = [#tbaa_tag3]} : i32, !llvm.ptr
+    llvm.store volatile %55, %54 {alignment = 4 : i64, tbaa = [#tbaa_tag3]} : i32, !llvm.ptr
     %56 = llvm.getelementptr inbounds %17[%2, 7] : (!llvm.ptr, i64) -> !llvm.ptr, !llvm.struct<"struct.TTL_affine_access_t", (ptr<1>, i32, i32, i32, i32, i32, i32, i32)>
-    llvm.store %3, %56 {alignment = 8 : i64, tbaa = [#tbaa_tag5]} : i32, !llvm.ptr
+    llvm.store volatile %3, %56 {alignment = 8 : i64, tbaa = [#tbaa_tag5]} : i32, !llvm.ptr
     llvm.call spir_funccc @TTL_loop_affine_matmul_body(%14, %15, %16, %17) : (!llvm.ptr, !llvm.ptr, !llvm.ptr, !llvm.ptr) -> ()
     llvm.intr.lifetime.end 40, %17 : !llvm.ptr
     llvm.intr.lifetime.end 40, %16 : !llvm.ptr
