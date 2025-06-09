@@ -1073,3 +1073,794 @@ cd samples
 cd python
 clang -E   -cl-std=CL2.0   -Xclang -cl-std=CL2.0   -Dcl_clang_storage_class_specifiers   -DTEST_TENSOR_TYPE=int   -DTTL_COPY_3D   -target spir64-unknown-unknown   simple_add.cl   -o simple_add.ii   -I/home/ubuntu/msc
 clang -E   -cl-std=CL2.0   -Xclang -cl-std=CL2.0   -Dcl_clang_storage_class_specifiers   -DTEST_TENSOR_TYPE=int   -DTTL_COPY_3D   -target spir64-unknown-unknown   TTL_simplex_add.cl   -o TTL_simplex_add.ii   -I/home/ubuntu/msc
+python3 simple_add_runner.py simple_add.cl
+cd opencl 
+cd samples
+ls
+cd python
+python3 simple_add_runner.py simple_add.cl
+TTL_INCLUDE_PATH=/home/ubuntu/msc python3 simple_add_runner.py simple_add.cl
+clear
+TTL_INCLUDE_PATH=/home/ubuntu/msc python3 simple_add_runner.py simple_add.cl
+clear
+TTL_INCLUDE_PATH=/home/ubuntu/msc python3 simple_add_runner.py simple_add.cl
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -O0 -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -O0 -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -O3 -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+cd ..
+ls
+cd ..
+ls
+clang -E   -cl-std=CL2.0   -Xclang -cl-std=CL2.0   -Dcl_clang_storage_class_specifiers   -DTEST_TENSOR_TYPE=int   -DTTL_COPY_3D   -target spir64-unknown-unknown   TTL_simplex_add.cl   -o TTL_simplex_add.ii   -I/home/ubuntu/msc
+git status
+git log
+cd opencl/samples/python
+clang -E   -cl-std=CL2.0   -Xclang -cl-std=CL2.0   -Dcl_clang_storage_class_specifiers   -DTEST_TENSOR_TYPE=int   -DTTL_COPY_3D   -target spir64-unknown-unknown   TTL_simplex_add.cl   -o TTL_simplex_add.ii   -I/home/ubuntu/msc
+cursor /home/ubuntu/msc/TTL/tensors/TTL_tensors_common.h
+clang -E   -cl-std=CL2.0   -Xclang -cl-std=CL2.0   -Dcl_clang_storage_class_specifiers   -DTEST_TENSOR_TYPE=int   -DTTL_COPY_3D   -target spir64-unknown-unknown   TTL_simplex_add.cl   -o TTL_simplex_add.ii   -I/home/ubuntu/msc
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown clang -O3 -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+clear
+~/msc/llvm-project/build/bin/mlir-opt --ttl-ops test1.mlir
+~/msc/llvm-project/build/bin/mlir-opt --ttl-ops simple_add.mlir
+clear
+~/msc/llvm-project/build/bin/mlir-opt --ttl-ops simple_add.mlir
+~/msc/llvm-project/build/bin/mlir-opt --ttl-ops simple_add.mlir --debug
+cat ~/.bash_history > my_full_history.txt 
+~/msc/llvm-project/build/bin/mlir-opt --ttl-ops simple_add.mlir -debug-pass  
+~/msc/llvm-project/build/bin/mlir-opt --ttl-ops simple_add.mlir -debug-pass=ttl-ops
+~/msc/llvm-project/build/bin/mlir-opt --ttl-ops simple_add.mlir -debug-only=TTLOps
+~/msc/llvm-project/build/bin/mlir-opt --ttl-ops simple_add.mlir --debug-pass=TTLOps
+~/msc/llvm-project/build/bin/mlir-opt --ttl-ops simple_add.mlir -debug-pass  
+~/msc/llvm-project/build/bin/mlir-opt --ttl-ops simple_add.mlir 
+clear
+~/msc/llvm-project/build/bin/mlir-opt --ttl-ops simple_add.mlir 
+clear
+~/msc/llvm-project/build/bin/mlir-opt --ttl-ops simple_add.mlir 
+בךקשר
+lcear
+clear
+~/msc/llvm-project/build/bin/mlir-opt --ttl-ops simple_add.mlir 
+clear
+~/msc/llvm-project/build/bin/mlir-opt --ttl-ops simple_add.mlir 
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+ls
+./build.sh
+cd ~/msc/llvm-project/build
+ninja
+../llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+cd opencl/samples/python
+../llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+clang -E   -cl-std=CL2.0   -Xclang -cl-std=CL2.0   -Dcl_clang_storage_class_specifiers   -DTEST_TENSOR_TYPE=int   -DTTL_COPY_3D   -target spir64-unknown-unknown   simple_add.cl   -o simple_add.ii   -I/home/ubuntu/msc
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+. "\home\ubuntu\.cursor-server\cli\servers\Stable-f3f2ad556456ff2df80332923bb1e2a818110d10\server\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration-bash.sh"
+cd /home/ubuntu/msc/llvm-project && ./build.sh
+cd opencl/samples/python
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+~/msc/llvm-project/build/bin/mlir-opt --ttl-ops simple_add.mlir 
+clear
+
+stat ~/msc/llvm-project/build/bin/mlir-opt 
+stat ~/msc/llvm-project 
+ls ~/msc/llvm-project 
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir 
+stat ~/msc/llvm-project/install/bin/mlir-opt 
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir 
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir clear
+clear
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir clear
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir 
+clear
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir 
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir 
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+clear
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir 
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+clear
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir 
+clear
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+cd ../llvm-project/
+./build.sh
+rm -rf build
+rm -rf install
+./build.sh
+clear
+./build.sh
+clear
+./build.sh
+clear
+./build.sh
+clear
+./build.sh
+. "\home\ubuntu\.cursor-server\cli\servers\Stable-02270c8441bdc4b2fdbc30e6f470a589ec78d600\server\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration-bash.sh"
+chmod +x run_analysis.sh
+cd ../llvm-project/
+./build.sh
+clear
+./build.sh
+git status
+git push --force
+./build.sh
+git push --force
+./build.sh
+clear
+./build.sh
+git push --force
+./build.sh
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+./build.sh
+clear
+./build.sh
+cd opencl/samples/python/
+ls
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+git push --force 
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+git push --force
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+git push --force
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+~/msc/llvm-project/build/bin/mlir-translate --import-llvm simple_add.ll -o simple_add.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlir
+cp /home/ubuntu/msc/llvm-project/run_analysis.sh . 
+./run_analysis.sh simple_add.cl
+chmod +x run_analysis.sh
+./run_analysis.sh simple_add.cl
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0 -Dcl_clang_storage_class_specifiers -DTEST_TENSOR_TYPE=int -DTTL_COPY_3D -target spir64-unknown-unknown -fno-inline -emit-llvm -S simple_add.cl -o simple_add.ll  -I/home/ubuntu/msc
+./run_analysis.sh simple_add.cl
+~/msc/llvm-project/build/bin/mlir-translate 
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops simple_add.mlir &> dump.mlirA
+./run_analysis.sh simple_add.cl
+clang-18 --version
+ls build.sh 
+./build.sh 
+cd ..
+ls
+cd TTL/opencl/samples/python/
+clang -emit-mlir -S simple_add.cl -o simple_add.mlir   -target spir64-unknown-unknown   -cl-std=CL2.0   -DTEST_TENSOR_TYPE=int   -I/home/ubuntu/msc
+./run_analysis.sh simple_add.cl
+clang-18 -cl-std=CL2.0 -Xclang -cl-std=CL2.0   -Dcl_clang_storage_class_specifiers   -DTEST_TENSOR_TYPE=int   -DTTL_COPY_3D   -target spir64-unknown-unknown   -fno-inline   -fclangir -emit-mlir   simple_add.cl   -o simple_add.mlir   -I/home/ubuntu/msc
+cd ..
+cd..
+cd ..
+cd.. 
+cd ..
+ls
+cd ..
+ls
+mkdir llvmMLIR
+ls
+cd llvm
+cd llvmMLIR/
+git clone --depth 1 --branch clangir https://github.com/clangir/llvm-project.git clangir-llvm
+cd clangir-llvm
+ךד
+س
+ls
+cd opencl/samples/python/
+ls
+cursor test.cl
+~/msc/llvmMLIR/clangir/build/bin/clang -cc1 -emit-cir -o - test.cl
+./bin/clang -cc1 -help | grep cir
+~/msc/llvmMLIR/clangir/build/bin/clang -cc1 -help | grep cir
+~/msc/llvmMLIR/clangir/build/bin/clang -cc1 -emit-cir -o output.cir input.cl
+cd ..
+ls
+cd llvmMLIR/L
+cd llvmMLIR/
+LS
+ls
+cursor buildClangIR.sh
+chmod +x build_clangir.sh
+./build_clangir.sh
+./buildClangIR.sh
+chmod +x buildClangiIR.sh
+chmod +x buildClangIR.sh
+./buildClangIR.sh
+ls
+rm -rf clangir/
+./buildClangIR.sh
+ls
+cd clangir/
+ls
+cd build/l
+cd build/
+ls
+cd bin
+ls
+cd ..
+ls
+cd ..
+ls
+cd mlir/
+ls
+cd ..
+cd bin 
+ls
+cd bin
+ls
+cd build
+ls
+cd bin
+ls
+clang --version
+~/msc/llvmMLIR/clangir/build/bin/clang --version
+cd ..
+cd ~/msc/llvmMLIR/clangir/build/bin/
+ls
+cd ..
+ls
+cd ..
+ls
+./buildClangIR.sh 
+~/msc/llvmMLIR/install/bin/clang -cc1 -emit-cir -o output.cir test.cl
+cir-opt output.cir -o output.mlir
+~/msc/llvmMLIR/install/bin/cir-opt output.cir -o output.mlir
+ls
+cd install
+ls
+cd bin
+ls
+cd ..
+git clone --recursive https://github.com/llvm/Polygeist.git && cd Polygeist
+cd ..
+ls
+ls -dh
+cd Polygeist/
+ls
+fdisk -l
+df -lh
+ls
+./build.sh 
+cd ..
+cd Polygeist/
+ls
+./build.sh 
+ls
+cd msc
+ls
+ls ~/msc/Polygeist/build/bin/cgeist
+ls ~/msc/Polygeist/build/bin/
+cd ../Polygeist/
+./build.sh 
+cd build
+cd bin
+ls
+cgeist --help &> dump.mlir
+cgeist --h
+~/msc/Polygeist/build/bin/cgeist --help &> dump.mlir
+~/msc/Polygeist/build/bin/cgeist test.c -function=foo -S
+cd ~/msc/TTL/opencl/samples/
+ls
+cd cpp
+~/msc/Polygeist/build/bin/cgeist test.c -function=foo -S
+cd ../python/
+~/msc/Polygeist/build/bin/cgeist test.c -function=foo -S
+~/msc/Polygeist/build/bin/cgeist test.c -function=matmul -S
+~/msc/Polygeist/build/bin/cgeist test.c -function=softmax -S
+~/msc/Polygeist/build/bin/cgeist test.c -function=softmax -S &> sotmax.mlir
+ls
+cd ..
+ls
+cd TTl
+cd TTL/
+ls
+cd  opencl/
+ls
+cd samples/
+cd python
+ls
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid -S 
+clear
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid -S 
+clear
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid -S 
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid -S &> sigmoid_dynamic.mlir
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid -S -immediate &> sigmoid_dynamic.mlir 
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid -S -immediate 
+cd opencl/samples/python/
+ls
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid -S -immediate 
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid -S -immediate clear
+clear
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid -S -immediate 
+clear
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid -S -immediate 
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid -S 
+clear
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid -S 
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid2 -S 
+~/msc/Polygeist/build/bin/cgeist sigmoid.c -function=sigmoid2 -S --memref-abi 
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid2 -S --memref-abi 
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid2 -S 
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid2  -memref-fullrank
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid2  
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid2 
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid -S 
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid -S  -memref-fullrank
+cursor ttl_dsl.h
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid -S  -memref-fullrank
+clear
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid -S  -memref-fullrank
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid -S  -memref-fullrank  &> dump.mlir
+~/msc/Polygeist/build/bin/cgeist dump.mlir --convert-memref-to-emitc -o matmul-emitc3.mlir
+ls
+cd opencl
+ls
+cd sampels
+cd samples
+ls
+cd python
+ls
+cat ~/.bash_history > my_full_history.txt 
+~/msc/Polygeist/build/bin/cgeist test.c -raise-scf-to-affine -function=sigmoid -S  -memref-fullrank  
+~/msc/Polygeist/build/bin/cgeist test.c -function=sigmoid -S  -memref-fullrank  
+~/msc/Polygeist/build/bin/cgeist test.c -raise-scf-to-affine -function=sigmoid -S  -memref-fullrank  
+. "\home\ubuntu\.cursor-server\cli\servers\Stable-02270c8441bdc4b2fdbc30e6f470a589ec78d600\server\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration-bash.sh"
+mkdir -p /home/ubuntu/msc/Polygeist/llvm-project/mlir/lib/Dialect/TTL/{IR,Transforms,Analysis,Utils}
+. "\home\ubuntu\.cursor-server\cli\servers\Stable-02270c8441bdc4b2fdbc30e6f470a589ec78d600\server\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration-bash.sh"
+mkdir -p /home/ubuntu/msc/Polygeist/llvm-project/mlir/include/mlir/Dialect/TTL/IR
+mkdir -p /home/ubuntu/msc/Polygeist/llvm-project/mlir/lib/Dialect/TTL/IR
+mv /home/ubuntu/msc/Polygeist/llvm-project/mlir/include/mlir/Dialect/TTL/IR/TTLDialect.cpp /home/ubuntu/msc/Polygeist/llvm-project/mlir/lib/Dialect/TTL/IR/ && mv /home/ubuntu/msc/Polygeist/llvm-project/mlir/include/mlir/Dialect/TTL/IR/TTLTypes.cpp /home/ubuntu/msc/Polygeist/llvm-project/mlir/lib/Dialect/TTL/IR/ && mv /home/ubuntu/msc/Polygeist/llvm-project/mlir/include/mlir/Dialect/TTL/IR/TTL.cpp /home/ubuntu/msc/Polygeist/llvm-project/mlir/lib/Dialect/TTL/IR/
+rm -rf /home/ubuntu/msc/Polygeist/llvm-project/mlir/include/mlir/Dialect/TTL/IR
+cd /home/ubuntu/msc/Polygeist && ./build.sh
+. "\home\ubuntu\.cursor-server\cli\servers\Stable-02270c8441bdc4b2fdbc30e6f470a589ec78d600\server\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration-bash.sh"
+ps aux | grep apt
+sudo kill -9 139320 139321 139322 139797
+cd opencl/samples/python/
+TTL_INCLUDE_PATH=/home/ubuntu/msc  python3 TTL_addition_runner.py  TTL_simplex_addition.cl
+cd opencl/samples/python/
+~/msc/Polygeist/build/bin/cgeist test.c -raise-scf-to-affine -function=sigmoid -S  -memref-fullrank  
+~/msc/Polygeist/build/bin/cgeist test.c -raise-scf-to-affine -function=sigmoid -S  -memref-fullrank  &> sigmoid_non_tiled.mlir
+~/msc/Polygeist/build/bin/cgeist  sigmoid_non_tiled.mlir -affine-loop-tile="tile-sizes=32,32" -o sigmoid_tiled.mlir
+~/msc/Polygeist/build/bin/mlir-opt  sigmoid_non_tiled.mlir -affine-loop-tile="tile-sizes=32,32" -o sigmoid_tiled.mlir
+cd ..
+cd Polygeist/
+ls
+./build.sh 
+ls
+cd lib
+ls
+cd polygeist/
+ls
+cd ..
+ls
+cd .
+cd ..
+ls
+cd llvm-project/
+ls
+cd ..
+./build.sh 
+clear
+./build.sh 
+clear
+./build.sh 
+clear
+./build.sh 
+cd llvm-project/
+git log
+cd ..
+. "\home\ubuntu\.cursor-server\cli\servers\Stable-02270c8441bdc4b2fdbc30e6f470a589ec78d600\server\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration-bash.sh"
+./build.sh
+ninja -C build
+ls build
+cmake --build build -- -j$(nproc)
+cd build && ls
+ls Makefile*
+ls build.ninja*
+cd .. && rm -rf build && mkdir build && cd build && cmake .. -G Ninja && ninja -j$(nproc)
+ls -l ..
+head -40 CMakeLists.txt
+cd ..
+ls
+cd llvm-project/
+ls
+git status
+git log
+ls
+git push --force
+ls
+git log
+git reset --soft HEAD^
+ls
+./build.sh
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_tiled.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+git status
+git checkout 26eb4285b56edd8c897642078d91f16ff0fd3472
+git stash
+git checkout 26eb4285b56edd8c897642078d91f16ff0fd3472
+git switch -c polyCompat
+cursor .gitignore 
+git stash pop
+./build.sh
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+./build.sh
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+./build.sh
+clear
+./build.sh
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+./build.sh
+clear
+./build.sh
+clear
+./build.sh
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+./build.sh
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+./build.sh
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+./build.sh
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_tiled.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+./build.sh
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+cd opencl/samples/python/
+ls
+cd ..
+ls
+cd c
+ls
+cd samples/
+ls
+cd ..
+ls
+cd ..
+ls
+cd opencl/
+ls
+cd samples
+ls
+cd python/
+ls
+./build.sh
+clear
+./build.sh
+clear
+./build.sh
+clear
+./build.sh
+clear
+./build.sh
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_tiled.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_tiled.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+. "\home\ubuntu\.cursor-server\cli\servers\Stable-02270c8441bdc4b2fdbc30e6f470a589ec78d600\server\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration-bash.sh"
+cd ~/msc/llvm-project && ./build.sh
+cd ~/msc/llvm-project && ninja -C build
+ls
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+ls 
+ls simple_add.ii 
+ls ~/msc/TTL/opencl/samples/python/simple_add.ii
+. "/home/ubuntu/.cursor-server/bin/53b99ce608cba35127ae3a050c1738a959750860/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh"
+cd ~/msc/llvm-project && ninja -C build
+ninja -C build
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+ls ~/msc/TTL/opencl/samples/python/simple_add.ii
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+cd ~/msc/llvm-project && ninja -C build
+clear
+cd ~/msc/llvm-project && ninja -C build
+vlrst
+clear
+vlrst
+clear
+cd ~/msc/llvm-project && ninja -C build
+clear
+cd ~/msc/llvm-project && ninja -C build
+clear
+cd ~/msc/llvm-project && ninja -C build
+cear
+clear
+cd ~/msc/llvm-project && ninja -C build
+clear
+cd ~/msc/llvm-project && ninja -C build
+clear
+cd ~/msc/llvm-project && ninja -C build
+clear
+cd ~/msc/llvm-project && ninja -C build
+clear
+cd ~/msc/llvm-project && ninja -C build
+clear
+cd ~/msc/llvm-project && ninja -C build
+clear
+cd ~/msc/llvm-project && ninja -C build
+ls
+cd ~/msc/llvm-project && ninja -C build
+git push --force
+[200~git push --set-upstream origin polyCompat~
+git push --set-upstream origin polyCompat
+cd ~/msc/llvm-project && ninja -C build
+~/msc/llvm-project/install/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+ls
+
+rm 
+rm ~/msc/llvm-project/install/
+rm -rf ~/msc/llvm-project/install/
+~/msc/llvm-project/build/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+rm -rf ~/msc/llvm-project/install/
+~/msc/llvm-project/build/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+cd ..
+;s
+ls
+cd ../TTL/
+ls
+ld
+ls
+cd opencl/samples/python/
+ls
+ls 
+~/msc/llvm-project/build/bin/mlir-opt --ttl-ops /home/ubuntu/tu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+~/msc/llvm-project/build/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+clear
+~/msc/llvm-project/build/bin/mlir-opt --ttl-ops /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+~/msc/llvm-project/build/bin/mlir-opt --list-passes | grep emitc
+ls
+./build.sh 
+git reset --soft HEAD^
+./build.sh 
+clear
+./build.sh 
+clear
+./build.sh 
+clear
+./build.sh 
+clear
+./build.sh 
+git reset --soft HEAD^
+./build.sh 
+clear
+./build.sh 
+clear
+./build.sh 
+clear
+./build.sh 
+clear
+./build.sh 
+clear
+./build.sh 
+clear
+./build.sh 
+clear
+./build.sh 
+git add .
+./build.sh 
+clear
+./build.sh 
+clear
+./build.sh 
+. "/home/ubuntu/.cursor-server/bin/53b99ce608cba35127ae3a050c1738a959750860/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh"
+git status | cat
+git diff --cached | cat
+find . -name "EmitC*.td" | cat
+git status
+. "/home/ubuntu/.cursor-server/bin/53b99ce608cba35127ae3a050c1738a959750860/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh"
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+~/msc/llvm-project/build/bin/mlir-opt --list-passes | grep emitc
+cd ..
+ls
+ls
+./build.sh 
+cd opencl/samples/python/
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir --print-ir-after-all
+--print-ir-after-all
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir -mlir-print-ir-after-all
+cd ..
+ls
+cd TTL/
+Ls
+ls
+cd opencl/samples/python/
+ls
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir 
+cp sigmoid_non_tiled.mlir sigmoid_non_tiled_20.mlir
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir 
+clear
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir 
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir  &>> output.txt
+ls
+git status
+ls
+git status
+git checkout master
+git checkout main
+git pull
+git statu
+git status
+git checkout newTTL
+git checkout -b  newTTL
+git status
+git log polyCompat 
+git cherry-pick [200~9f96695adb89927d11789bf4d1a56e5a10992f25~
+git cherry-pick 9f96695adb89927d11789bf4d1a56e5a10992f25
+git status
+clear
+./build.sh 
+pip install nanobind
+python3 -m venv ~/msc/venv
+source ~/msc/venv/bin/activate
+pip install nanobind
+./build.sh 
+clear
+./build.sh 
+clear
+./build.sh 
+clear
+./build.sh 
+ls build
+ls build/bin/
+cd ..
+ls
+cd Polygeist/
+ls
+git status
+git pull
+sudo apt install tmux
+./build.sh 
+tmux new -s ec2
+tmux ls
+tmux attach ec2
+tmux attach 
+. "/home/ubuntu/.cursor-server/bin/53b99ce608cba35127ae3a050c1738a959750860/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh"
+git status
+cd ~/msc/llvm-project && ./build.sh
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir
+~/msc/llvm-project/build/bin/mlir-translate --help | grep emitc
+~/msc/llvm-project/build/bin/mlir-translate --help
+~/msc/llvm-project/build/bin/mlir-opt --convert-to-emitc /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline --convert-to-emitc /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir
+ls ~/msc/llvm-project/build/bin/mlir-translate
+~/msc/llvm-project/build/bin/mlir-translate --mlir-to-emitc /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir
+~/msc/llvm-project/build/bin/mlir-translate --help | grep emitc
+cd ~/msc/llvm-project && rm -rf build && ./build.sh
+./build.sh 
+tmux ls
+./build.sh 
+cd opencl/samples/python/
+~/msc/llvm-project/build/bin/mlir-translate --mlir-to-emitc /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir
+~/msc/llvm-project/build/bin/mlir-translate --mlir-to-cpp  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir  &>> output.mlir
+~/msc/llvm-project/build/bin/mlir-translate --mlir-to-cpp  /home/ubuntu/msc/TTL/opencl/samples/python/output.mlir
+./build.sh 
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir  &>> output.mlir
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir  
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir  &>> output.mlir
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir  
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir  &>> out.mlir
+~/msc/llvm-project/build/bin/mlir-opt --reconcile-unrealized-casts  /home/ubuntu/msc/TTL/opencl/samples/python/out.mlir  
+~/msc/llvm-project/build/bin/mlir-opt --reconcile-unrealized-casts  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir 
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir  
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir   > output.mlir 2>&1
+~/msc/llvm-project/build/bin/mlir-opt --reconcile-unrealized-casts  /home/ubuntu/msc/TTL/opencl/samples/python/output.mlir  
+~/msc/llvm-project/build/bin/mlir-opt --reconcile-unrealized-casts  /home/ubuntu/msc/TTL/opencl/samples/python/output.mlir  > output.mlir 2>&1
+~/msc/llvm-project/build/bin/mlir-opt --reconcile-unrealized-casts  /home/ubuntu/msc/TTL/opencl/samples/python/output.mlir  > output_emitc.mlir 2>&1
+
+mlir-opt   --lower-affine   --convert-arith-to-emitc   --convert-math-to-emitc   --convert-memref-to-emitc   --convert-scf-to-emitc   --convert-func-to-emitc   --canonicalize   --reconcile-unrealized-casts   /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir   -o final_emitc.mlir
+~/msc/llvm-project/build/bin/[200~mlir-opt   --lower-affine   --convert-arith-to-emitc   --convert-math-to-emitc   --convert-memref-to-emitc   --convert-scf-to-emitc   --convert-func-to-emitc   --canonicalize   --reconcile-unrealized-casts   /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir   -o final_emitc.mlir~
+~/msc/llvm-project/build/bin/mlir-opt   --lower-affine   --convert-arith-to-emitc   --convert-math-to-emitc   --convert-memref-to-emitc   --convert-scf-to-emitc   --convert-func-to-emitc   --canonicalize   --reconcile-unrealized-casts   /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir   -o final_emitc.mlir
+~/msc/llvm-project/build/bin/mlir-opt      --convert-arith-to-emitc   --convert-math-to-emitc   --convert-memref-to-emitc   --convert-scf-to-emitc   --convert-func-to-emitc   --canonicalize   --reconcile-unrealized-casts   /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir   -o final_emitc.mlir
+~/msc/llvm-project/build/bin/mlir-opt   --lower-affine   --convert-arith-to-emitc   --convert-math-to-emitc   --convert-memref-to-emitc   --convert-scf-to-emitc   --convert-func-to-emitc   --canonicalize   --reconcile-unrealized-casts   /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir   -o final_emitc.mlir
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir  
+mlir-opt /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir   --lower-affine   -o step1.mlir
+~/msc/llvm-project/build/bin/mlir-opt   --lower-affine   /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir   -o step1.mli
+~/msc/llvm-project/build/bin/mlir-opt   --lower-affine   /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir   -o step1.mlir
+./build.sh 
+clear
+./build.sh 
+rm -rf install
+./build.sh 
+git push --force
+git push --set-upstream origin newTTL
+git remote set-url upstream https://github.com/amroshahbari27/llvm-project.git
+git remote -v
+git remote remove origin
+git remote 0v
+git remote -v
+git push --set-upstream origin newTTL
+git push --set-upstream myfork newTTL
+git push --force
+got log
+git log
+~/msc/llvm-project/build/bin/mlir-opt   --lower-affine   /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir   -o step1.mlir 
+~/msc/llvm-project/build/bin/mlir-opt   --lower-affine   --convert-memref-to-emitc   --convert-arith-to-emitc   --convert-math-to-emitc   --convert-scf-to-emitc   --canonicalize   --convert-func-to-emitc   --reconcile-unrealized-casts   /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir   -o /home/ubuntu/msc/TTL/opencl/samples/python/final_emitc.mlir
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline  [200~/home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir  ~
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline  ~/home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir
+~/msc/llvm-project/build/bin/mlir-opt --ttl-pipeline  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-pipeline  ~/home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-pipeline  ~/home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-pipeline  /home/ubuntu/msc/TTL/opencl/samples/python/sigmoid_non_tiled_20.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-pipeline  sigmoid_non_tiled.mlir 
+cp sigmoid_non_tiled.mlir sigmoid_non_tiled_20.mlir 
+~/msc/llvm-project/install/bin/mlir-opt --ttl-pipeline  sigmoid_non_tiled_20.mlir 
+~/msc/llvm-project/install/bin/mlir-opt --ttl-pipeline  sigmoid_non_tiled_20.mlir > output.mlir 2>&1
+~/msc/llvm-project/install/bin/mlir-opt --reconcile-unrealized-casts output.mlir 
+~/msc/llvm-project/install/bin/mlir-opt --ttl-pipeline  sigmoid_non_tiled_20.mlir 
+clear
+~/msc/llvm-project/install/bin/mlir-opt --ttl-pipeline  sigmoid_non_tiled_20.mlir 
+clear
+~/msc/llvm-project/install/bin/mlir-opt --ttl-pipeline  sigmoid_non_tiled_20.mlir 
+clear
+~/msc/llvm-project/install/bin/mlir-opt --ttl-pipeline  sigmoid_non_tiled_20.mlir 
+clear
+~/msc/llvm-project/install/bin/mlir-opt --ttl-pipeline  sigmoid_non_tiled_20.mlir 
+clear
+~/msc/llvm-project/install/bin/mlir-opt --ttl-pipeline  sigmoid_non_tiled_20.mlir 
+~/msc/llvm-project/install/bin/mlir-opt --ttl-pipeline  sigmoid_non_tiled_20.mlir  > output.mlir 2>&1
+~/msc/llvm-project/build/bin/mlir-translate --mlir-to-cpp  /home/ubuntu/msc/TTL/opencl/samples/python/output.mlir
+~/msc/llvm-project/build/bin/mlir-translate --mlir-to-cpp  output.mlir
+~/msc/llvm-project/install/bin/mlir-opt --ttl-pipeline  sigmoid_non_tiled_20.mlir  > output.mlir 2>&1
+~/msc/llvm-project/build/bin/mlir-translate --mlir-to-cpp  output.mlir

@@ -164,8 +164,7 @@ def TestTTL(program_name, width=9, height=9, stride_a=None, stride_b=None, strid
         tile_width = width
         tile_height = height
 
-        # Create a cl.Event to measure execution time
-        exec_event = cl.Event()
+      
 
         # Start timing
         start_time = time.time()

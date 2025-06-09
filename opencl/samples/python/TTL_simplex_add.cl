@@ -127,10 +127,8 @@ __kernel void TTL_simplex_add(__global TEST_TENSOR_TYPE *restrict ext_base_in1, 
         // Add the tensors
         for (int y = 0; y < tile_height; ++y) {
             for (int x = 0; x < tile_width; ++x) {
-                const int x_in = x + TILE_OVERLAP_LEFT;
-                const int y_in = y + TILE_OVERLAP_TOP;
-                const TEST_TENSOR_TYPE val1 = TTL_read_tensor(tensors1.imported_to, x_in, y_in);
-                const TEST_TENSOR_TYPE val2 = TTL_read_tensor(tensors2.imported_to, x_in, y_in);
+                const TEST_TENSOR_TYPE val1 = TTL_read_tensor(tensors1.imported_to, x, y_in);
+                const TEST_TENSOR_TYPE val2 = TTL_read_tensor(tensors2.imported_to, y, y_in);
                 TTL_write_tensor(tensors1.to_export_from, val1 + val2, x, y);
                 TTL_write_tensor(tensors2.to_export_from, val1 + val2, x, y);
             }
