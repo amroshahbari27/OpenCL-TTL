@@ -62,6 +62,10 @@
 #define sizeof_ulong sizeof(ulong)
 #include "TTL_create_type.h"
 
+#define TTL_TENSOR_TYPE float
+#define sizeof_float sizeof(float)
+#include "TTL_create_type.h"
+
 #endif  // TT_TYPES_ONLY_VOID
 
 #undef TTL_TYPES_INCLUDE_FILE
