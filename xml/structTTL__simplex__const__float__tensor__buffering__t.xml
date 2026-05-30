@@ -1,0 +1,227 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+  <compounddef id="structTTL__simplex__const__float__tensor__buffering__t" kind="struct" language="C++" prot="public">
+    <compoundname>TTL_simplex_const_float_tensor_buffering_t</compoundname>
+    <includes refid="pipelines_2TTL__simplex__scheme_8h" local="no">TTL_simplex_scheme.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structTTL__simplex__const__float__tensor__buffering__t_1aac6c0c6f21644af06026b7229eefa1c9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int TTL_simplex_const_float_tensor_buffering_t::index</definition>
+        <argsstring></argsstring>
+        <name>index</name>
+        <qualifiedname>TTL_simplex_const_float_tensor_buffering_t::index</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Describes the current buffer index when pipelining. For single 0-&gt;1-&gt;0, for double 0-&gt;1-&gt;0-&gt;1... etc </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AcLpFhK_TTL/TTL_c/pipelines/TTL_simplex_scheme.h" line="2098" column="13" bodyfile="AcLpFhK_TTL/TTL_c/pipelines/TTL_simplex_scheme.h" bodystart="2098" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structTTL__simplex__const__float__tensor__buffering__t_1a096a51ed4be40f4ff8688143bf5f1073" prot="public" static="no" mutable="no">
+        <type><ref refid="TTL__c_2c_2TTL__types_8h_1a16d401f6ba8f83048211693549eba342" kindref="member">__local</ref> float *</type>
+        <definition>__local float* TTL_simplex_const_float_tensor_buffering_t::int_base[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>int_base</name>
+        <qualifiedname>TTL_simplex_const_float_tensor_buffering_t::int_base</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The internal base addresses of the pipelined tiles. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AcLpFhK_TTL/TTL_c/pipelines/TTL_simplex_scheme.h" line="2100" column="23" bodyfile="AcLpFhK_TTL/TTL_c/pipelines/TTL_simplex_scheme.h" bodystart="2100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structTTL__simplex__const__float__tensor__buffering__t_1a218bac6f4881da8224c03aaa12109a0c" prot="public" static="no" mutable="no">
+        <type><ref refid="structTTL__ext__float__tensor__t" kindref="compound">TTL_ext_float_tensor_t</ref></type>
+        <definition>TTL_ext_float_tensor_t TTL_simplex_const_float_tensor_buffering_t::ext_tensor_in</definition>
+        <argsstring></argsstring>
+        <name>ext_tensor_in</name>
+        <qualifiedname>TTL_simplex_const_float_tensor_buffering_t::ext_tensor_in</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The external tensor being input </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AcLpFhK_TTL/TTL_c/pipelines/TTL_simplex_scheme.h" line="2101" column="32" bodyfile="AcLpFhK_TTL/TTL_c/pipelines/TTL_simplex_scheme.h" bodystart="2101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structTTL__simplex__const__float__tensor__buffering__t_1ab0c85722d8b5ff6ade3661a47cb881fd" prot="public" static="no" mutable="no">
+        <type><ref refid="structTTL__ext__float__tensor__t" kindref="compound">TTL_ext_float_tensor_t</ref></type>
+        <definition>TTL_ext_float_tensor_t TTL_simplex_const_float_tensor_buffering_t::ext_tensor_out</definition>
+        <argsstring></argsstring>
+        <name>ext_tensor_out</name>
+        <qualifiedname>TTL_simplex_const_float_tensor_buffering_t::ext_tensor_out</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The external tensor being output </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AcLpFhK_TTL/TTL_c/pipelines/TTL_simplex_scheme.h" line="2102" column="32" bodyfile="AcLpFhK_TTL/TTL_c/pipelines/TTL_simplex_scheme.h" bodystart="2102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structTTL__simplex__const__float__tensor__buffering__t_1aac38547a49010c140ca051b8676bff2d" prot="public" static="no" mutable="no">
+        <type>struct TTL_simplex_const_float_tensor_buffering_t::@072210234366146232070135232275101373001023103050</type>
+        <definition>struct TTL_simplex_const_float_tensor_buffering_t::@072210234366146232070135232275101373001023103050 TTL_simplex_const_float_tensor_buffering_t::common</definition>
+        <argsstring></argsstring>
+        <name>common</name>
+        <qualifiedname>TTL_simplex_const_float_tensor_buffering_t::common</qualifiedname>
+        <briefdescription>
+<para>The information that is common to all pipeline schemes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AcLpFhK_TTL/TTL_c/pipelines/TTL_simplex_scheme.h" line="2103" column="51"/>
+      </memberdef>
+      <memberdef kind="variable" id="structTTL__simplex__const__float__tensor__buffering__t_1a17c0aff8da289fbdf170fcc8adebfd62" prot="public" static="no" mutable="no">
+        <type><ref refid="TTL__c_2c_2TTL__import__export_8h_1a96dbbce35695c1e2f6cf31e3226343cd" kindref="member">TTL_event_t</ref> *</type>
+        <definition>TTL_event_t* TTL_simplex_const_float_tensor_buffering_t::event_in</definition>
+        <argsstring></argsstring>
+        <name>event_in</name>
+        <qualifiedname>TTL_simplex_const_float_tensor_buffering_t::event_in</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AcLpFhK_TTL/TTL_c/pipelines/TTL_simplex_scheme.h" line="2105" column="17" bodyfile="AcLpFhK_TTL/TTL_c/pipelines/TTL_simplex_scheme.h" bodystart="2105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structTTL__simplex__const__float__tensor__buffering__t_1a4f4da7d503f7045bc0d1e218f103cedc" prot="public" static="no" mutable="no">
+        <type><ref refid="TTL__c_2c_2TTL__import__export_8h_1a96dbbce35695c1e2f6cf31e3226343cd" kindref="member">TTL_event_t</ref> *</type>
+        <definition>TTL_event_t* TTL_simplex_const_float_tensor_buffering_t::event_out</definition>
+        <argsstring></argsstring>
+        <name>event_out</name>
+        <qualifiedname>TTL_simplex_const_float_tensor_buffering_t::event_out</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AcLpFhK_TTL/TTL_c/pipelines/TTL_simplex_scheme.h" line="2106" column="17" bodyfile="AcLpFhK_TTL/TTL_c/pipelines/TTL_simplex_scheme.h" bodystart="2106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structTTL__simplex__const__float__tensor__buffering__t_1ac1633cafca50a3f60801556176253510" prot="public" static="no" mutable="no">
+        <type><ref refid="structTTL__tile__t" kindref="compound">TTL_tile_t</ref></type>
+        <definition>TTL_tile_t TTL_simplex_const_float_tensor_buffering_t::next_exported_tile</definition>
+        <argsstring></argsstring>
+        <name>next_exported_tile</name>
+        <qualifiedname>TTL_simplex_const_float_tensor_buffering_t::next_exported_tile</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AcLpFhK_TTL/TTL_c/pipelines/TTL_simplex_scheme.h" line="2108" column="16" bodyfile="AcLpFhK_TTL/TTL_c/pipelines/TTL_simplex_scheme.h" bodystart="2108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structTTL__simplex__const__float__tensor__buffering__t_1ae71ec5356734e952f0e7d42c3edc89ba" prot="public" static="no" mutable="no">
+        <type><ref refid="structTTL__int__float__sub__tensor__t" kindref="compound">TTL_int_float_sub_tensor_t</ref></type>
+        <definition>TTL_int_float_sub_tensor_t TTL_simplex_const_float_tensor_buffering_t::int_prev_imported</definition>
+        <argsstring></argsstring>
+        <name>int_prev_imported</name>
+        <qualifiedname>TTL_simplex_const_float_tensor_buffering_t::int_prev_imported</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="AcLpFhK_TTL/TTL_c/pipelines/TTL_simplex_scheme.h" line="2109" column="32" bodyfile="AcLpFhK_TTL/TTL_c/pipelines/TTL_simplex_scheme.h" bodystart="2109" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>TTL_ext_float_tensor_t</label>
+        <link refid="structTTL__ext__float__tensor__t"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+layout</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+shape</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>TTL_int_float_sub_tensor_t</label>
+        <link refid="structTTL__int__float__sub__tensor__t"/>
+        <childnode refid="8" relation="usage">
+          <edgelabel>+tensor</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+shape</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+sub_offset</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>TTL_int_float_tensor_t</label>
+        <link refid="structTTL__int__float__tensor__t"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+layout</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+shape</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>TTL_layout_t</label>
+        <link refid="structTTL__layout__t"/>
+      </node>
+      <node id="6">
+        <label>TTL_offset_t</label>
+        <link refid="structTTL__offset__t"/>
+      </node>
+      <node id="4">
+        <label>TTL_shape_t</label>
+        <link refid="structTTL__shape__t"/>
+      </node>
+      <node id="1">
+        <label>TTL_simplex_const_float_tensor_buffering_t</label>
+        <link refid="structTTL__simplex__const__float__tensor__buffering__t"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>+ext_tensor_in</edgelabel>
+          <edgelabel>+ext_tensor_out</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>+next_exported_tile</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>+int_prev_imported</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>TTL_tile_t</label>
+        <link refid="structTTL__tile__t"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>+shape</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>+offset</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="AcLpFhK_TTL/TTL_c/pipelines/TTL_simplex_scheme.h" line="2096" column="1" bodyfile="AcLpFhK_TTL/TTL_c/pipelines/TTL_simplex_scheme.h" bodystart="2096" bodyend="2110"/>
+    <listofallmembers>
+      <member refid="structTTL__simplex__const__float__tensor__buffering__t_1aac38547a49010c140ca051b8676bff2d" prot="public" virt="non-virtual"><scope>TTL_simplex_const_float_tensor_buffering_t</scope><name>common</name></member>
+      <member refid="structTTL__simplex__const__float__tensor__buffering__t_1a17c0aff8da289fbdf170fcc8adebfd62" prot="public" virt="non-virtual"><scope>TTL_simplex_const_float_tensor_buffering_t</scope><name>event_in</name></member>
+      <member refid="structTTL__simplex__const__float__tensor__buffering__t_1a4f4da7d503f7045bc0d1e218f103cedc" prot="public" virt="non-virtual"><scope>TTL_simplex_const_float_tensor_buffering_t</scope><name>event_out</name></member>
+      <member refid="structTTL__simplex__const__float__tensor__buffering__t_1a218bac6f4881da8224c03aaa12109a0c" prot="public" virt="non-virtual"><scope>TTL_simplex_const_float_tensor_buffering_t</scope><name>ext_tensor_in</name></member>
+      <member refid="structTTL__simplex__const__float__tensor__buffering__t_1ab0c85722d8b5ff6ade3661a47cb881fd" prot="public" virt="non-virtual"><scope>TTL_simplex_const_float_tensor_buffering_t</scope><name>ext_tensor_out</name></member>
+      <member refid="structTTL__simplex__const__float__tensor__buffering__t_1aac6c0c6f21644af06026b7229eefa1c9" prot="public" virt="non-virtual"><scope>TTL_simplex_const_float_tensor_buffering_t</scope><name>index</name></member>
+      <member refid="structTTL__simplex__const__float__tensor__buffering__t_1a096a51ed4be40f4ff8688143bf5f1073" prot="public" virt="non-virtual"><scope>TTL_simplex_const_float_tensor_buffering_t</scope><name>int_base</name></member>
+      <member refid="structTTL__simplex__const__float__tensor__buffering__t_1ae71ec5356734e952f0e7d42c3edc89ba" prot="public" virt="non-virtual"><scope>TTL_simplex_const_float_tensor_buffering_t</scope><name>int_prev_imported</name></member>
+      <member refid="structTTL__simplex__const__float__tensor__buffering__t_1ac1633cafca50a3f60801556176253510" prot="public" virt="non-virtual"><scope>TTL_simplex_const_float_tensor_buffering_t</scope><name>next_exported_tile</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

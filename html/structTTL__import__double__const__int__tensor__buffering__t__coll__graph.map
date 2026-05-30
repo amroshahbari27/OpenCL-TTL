@@ -1,0 +1,14 @@
+<map id="TTL_import_double_const_int_tensor_buffering_t" name="TTL_import_double_const_int_tensor_buffering_t">
+<area shape="rect" id="Node000001" title="Data required to perform double buffer pipelining." alt="" coords="99,361,261,504"/>
+<area shape="rect" id="Node000002" href="$structTTL__const__ext__int__tensor__t.html" title=" " alt="" coords="22,183,194,270"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,269,114,303,122,337,125,345,120,347,117,338,108,304,105,270"/>
+<area shape="rect" id="Node000003" href="$structTTL__layout__t.html" title="Description of a Tensor layout in memory." alt="" coords="5,16,112,102"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="57,102,58,130,63,159,67,167,62,169,58,160,52,131,52,102"/>
+<area shape="rect" id="Node000004" href="$structTTL__shape__t.html" title="Description of a Shape." alt="" coords="143,5,231,112"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="165,113,138,169,133,167,160,111"/>
+<area shape="rect" id="Node000005" href="$structTTL__tile__t.html" title=" " alt="" coords="219,194,288,260"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="203,111,220,158,229,177,224,180,215,160,198,113"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="247,260,223,338,220,347,215,345,218,336,242,259"/>
+<area shape="rect" id="Node000006" href="$structTTL__offset__t.html" title="Description of the 3D offset of an object." alt="" coords="260,5,345,112"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="290,113,276,160,271,178,266,176,271,159,285,111"/>
+</map>

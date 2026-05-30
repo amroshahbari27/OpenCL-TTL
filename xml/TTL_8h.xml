@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+  <compounddef id="TTL_8h" kind="file" language="C++">
+    <compoundname>TTL.h</compoundname>
+    <includedby refid="preprocess_8c" local="yes">preprocess.c</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>TTL.h</label>
+        <link refid="TTL_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>preprocess.c</label>
+        <link refid="preprocess_8c"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>TTL.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2025<sp/>Mobileye</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>Licensed<sp/>under<sp/>the<sp/>Apache<sp/>License,<sp/>Version<sp/>2.0<sp/>(the<sp/>License);</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>you<sp/>may<sp/>not<sp/>use<sp/>this<sp/>file<sp/>except<sp/>in<sp/>compliance<sp/>with<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>You<sp/>may<sp/>obtain<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>License<sp/>at</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>http://www.apache.org/licenses/LICENSE-2.0</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>software</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>distributed<sp/>under<sp/>the<sp/>License<sp/>is<sp/>distributed<sp/>on<sp/>an<sp/>AS<sp/>IS<sp/>BASIS,</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/>WITHOUT<sp/>WARRANTIES<sp/>OR<sp/>CONDITIONS<sp/>OF<sp/>ANY<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>See<sp/>the<sp/>License<sp/>for<sp/>the<sp/>specific<sp/>language<sp/>governing<sp/>permissions<sp/>and</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/>limitations<sp/>under<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">/*The<sp/>Khronos<sp/>TTL<sp/>runtime<sp/>library<sp/>(event_t,<sp/>tiler,<sp/>DMA<sp/>helpers)<sp/>is<sp/>only</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/>needed<sp/>when<sp/>compiling<sp/>for<sp/>actual<sp/>OpenCL<sp/>execution.<sp/><sp/>The<sp/>TTL<sp/>compiler</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>frontend<sp/>(cgeist)<sp/>only<sp/>needs<sp/>the<sp/>scheduling<sp/>macros<sp/>below<sp/>---<sp/>pass</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/>-DTTL_MACROS_ONLY<sp/>on<sp/>the<sp/>cgeist<sp/>command<sp/>line<sp/>to<sp/>skip<sp/>the<sp/>library.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">/*===============================================================================</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>TTL<sp/>Compiler<sp/>Macros</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>Scheduling<sp/>hints<sp/>consumed<sp/>by<sp/>the<sp/>TTL<sp/>compiler<sp/>(cgeist<sp/>-x<sp/>cl<sp/>+<sp/>ttl-opt).</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/>Standard<sp/>OpenCL<sp/>compilers<sp/>ignore<sp/>unknown<sp/>pragmas<sp/>---<sp/>safe<sp/>in<sp/>any<sp/>source.</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>No<sp/>tiling?<sp/>Just<sp/>write<sp/>normal<sp/>for-loops<sp/>---<sp/>the<sp/>compiler<sp/>won&apos;t<sp/>touch<sp/>them.</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/>Usage:</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/><sp/><sp/>#include<sp/>&quot;TTL/TTL.h&quot;</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*<sp/><sp/><sp/>__kernel<sp/>void<sp/>gemm(const<sp/>TTL_TENSOR_2D(A,<sp/>int,<sp/>M,<sp/>K),</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>TTL_TENSOR_2D(B,<sp/>int,<sp/>K,<sp/>N),</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TTL_TENSOR_2D(C,<sp/>int,<sp/>M,<sp/>N))<sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>TTL_LOOP_3D(i,<sp/>0,<sp/>M,<sp/>64,</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>j,<sp/>0,<sp/>N,<sp/>64,</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>k,<sp/>0,<sp/>K,<sp/>64,</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TTL_DOUBLE_BUFFER)<sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TTL_2D(C,<sp/>i,1,0,<sp/>j,1,0)<sp/>+=<sp/>TTL_2D(A,<sp/>i,1,0,<sp/>k,1,0)<sp/>*<sp/>TTL_2D(B,<sp/>k,1,0,<sp/>j,1,0);</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*<sp/>===============================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">/*===============================================================================</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/>*<sp/>Kernel<sp/>Parameter<sp/>Macros</highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*<sp/><sp/><sp/>TTL_TENSOR_2D(A,<sp/>int,<sp/>M,<sp/>K)<sp/><sp/>-&gt;<sp/>__global<sp/>int<sp/>_ttl_A[restrict<sp/>M][K]</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Access<sp/>via<sp/>TTL_2D(A,<sp/>i,1,0,<sp/>k,1,0)<sp/>expands<sp/>to<sp/>_ttl_A[1*i+0][1*k+0]</highlight></codeline>
+<codeline lineno="52"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/>*<sp/>The<sp/>raw<sp/>variable<sp/>is<sp/>hidden<sp/>---<sp/>all<sp/>accesses<sp/>must<sp/>go<sp/>through<sp/>TTL().</highlight></codeline>
+<codeline lineno="54"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/>*<sp/>LIMITATION:<sp/>VLA<sp/>declarations<sp/>assume<sp/>contiguous<sp/>row-major<sp/>storage</highlight></codeline>
+<codeline lineno="56"><highlight class="comment"><sp/>*<sp/>(stride<sp/>==<sp/>innermost<sp/>dimension).<sp/><sp/>Unlike<sp/>the<sp/>Khronos<sp/>runtime,<sp/>which</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/>*<sp/>separates<sp/>TTL_shape_t<sp/>(logical<sp/>size)<sp/>from<sp/>TTL_layout_t<sp/>(memory<sp/>stride),</highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/>*<sp/>our<sp/>macros<sp/>cannot<sp/>represent<sp/>padded<sp/>allocations<sp/>where<sp/>stride<sp/>&gt;<sp/>width</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/>*<sp/>or<sp/>sub-views<sp/>into<sp/>a<sp/>larger<sp/>matrix.<sp/><sp/>This<sp/>is<sp/>a<sp/>deliberate<sp/>trade-off:</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*<sp/>full-rank<sp/>static<sp/>shapes<sp/>give<sp/>MLIR<sp/>complete<sp/>affine<sp/>analysis<sp/>information,</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/>*<sp/>at<sp/>the<sp/>cost<sp/>of<sp/>not<sp/>supporting<sp/>non-contiguous<sp/>global<sp/>layouts.</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*<sp/>Future<sp/>work:<sp/>an<sp/>optional<sp/>stride<sp/>parameter<sp/>could<sp/>lift<sp/>this<sp/>restriction.</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*<sp/>===============================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="comment">/*-----------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/>*<sp/>DESIGN<sp/>REQUIREMENT:<sp/>Single<sp/>code<sp/>path</highlight></codeline>
+<codeline lineno="67"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="68"><highlight class="comment"><sp/>*<sp/>The<sp/>SAME<sp/>source<sp/>file<sp/>must<sp/>compile<sp/>and<sp/>run<sp/>correctly<sp/>via:</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/>*<sp/><sp/><sp/>1.<sp/>cgeist<sp/>→<sp/>ttl-opt<sp/>→<sp/>ttl-translate<sp/><sp/>(compiler<sp/>optimization<sp/>path)</highlight></codeline>
+<codeline lineno="70"><highlight class="comment"><sp/>*<sp/><sp/><sp/>2.<sp/>OpenCL<sp/>compiler<sp/>(e.g.<sp/>PoCL)<sp/>directly<sp/><sp/>(unoptimized<sp/>execution)</highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/>*<sp/>No<sp/>#ifdef<sp/>splits<sp/>between<sp/>the<sp/>two<sp/>paths.<sp/><sp/>Every<sp/>macro<sp/>must<sp/>expand<sp/>to</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/>*<sp/>valid<sp/>C<sp/>/<sp/>OpenCL<sp/>C<sp/>in<sp/>both<sp/>contexts.</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/>*<sp/>OPEN<sp/>ISSUE:<sp/>Compile-time<sp/>constant<sp/>enforcement</highlight></codeline>
+<codeline lineno="76"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/>*<sp/>The<sp/>scale<sp/>and<sp/>offset<sp/>fields<sp/>in<sp/>TTL_1D/2D/3D<sp/>(si,<sp/>oi,<sp/>sj,<sp/>oj,<sp/>...)</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/>*<sp/>and<sp/>the<sp/>tile<sp/>sizes<sp/>/<sp/>bounds<sp/>in<sp/>TTL_LOOP_1D/2D/3D<sp/>MUST<sp/>be<sp/>compile-time</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/>*<sp/>constants<sp/>for<sp/>correct<sp/>affine<sp/>analysis.<sp/><sp/>Currently<sp/>this<sp/>is<sp/>enforced</highlight></codeline>
+<codeline lineno="80"><highlight class="comment"><sp/>*<sp/>ONLY<sp/>by<sp/>the<sp/>compiler<sp/>(cgeist<sp/>rejects<sp/>non-affine<sp/>patterns),<sp/>NOT<sp/>by</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/>*<sp/>the<sp/>macros.<sp/><sp/>Macro-level<sp/>enforcement<sp/>is<sp/>blocked<sp/>by<sp/>two<sp/>C<sp/>limitations:</highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="83"><highlight class="comment"><sp/>*<sp/><sp/><sp/>1.<sp/>_Static_assert<sp/>is<sp/>a<sp/>declaration,<sp/>not<sp/>an<sp/>expression.<sp/><sp/>It<sp/>cannot</highlight></codeline>
+<codeline lineno="84"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>appear<sp/>inside<sp/>the<sp/>array<sp/>subscripts<sp/>of<sp/>TTL_1D/2D/3D.</highlight></codeline>
+<codeline lineno="85"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="86"><highlight class="comment"><sp/>*<sp/><sp/><sp/>2.<sp/>TTL_LOOP_*D<sp/>may<sp/>appear<sp/>as<sp/>a<sp/>single-statement<sp/>for-body<sp/>(e.g.</highlight></codeline>
+<codeline lineno="87"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>04_batch_gemm.c:<sp/>&quot;for<sp/>(b<sp/>...)<sp/>TTL_LOOP_3D(...)&quot;).<sp/><sp/>Emitting<sp/>a</highlight></codeline>
+<codeline lineno="88"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>declaration<sp/>before<sp/>the<sp/>for-loop<sp/>would<sp/>break<sp/>that<sp/>scoping.</highlight></codeline>
+<codeline lineno="89"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="90"><highlight class="comment"><sp/>*<sp/>Resolving<sp/>this<sp/>requires<sp/>either:</highlight></codeline>
+<codeline lineno="91"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>A<sp/>cgeist-level<sp/>diagnostic<sp/>(proper<sp/>compiler<sp/>error,<sp/>not<sp/>macro<sp/>trick)</highlight></codeline>
+<codeline lineno="92"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>A<sp/>C<sp/>language<sp/>extension<sp/>that<sp/>provides<sp/>expression-level<sp/>constant</highlight></codeline>
+<codeline lineno="93"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>checking<sp/>across<sp/>both<sp/>OpenCL<sp/>C<sp/>and<sp/>plain<sp/>C</highlight></codeline>
+<codeline lineno="94"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="95"><highlight class="comment"><sp/>*<sp/>Until<sp/>then,<sp/>misuse<sp/>produces<sp/>a<sp/>confusing<sp/>downstream<sp/>error<sp/>from<sp/>cgeist</highlight></codeline>
+<codeline lineno="96"><highlight class="comment"><sp/>*<sp/>rather<sp/>than<sp/>a<sp/>clear<sp/>message<sp/>at<sp/>the<sp/>macro<sp/>expansion<sp/>site.</highlight></codeline>
+<codeline lineno="97"><highlight class="comment"><sp/>*<sp/>-----------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="comment">/*===============================================================================</highlight></codeline>
+<codeline lineno="100"><highlight class="comment"><sp/>*<sp/>Tiled<sp/>Loop<sp/>Nest</highlight></codeline>
+<codeline lineno="101"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="102"><highlight class="comment"><sp/>*<sp/>Each<sp/>dimension<sp/>is<sp/>(var,<sp/>start,<sp/>end,<sp/>tile_size).</highlight></codeline>
+<codeline lineno="103"><highlight class="comment"><sp/>*<sp/>Last<sp/>argument:<sp/>buffering<sp/>mode<sp/>---<sp/>TTL_DOUBLE_BUFFER<sp/>or<sp/>TTL_TILE_ONLY.</highlight></codeline>
+<codeline lineno="104"><highlight class="comment"><sp/>*<sp/>The<sp/>compiler<sp/>decides<sp/>what<sp/>to<sp/>pipeline<sp/>and<sp/>how<sp/>much<sp/>local<sp/>memory<sp/>to<sp/>use.</highlight></codeline>
+<codeline lineno="105"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="106"><highlight class="comment"><sp/>*<sp/><sp/><sp/>TTL_LOOP_3D(i,<sp/>0,<sp/>M,<sp/>64,</highlight></codeline>
+<codeline lineno="107"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>j,<sp/>0,<sp/>N,<sp/>64,</highlight></codeline>
+<codeline lineno="108"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>k,<sp/>0,<sp/>K,<sp/>64,</highlight></codeline>
+<codeline lineno="109"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TTL_DOUBLE_BUFFER)<sp/>{<sp/>body<sp/>}</highlight></codeline>
+<codeline lineno="110"><highlight class="comment"><sp/>*<sp/>===============================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>6<sp/>&quot;scripts/preprocess.c&quot;<sp/>2</highlight></codeline>
+    </programlisting>
+    <location file="AcLpFhK_TTL/TTL.h"/>
+  </compounddef>
+</doxygen>
