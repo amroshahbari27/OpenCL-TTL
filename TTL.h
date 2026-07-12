@@ -51,15 +51,18 @@
  *       TTL_LOOP_3D(i, 0, M, 64,
  *                   j, 0, N, 64,
  *                   k, 0, K, 64,
- *                   TTL_DOUBLE_BUFFER) {
+ *                   TTL_DOUBLE_BUFFER, {
  *           TTL_2D(C, i,1,0, j,1,0) += TTL_2D(A, i,1,0, k,1,0) * TTL_2D(B, k,1,0, j,1,0);
- *       }
+ *       })
  *   }
  *
- * IV name hiding: TTL_LOOP declares 'i_iv_ttl' (not 'i'), and TTL_2D(C, i, ...)
- * expands to '_ttl_C[... i_iv_ttl ...]'.  If 'i' didn't come from TTL_LOOP,
- * 'i_iv_ttl' is undeclared -> compile error.  The user writes short names (i, j, k)
- * in both TTL_LOOP and TTL_2D; the _iv_ttl suffix is added automatically.
+ * Body is a macro argument (trailing { ... }, not a bare brace block after
+ * the call) -- same syntax on both the C and C++ paths. IV name hiding:
+ * TTL_LOOP declares 'i_MUST_BE_DECLARED_BY_TTL_LOOP' (not 'i'), and
+ * TTL_2D(C, i, ...) expands to reference that exact derived name (C mode)
+ * or a body-local '_TTL_Induc'-typed alias named 'i' the macro declares
+ * from it (C++ mode, see the C++ branch below for why). If 'i' didn't
+ * come from TTL_LOOP, the reference fails to compile either way.
  *
  * Trade-off: the error message for misuse is "undeclared identifier 'x_iv_ttl'"
  * rather than a domain-specific diagnostic.  Also, the user cannot reference
@@ -157,7 +160,16 @@
 #define TTL_TENSOR_3D(name, type, D, H, W) __global type _TTL_NAME(name)[restrict D][H][W]
 #endif
 
-#define _TTL_IV(v) v##_iv_ttl
+/* Renamed from the earlier v##_iv_ttl: this identifier only exists if
+ * TTL_LOOP declared it, and the name itself now says so directly --
+ * misuse (an identifier TTL_LOOP never declared) fails with
+ * "use of undeclared identifier 'x_MUST_BE_DECLARED_BY_TTL_LOOP'"
+ * instead of a scarier, unexplained-looking 'x_iv_ttl'. Does not change
+ * what's enforced (existence of this exact derived name) -- see
+ * TTL-CPP-STRUCTURED-ACCESS-DESIGN.md §16.4(ii), §18 for why this,
+ * not the C++ enum-typed check below, is what actually does the
+ * enforcement; the enum only adds a secondary, narrower check. */
+#define _TTL_IV(v) v##_MUST_BE_DECLARED_BY_TTL_LOOP
 
 #define TTL_1D(name, i, si, oi) \
     _TTL_NAME(name)[(si) * _TTL_IV(i) + (oi)]
@@ -183,7 +195,7 @@
  *   TTL_LOOP_3D(i, 0, M, 64,
  *               j, 0, N, 64,
  *               k, 0, K, 64,
- *               TTL_DOUBLE_BUFFER) { body }
+ *               TTL_DOUBLE_BUFFER, { body })
  * =============================================================================== */
 
 #define TTL_DOUBLE_BUFFER 1
@@ -241,21 +253,69 @@
  * all -- not even on the outermost loop). Any *distinct* IV type hits
  * this wall, not just classes -- it's not about strong-typing specifically,
  * it's that cgeist's affine-loop detector doesn't recognize non-primitive
- * induction variable types, full stop. Since this would have only added a
- * narrow secondary protection (catching a user who hand-declares
- * `int i_iv_ttl` to impersonate a loop-declared IV -- a deliberate,
- * adversarial edge case, not a realistic mistake) at the cost of breaking
- * the actual affine/tiling pipeline for every kernel, it is not worth
- * keeping. The IV-hiding suffix trick (above) already makes the
- * realistic misuse -- using a variable that never came from TTL_LOOP at
- * all -- a compile error on its own.
+ * induction variable types, full stop. The loop's OWN declared variable
+ * must stay a literal int -- this holds regardless of what's tried below.
+ *
+ * IMPORTANT CORRECTION (re-verified twice, do not re-attempt without new
+ * evidence): a later attempt used explicit static_cast round-trips
+ * instead of operator overloads for the header's comparison/increment,
+ * on the theory that operator-overload CALLS (not the type itself) were
+ * the crash trigger. That version does NOT crash and DOES still lower to
+ * a clean affine.for -- but it STILL silently defeats ttl.tile/pipeline
+ * attachment, confirmed against the real GEMM kernel (TTL_LOOP_3D +
+ * TTL_DOUBLE_BUFFER): cgeist stage-1 output has zero ttl.* attributes
+ * beyond ttl.kernel/argname/restrict, and the full pipeline through
+ * ttl-translate produces flat untiled index arithmetic with no __local
+ * buffers and no DMA/double-buffering calls at all -- while still being
+ * numerically correct (untiled code is still correct code), which makes
+ * this failure mode dangerous: a 15/15 bit-exact matrix run does NOT
+ * catch it. So there are two SEPARATE cgeist limitations here, not one:
+ * (a) operator-overload calls in the for-header crash (fixable by using
+ * casts instead -- see _TTL_Induc below), and (b) any non-int induction
+ * variable type defeats ttl.tile attachment regardless of crash-safety
+ * (NOT fixable from TTL.h; this is what actually keeps the loop's own
+ * declared variable pinned to plain int). Do not conflate the two.
  * =============================================================================== */
+
+enum class _TTL_Induc : int {};
 
 template <int Scale, int Offset>
 __attribute__((always_inline))
-constexpr int _ttl_affine_idx(int iv) {
-    return Scale * iv + Offset;
+constexpr int _ttl_affine_idx(_TTL_Induc iv) {
+    return Scale * static_cast<int>(iv) + Offset;
 }
+
+/* BODY-ALIAS DESIGN (supersedes the tag-cast approach above for C++ mode):
+ * the physical loop counter cgeist sees in the for-header stays a plain
+ * int, under an internal name (_TTL_RAW) -- this is what keeps
+ * ttl.tile/ttl.pipeline attachment working, per the IMPORTANT CORRECTION
+ * above. TTL_LOOP now injects a body-local alias, declared as the FIRST
+ * statement of the loop body with the user's own name (i/j/k) and typed
+ * as _TTL_Induc DIRECTLY -- no cast at the access site. Verified against
+ * real cgeist + the full ttl-opt/ttl-translate pipeline, both 1D and a
+ * 3D/GEMM-shaped kernel: ttl.tile/ttl.pipeline attached, real __local
+ * buffers and TTL_start_import/export_double_buffering calls in the
+ * final .cl (identical tiling footprint to the plain-int baseline), AND
+ * a wrong/unrelated int variable now fails with a real, direct type
+ * error ("no known conversion from 'int' to '_TTL_Induc'") instead of
+ * relying on name-mangling. This requires TTL_LOOP to own the opening of
+ * the loop body (so it can inject the alias declaration before user
+ * code runs), which means the body is now a macro argument:
+ *   TTL_LOOP_3D(i, 0, M, 64, j, 0, N, 64, k, 0, K, 64, MODE, { ...body... })
+ * instead of a bare trailing brace block. This is a real, one-time
+ * syntax change across every C++-mode kernel call site.
+ *
+ * Validated end-to-end on 01_gemm.c (migrated to the new call syntax,
+ * both TTL_LOOP_*D branches -- C and C++ share this shape now, Rule 1
+ * single-code-path): plain-C leg compiles clean; C++ direct leg (real
+ * clang -> SPIR-V, no cgeist) compiles clean; C++ cgeist leg attaches
+ * ttl.tile/ttl.pipeline and produces real __local/DMA codegen; direct
+ * and cgeist execution both bit-exact (err=0) against the NumPy
+ * reference. The remaining kernels in tests/cpragma/e2e/pragma_c/ still
+ * use the old trailing-brace call syntax and have NOT been migrated or
+ * re-verified yet -- this is a corpus-wide follow-up, not done here. */
+
+#define _TTL_RAW(v) v##_TTL_RAW_COUNTER
 
 #undef TTL_1D
 #undef TTL_2D
@@ -265,50 +325,74 @@ constexpr int _ttl_affine_idx(int iv) {
 #undef TTL_3D_2IV
 
 #define TTL_1D(name, i, si, oi) \
-    _TTL_NAME(name)[_ttl_affine_idx<si, oi>(_TTL_IV(i))]
+    _TTL_NAME(name)[_ttl_affine_idx<si, oi>(i)]
 #define TTL_2D(name, i, si, oi, j, sj, oj) \
-    _TTL_NAME(name)[_ttl_affine_idx<si, oi>(_TTL_IV(i))][_ttl_affine_idx<sj, oj>(_TTL_IV(j))]
+    _TTL_NAME(name)[_ttl_affine_idx<si, oi>(i)][_ttl_affine_idx<sj, oj>(j)]
 #define TTL_3D(name, i, si, oi, j, sj, oj, k, sk, ok) \
-    _TTL_NAME(name)[_ttl_affine_idx<si, oi>(_TTL_IV(i))][_ttl_affine_idx<sj, oj>(_TTL_IV(j))][_ttl_affine_idx<sk, ok>(_TTL_IV(k))]
+    _TTL_NAME(name)[_ttl_affine_idx<si, oi>(i)][_ttl_affine_idx<sj, oj>(j)][_ttl_affine_idx<sk, ok>(k)]
 
+/* _TTL_Induc (enum class) has no operator+, so the 2IV combiner form
+ * casts back to int explicitly -- an ordinary expression context, not a
+ * for-header, so this doesn't affect tile/pipeline attachment. */
 #define TTL_1D_2IV(name, a, b) \
-    _TTL_NAME(name)[_TTL_IV(a) + _TTL_IV(b)]
+    _TTL_NAME(name)[static_cast<int>(a) + static_cast<int>(b)]
 #define TTL_2D_2IV(name, a1, b1, a2, b2) \
-    _TTL_NAME(name)[_TTL_IV(a1) + _TTL_IV(b1)][_TTL_IV(a2) + _TTL_IV(b2)]
+    _TTL_NAME(name)[static_cast<int>(a1) + static_cast<int>(b1)][static_cast<int>(a2) + static_cast<int>(b2)]
 #define TTL_3D_2IV(name, a1, b1, a2, b2, a3, b3) \
-    _TTL_NAME(name)[_TTL_IV(a1) + _TTL_IV(b1)][_TTL_IV(a2) + _TTL_IV(b2)][_TTL_IV(a3) + _TTL_IV(b3)]
+    _TTL_NAME(name)[static_cast<int>(a1) + static_cast<int>(b1)][static_cast<int>(a2) + static_cast<int>(b2)][static_cast<int>(a3) + static_cast<int>(b3)]
 
-#define TTL_LOOP_1D(i, i0, i1, t1, mode) \
+#define TTL_LOOP_1D(i, i0, i1, t1, mode, ...) \
     _TTL_SCHED_PRAGMA(_TTL_MODE(mode)(t1)) \
-    for (int _TTL_IV(i) = (i0); _TTL_IV(i) < (i1); _TTL_IV(i)++)
+    for (int _TTL_RAW(i) = (i0); _TTL_RAW(i) < (i1); _TTL_RAW(i)++) { \
+        const _TTL_Induc i = static_cast<_TTL_Induc>(_TTL_RAW(i)); \
+        __VA_ARGS__ \
+    }
 
-#define TTL_LOOP_2D(i, i0, i1, t1, j, j0, j1, t2, mode) \
+#define TTL_LOOP_2D(i, i0, i1, t1, j, j0, j1, t2, mode, ...) \
+    _TTL_SCHED_PRAGMA(_TTL_MODE(mode)(t1, t2)) \
+    for (int _TTL_RAW(i) = (i0); _TTL_RAW(i) < (i1); _TTL_RAW(i)++) \
+    for (int _TTL_RAW(j) = (j0); _TTL_RAW(j) < (j1); _TTL_RAW(j)++) { \
+        const _TTL_Induc i = static_cast<_TTL_Induc>(_TTL_RAW(i)); \
+        const _TTL_Induc j = static_cast<_TTL_Induc>(_TTL_RAW(j)); \
+        __VA_ARGS__ \
+    }
+
+#define TTL_LOOP_3D(i, i0, i1, t1, j, j0, j1, t2, k, k0, k1, t3, mode, ...) \
+    _TTL_SCHED_PRAGMA(_TTL_MODE(mode)(t1, t2, t3)) \
+    for (int _TTL_RAW(i) = (i0); _TTL_RAW(i) < (i1); _TTL_RAW(i)++) \
+    for (int _TTL_RAW(j) = (j0); _TTL_RAW(j) < (j1); _TTL_RAW(j)++) \
+    for (int _TTL_RAW(k) = (k0); _TTL_RAW(k) < (k1); _TTL_RAW(k)++) { \
+        const _TTL_Induc i = static_cast<_TTL_Induc>(_TTL_RAW(i)); \
+        const _TTL_Induc j = static_cast<_TTL_Induc>(_TTL_RAW(j)); \
+        const _TTL_Induc k = static_cast<_TTL_Induc>(_TTL_RAW(k)); \
+        __VA_ARGS__ \
+    }
+
+#else /* !__cplusplus : plain OpenCL C */
+
+/* Body-as-macro-argument, matching the C++ branch's call syntax exactly
+ * (Rule 1: single code path, same source/same syntax on both legs --
+ * TTL_LOOP_3D(..., mode, { body }) works identically for C and C++ now).
+ * Enforcement itself is unchanged from before: still the name-mangled
+ * _TTL_IV(i) rename, still plain int -- this is purely a call-shape
+ * change so shared kernel sources compile under both language modes. */
+#define TTL_LOOP_1D(i, i0, i1, t1, mode, ...) \
+    _TTL_SCHED_PRAGMA(_TTL_MODE(mode)(t1)) \
+    for (int _TTL_IV(i) = (i0); _TTL_IV(i) < (i1); _TTL_IV(i)++) \
+        { __VA_ARGS__ }
+
+#define TTL_LOOP_2D(i, i0, i1, t1, j, j0, j1, t2, mode, ...) \
     _TTL_SCHED_PRAGMA(_TTL_MODE(mode)(t1, t2)) \
     for (int _TTL_IV(i) = (i0); _TTL_IV(i) < (i1); _TTL_IV(i)++) \
-        for (int _TTL_IV(j) = (j0); _TTL_IV(j) < (j1); _TTL_IV(j)++)
+        for (int _TTL_IV(j) = (j0); _TTL_IV(j) < (j1); _TTL_IV(j)++) \
+            { __VA_ARGS__ }
 
-#define TTL_LOOP_3D(i, i0, i1, t1, j, j0, j1, t2, k, k0, k1, t3, mode) \
+#define TTL_LOOP_3D(i, i0, i1, t1, j, j0, j1, t2, k, k0, k1, t3, mode, ...) \
     _TTL_SCHED_PRAGMA(_TTL_MODE(mode)(t1, t2, t3)) \
     for (int _TTL_IV(i) = (i0); _TTL_IV(i) < (i1); _TTL_IV(i)++) \
         for (int _TTL_IV(j) = (j0); _TTL_IV(j) < (j1); _TTL_IV(j)++) \
-            for (int _TTL_IV(k) = (k0); _TTL_IV(k) < (k1); _TTL_IV(k)++)
-
-#else /* !__cplusplus : plain OpenCL C, unchanged from before */
-
-#define TTL_LOOP_1D(i, i0, i1, t1, mode) \
-    _TTL_SCHED_PRAGMA(_TTL_MODE(mode)(t1)) \
-    for (int _TTL_IV(i) = (i0); _TTL_IV(i) < (i1); _TTL_IV(i)++)
-
-#define TTL_LOOP_2D(i, i0, i1, t1, j, j0, j1, t2, mode) \
-    _TTL_SCHED_PRAGMA(_TTL_MODE(mode)(t1, t2)) \
-    for (int _TTL_IV(i) = (i0); _TTL_IV(i) < (i1); _TTL_IV(i)++) \
-        for (int _TTL_IV(j) = (j0); _TTL_IV(j) < (j1); _TTL_IV(j)++)
-
-#define TTL_LOOP_3D(i, i0, i1, t1, j, j0, j1, t2, k, k0, k1, t3, mode) \
-    _TTL_SCHED_PRAGMA(_TTL_MODE(mode)(t1, t2, t3)) \
-    for (int _TTL_IV(i) = (i0); _TTL_IV(i) < (i1); _TTL_IV(i)++) \
-        for (int _TTL_IV(j) = (j0); _TTL_IV(j) < (j1); _TTL_IV(j)++) \
-            for (int _TTL_IV(k) = (k0); _TTL_IV(k) < (k1); _TTL_IV(k)++)
+            for (int _TTL_IV(k) = (k0); _TTL_IV(k) < (k1); _TTL_IV(k)++) \
+                { __VA_ARGS__ }
 
 #endif /* __cplusplus */
 
