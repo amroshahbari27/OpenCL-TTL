@@ -106,29 +106,87 @@
  * No #ifdef splits between the two paths.  Every macro must expand to
  * valid C / OpenCL C in both contexts.
  *
- * OPEN ISSUE: Compile-time constant enforcement
+ * RESOLVED: Compile-time constant enforcement (scale/offset)
  *
  * The scale and offset fields in TTL_1D/2D/3D (si, oi, sj, oj, ...)
- * and the tile sizes / bounds in TTL_LOOP_1D/2D/3D MUST be compile-time
- * constants for correct affine analysis.  Currently this is enforced
- * ONLY by the compiler (cgeist rejects non-affine patterns), NOT by
- * the macros.  Macro-level enforcement is blocked by two C limitations:
+ * MUST be compile-time constants for correct affine analysis. This used
+ * to be enforced ONLY by the compiler downstream (cgeist rejects
+ * non-affine patterns with a confusing error far from the macro
+ * expansion site) -- now it's enforced right at the TTL_1D/2D/3D call
+ * site, with a real, specific diagnostic.
  *
- *   1. _Static_assert is a declaration, not an expression.  It cannot
- *      appear inside the array subscripts of TTL_1D/2D/3D.
+ * _Static_assert doesn't work here (it's a declaration, not an
+ * expression -- can't appear inside TTL_1D/2D/3D's array subscripts),
+ * and the classic __builtin_constant_p + sizeof(int[cond?1:-1]) trick,
+ * while it DOES work (verified directly against cgeist -- Clang's Sema
+ * checks array-size validity, and Polygeist reuses Sema unmodified),
+ * only gives a generic "array size is negative" error with no domain
+ * information. A second attempt, __attribute__((error(...))) on a
+ * poisoned function gated by __builtin_constant_p in a ternary, gives a
+ * fully custom message on plain clang -- but does NOT survive cgeist:
+ * verified directly, Polygeist's custom AST-to-MLIR walker doesn't
+ * replicate the CodeGen-level dead-branch elimination this trick needs,
+ * so it conservatively assumes __builtin_constant_p is always false and
+ * calls the poisoned function unconditionally, breaking even the
+ * correct/constant case.
  *
- *   2. TTL_LOOP_*D may appear as a single-statement for-body (e.g.
- *      04_batch_gemm.c: "for (b ...) TTL_LOOP_3D(...)").  Emitting a
- *      declaration before the for-loop would break that scoping.
+ * WORKING: __attribute__((diagnose_if(...))) (Clang-specific, checked
+ * during Sema -- same phase Polygeist reuses unmodified, which is why
+ * this survives cgeist where the poison-function trick didn't). Verified
+ * directly: the constant case compiles clean and inlines away completely
+ * (identical affine.load/store MLIR to the unchecked version, zero
+ * codegen cost); the non-constant case fails with the exact custom
+ * message below, at the exact usage site, on both cgeist and the
+ * direct-exec leg (clang -cl-std=... -> SPIR-V). Both TTLCompiler legs
+ * are Clang-based, so diagnose_if's non-portability to GCC isn't a
+ * practical restriction here.
  *
- * Resolving this requires either:
- *   - A cgeist-level diagnostic (proper compiler error, not macro trick)
- *   - A C language extension that provides expression-level constant
- *     checking across both OpenCL C and plain C
- *
- * Until then, misuse produces a confusing downstream error from cgeist
- * rather than a clear message at the macro expansion site.
+ * IV provenance (as opposed to scale/offset constant-ness) is a
+ * different, harder problem -- see the C++ branch below and
+ * TTL-CPP-STRUCTURED-ACCESS-DESIGN.md §16 for why no C-portable
+ * equivalent of the C++ _TTL_Induc body-alias check was found; plain C
+ * keeps the name-mangled rename (_TTL_IV, "hide it behind a prefix/suffix
+ * so the wrong name doesn't exist") as its only IV-provenance mechanism.
+ * Every angle tried to give it C++'s type-based protection instead was
+ * ruled out directly, not assumed:
+ *   - plain C `enum` gives zero protection on its own -- implicit
+ *     int-to-enum conversion is silently allowed, even at -Wall -Wextra.
+ *   - Clang DOES have a warning for exactly this
+ *     (-Wimplicit-int-enum-cast, promotable to a hard error via a
+ *     _Pragma right in this header) -- but it does not exist in Clang 18,
+ *     the actual pinned toolchain both TTLCompiler legs use (confirmed:
+ *     grepped a -Weverything run against the real pinned binary). It
+ *     only appears in much newer Clang. So this specific fix is blocked
+ *     on a toolchain upgrade, not a fundamental language limitation --
+ *     if this project ever moves off Clang 18, this is worth retrying.
+ *   - The one diagnostic Clang 18 does have for this
+ *     (-Wsign-conversion) is too broad to promote to an error: it fires
+ *     129 times on TTL's own existing upstream runtime headers alone.
+ *   - C11 _Generic (exact-type dispatch, which would sidestep the
+ *     implicit-conversion problem entirely) crashes cgeist unconditionally
+ *     -- confirmed with the simplest possible _Generic expression, no
+ *     relation to IV-checking specifically. Polygeist's MLIRScanner has
+ *     no visitor for GenericSelectionExpr at all.
  * ----------------------------------------------------------------------- */
+
+/* Compile-time-constant checks for TTL_1D/2D/3D's scale/offset. Each
+ * function just returns its argument unchanged (fully inlined away by
+ * cgeist/clang for any real, constant call -- verified: zero codegen
+ * cost, affine recognition unaffected) -- diagnose_if is what actually
+ * does the work, firing only when the argument isn't a compile-time
+ * constant. */
+static inline int _ttl_check_constant_scale(int scale)
+    __attribute__((diagnose_if(!__builtin_constant_p(scale),
+        "TTL_1D/2D/3D: scale must be a compile-time constant", "error")))
+{
+    return scale;
+}
+static inline int _ttl_check_constant_offset(int offset)
+    __attribute__((diagnose_if(!__builtin_constant_p(offset),
+        "TTL_1D/2D/3D: offset must be a compile-time constant", "error")))
+{
+    return offset;
+}
 
 #ifdef __cplusplus
 /* C99's array-parameter-qualifier syntax `type name[restrict N]` is not
@@ -172,11 +230,11 @@
 #define _TTL_IV(v) v##_MUST_BE_DECLARED_BY_TTL_LOOP
 
 #define TTL_1D(name, i, si, oi) \
-    _TTL_NAME(name)[(si) * _TTL_IV(i) + (oi)]
+    _TTL_NAME(name)[_ttl_check_constant_scale(si) * _TTL_IV(i) + _ttl_check_constant_offset(oi)]
 #define TTL_2D(name, i, si, oi, j, sj, oj) \
-    _TTL_NAME(name)[(si) * _TTL_IV(i) + (oi)][(sj) * _TTL_IV(j) + (oj)]
+    _TTL_NAME(name)[_ttl_check_constant_scale(si) * _TTL_IV(i) + _ttl_check_constant_offset(oi)][_ttl_check_constant_scale(sj) * _TTL_IV(j) + _ttl_check_constant_offset(oj)]
 #define TTL_3D(name, i, si, oi, j, sj, oj, k, sk, ok) \
-    _TTL_NAME(name)[(si) * _TTL_IV(i) + (oi)][(sj) * _TTL_IV(j) + (oj)][(sk) * _TTL_IV(k) + (ok)]
+    _TTL_NAME(name)[_ttl_check_constant_scale(si) * _TTL_IV(i) + _ttl_check_constant_offset(oi)][_ttl_check_constant_scale(sj) * _TTL_IV(j) + _ttl_check_constant_offset(oj)][_ttl_check_constant_scale(sk) * _TTL_IV(k) + _ttl_check_constant_offset(ok)]
 
 #define TTL_1D_2IV(name, a, b) \
     _TTL_NAME(name)[_TTL_IV(a) + _TTL_IV(b)]
@@ -313,7 +371,34 @@ constexpr int _ttl_affine_idx(_TTL_Induc iv) {
  * and cgeist execution both bit-exact (err=0) against the NumPy
  * reference. The remaining kernels in tests/cpragma/e2e/pragma_c/ still
  * use the old trailing-brace call syntax and have NOT been migrated or
- * re-verified yet -- this is a corpus-wide follow-up, not done here. */
+ * re-verified yet -- this is a corpus-wide follow-up, not done here.
+ *
+ * The body-local alias is declared `const` -- this is deliberate, not
+ * incidental, and turns out to be the RIGHT call on reflection, not just
+ * an accepted limitation: an induction variable produced by TTL_LOOP is
+ * supposed to be immutable within the loop body (that's what makes the
+ * access affine in the first place -- TTL_1D/2D/3D's whole contract is
+ * `scale*i+offset` where `i` is exactly the loop's own value, not
+ * something the body reassigned mid-iteration). Making it `const`
+ * enforces that structurally, which is exactly what a "structured
+ * access" mode should do. Verified directly what actually happens on
+ * misuse, three cases:
+ *   - `i = j;` (reassignment, no arithmetic, both sides already
+ *     _TTL_Induc): clean single diagnostic, no crash --
+ *     "cannot assign to variable 'i' with const-qualified type", with a
+ *     note pointing at the TTL_LOOP declaration. This is the case that
+ *     actually demonstrates the const check on its own.
+ *   - `i = i + 1;` / `j = i + 1;` (any arithmetic on the alias):
+ *     `_TTL_Induc` (enum class) has no operator+, so Clang's Sema
+ *     rejects the RHS ("invalid operands to binary expression") BEFORE
+ *     it ever gets to checking whether the LHS is assignable -- the
+ *     const error never surfaces in this case, the missing-operator
+ *     error does, first. Both of these then crash cgeist afterward
+ *     (RecoveryExpr not handled cleanly by MLIRScanner -- the same
+ *     pre-existing, separate cgeist diagnostic-recovery gap documented
+ *     elsewhere in this file, not something new). Whichever diagnostic
+ *     fires, the non-affine attempt is caught -- it just isn't always a
+ *     clean single error, depending on which Sema rule trips first. */
 
 #define _TTL_RAW(v) v##_TTL_RAW_COUNTER
 
