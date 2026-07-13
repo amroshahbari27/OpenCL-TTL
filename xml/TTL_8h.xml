@@ -1,0 +1,261 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.17.0" xml:lang="en-US">
+  <compounddef id="TTL_8h" kind="file" language="C++">
+    <compoundname>TTL.h</compoundname>
+    <includedby refid="preprocess_8c" local="yes">preprocess.c</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>TTL.h</label>
+        <link refid="TTL_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>preprocess.c</label>
+        <link refid="preprocess_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="TTL_8h_1aad397453bb24fa7be1edeecee9d4d8ab" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int _ttl_check_constant_scale</definition>
+        <argsstring>(int scale)</argsstring>
+        <name>_ttl_check_constant_scale</name>
+        <param>
+          <type>int</type>
+          <declname>scale</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="5kCLefl_TTL/TTL.h" line="159" column="19" bodyfile="5kCLefl_TTL/TTL.h" bodystart="159" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="TTL_8h_1a88d67877ea688aa6806233f5b60f2499" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int _ttl_check_constant_offset</definition>
+        <argsstring>(int offset)</argsstring>
+        <name>_ttl_check_constant_offset</name>
+        <param>
+          <type>int</type>
+          <declname>offset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="5kCLefl_TTL/TTL.h" line="164" column="19" bodyfile="5kCLefl_TTL/TTL.h" bodystart="164" bodyend="168"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>TTL.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2025<sp/>Mobileye</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>Licensed<sp/>under<sp/>the<sp/>Apache<sp/>License,<sp/>Version<sp/>2.0<sp/>(the<sp/>License);</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>you<sp/>may<sp/>not<sp/>use<sp/>this<sp/>file<sp/>except<sp/>in<sp/>compliance<sp/>with<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>You<sp/>may<sp/>obtain<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>License<sp/>at</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>http://www.apache.org/licenses/LICENSE-2.0</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>software</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>distributed<sp/>under<sp/>the<sp/>License<sp/>is<sp/>distributed<sp/>on<sp/>an<sp/>AS<sp/>IS<sp/>BASIS,</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/>WITHOUT<sp/>WARRANTIES<sp/>OR<sp/>CONDITIONS<sp/>OF<sp/>ANY<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>See<sp/>the<sp/>License<sp/>for<sp/>the<sp/>specific<sp/>language<sp/>governing<sp/>permissions<sp/>and</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/>limitations<sp/>under<sp/>the<sp/>License.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">/*The<sp/>Khronos<sp/>TTL<sp/>runtime<sp/>library<sp/>(event_t,<sp/>tiler,<sp/>DMA<sp/>helpers)<sp/>is<sp/>only</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/>needed<sp/>when<sp/>compiling<sp/>for<sp/>actual<sp/>OpenCL<sp/>execution.<sp/><sp/>The<sp/>TTL<sp/>compiler</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>frontend<sp/>(cgeist)<sp/>only<sp/>needs<sp/>the<sp/>scheduling<sp/>macros<sp/>below<sp/>---<sp/>pass</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/>-DTTL_MACROS_ONLY<sp/>on<sp/>the<sp/>cgeist<sp/>command<sp/>line<sp/>to<sp/>skip<sp/>the<sp/>library.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">/*===============================================================================</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>TTL<sp/>Compiler<sp/>Macros</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>Scheduling<sp/>hints<sp/>consumed<sp/>by<sp/>the<sp/>TTL<sp/>compiler<sp/>(cgeist<sp/>-x<sp/>cl<sp/>+<sp/>ttl-opt).</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/>Standard<sp/>OpenCL<sp/>compilers<sp/>ignore<sp/>unknown<sp/>pragmas<sp/>---<sp/>safe<sp/>in<sp/>any<sp/>source.</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>No<sp/>tiling?<sp/>Just<sp/>write<sp/>normal<sp/>for-loops<sp/>---<sp/>the<sp/>compiler<sp/>won&apos;t<sp/>touch<sp/>them.</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/>Usage:</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/><sp/><sp/>#include<sp/>&quot;TTL/TTL.h&quot;</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*<sp/><sp/><sp/>__kernel<sp/>void<sp/>gemm(const<sp/>TTL_TENSOR_2D(A,<sp/>int,<sp/>M,<sp/>K),</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>TTL_TENSOR_2D(B,<sp/>int,<sp/>K,<sp/>N),</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TTL_TENSOR_2D(C,<sp/>int,<sp/>M,<sp/>N))<sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>TTL_LOOP_3D(i,<sp/>0,<sp/>M,<sp/>64,</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>j,<sp/>0,<sp/>N,<sp/>64,</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>k,<sp/>0,<sp/>K,<sp/>64,</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TTL_DOUBLE_BUFFER,<sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TTL_2D(C,<sp/>i,1,0,<sp/>j,1,0)<sp/>+=<sp/>TTL_2D(A,<sp/>i,1,0,<sp/>k,1,0)<sp/>*<sp/>TTL_2D(B,<sp/>k,1,0,<sp/>j,1,0);</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>})</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*<sp/>Body<sp/>is<sp/>a<sp/>macro<sp/>argument<sp/>(trailing<sp/>{<sp/>...<sp/>},<sp/>not<sp/>a<sp/>bare<sp/>brace<sp/>block<sp/>after</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*<sp/>the<sp/>call)<sp/>--<sp/>same<sp/>syntax<sp/>on<sp/>both<sp/>the<sp/>C<sp/>and<sp/>C++<sp/>paths.<sp/>IV<sp/>name<sp/>hiding:</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/>*<sp/>TTL_LOOP<sp/>declares<sp/>&apos;i_MUST_BE_DECLARED_BY_TTL_LOOP&apos;<sp/>(not<sp/>&apos;i&apos;),<sp/>and</highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/>*<sp/>TTL_2D(C,<sp/>i,<sp/>...)<sp/>expands<sp/>to<sp/>reference<sp/>that<sp/>exact<sp/>derived<sp/>name<sp/>(C<sp/>mode)</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*<sp/>or<sp/>a<sp/>body-local<sp/>&apos;_TTL_Induc&apos;-typed<sp/>alias<sp/>named<sp/>&apos;i&apos;<sp/>the<sp/>macro<sp/>declares</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/>*<sp/>from<sp/>it<sp/>(C++<sp/>mode,<sp/>see<sp/>the<sp/>C++<sp/>branch<sp/>below<sp/>for<sp/>why).<sp/>If<sp/>&apos;i&apos;<sp/>didn&apos;t</highlight></codeline>
+<codeline lineno="52"><highlight class="comment"><sp/>*<sp/>come<sp/>from<sp/>TTL_LOOP,<sp/>the<sp/>reference<sp/>fails<sp/>to<sp/>compile<sp/>either<sp/>way.</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="54"><highlight class="comment"><sp/>*<sp/>Trade-off:<sp/>the<sp/>error<sp/>message<sp/>for<sp/>misuse<sp/>is<sp/>&quot;undeclared<sp/>identifier<sp/>&apos;x_iv_ttl&apos;&quot;</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/>*<sp/>rather<sp/>than<sp/>a<sp/>domain-specific<sp/>diagnostic.<sp/><sp/>Also,<sp/>the<sp/>user<sp/>cannot<sp/>reference</highlight></codeline>
+<codeline lineno="56"><highlight class="comment"><sp/>*<sp/>the<sp/>loop<sp/>IV<sp/>directly<sp/>in<sp/>the<sp/>body<sp/>(e.g.<sp/>&apos;int<sp/>row<sp/>=<sp/>i<sp/>*<sp/>width&apos;<sp/>fails<sp/>because</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/>*<sp/>&apos;i&apos;<sp/>doesn&apos;t<sp/>exist<sp/>--<sp/>the<sp/>actual<sp/>variable<sp/>is<sp/>&apos;i_iv_ttl&apos;).<sp/><sp/>This<sp/>is<sp/>the<sp/>cost</highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/>*<sp/>of<sp/>structural<sp/>enforcement<sp/>via<sp/>C<sp/>macros;<sp/>a<sp/>cgeist-level<sp/>diagnostic<sp/>could</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/>*<sp/>provide<sp/>better<sp/>error<sp/>messages<sp/>in<sp/>the<sp/>future.</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*<sp/>===============================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment">/*===============================================================================</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*<sp/>Kernel<sp/>Parameter<sp/>Macros</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/>*<sp/><sp/><sp/>TTL_TENSOR_2D(A,<sp/>int,<sp/>M,<sp/>K)<sp/><sp/>-&gt;<sp/>__global<sp/>int<sp/>_ttl_A[restrict<sp/>M][K]</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Access<sp/>via<sp/>TTL_2D(A,<sp/>i,1,0,<sp/>k,1,0)<sp/>expands<sp/>to<sp/>_ttl_A[1*i+0][1*k+0]</highlight></codeline>
+<codeline lineno="67"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="68"><highlight class="comment"><sp/>*<sp/>The<sp/>raw<sp/>variable<sp/>is<sp/>hidden<sp/>---<sp/>all<sp/>accesses<sp/>must<sp/>go<sp/>through<sp/>TTL().</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="70"><highlight class="comment"><sp/>*<sp/>LIMITATION:<sp/>VLA<sp/>declarations<sp/>assume<sp/>contiguous<sp/>row-major<sp/>storage</highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/>*<sp/>(stride<sp/>==<sp/>innermost<sp/>dimension).<sp/><sp/>Unlike<sp/>the<sp/>Khronos<sp/>runtime,<sp/>which</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/>*<sp/>separates<sp/>TTL_shape_t<sp/>(logical<sp/>size)<sp/>from<sp/>TTL_layout_t<sp/>(memory<sp/>stride),</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/>*<sp/>our<sp/>macros<sp/>cannot<sp/>represent<sp/>padded<sp/>allocations<sp/>where<sp/>stride<sp/>&gt;<sp/>width</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/>*<sp/>or<sp/>sub-views<sp/>into<sp/>a<sp/>larger<sp/>matrix.<sp/><sp/>This<sp/>is<sp/>a<sp/>deliberate<sp/>trade-off:</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/>*<sp/>full-rank<sp/>static<sp/>shapes<sp/>give<sp/>MLIR<sp/>complete<sp/>affine<sp/>analysis<sp/>information,</highlight></codeline>
+<codeline lineno="76"><highlight class="comment"><sp/>*<sp/>at<sp/>the<sp/>cost<sp/>of<sp/>not<sp/>supporting<sp/>non-contiguous<sp/>global<sp/>layouts.</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/>*<sp/>Future<sp/>work:<sp/>an<sp/>optional<sp/>stride<sp/>parameter<sp/>could<sp/>lift<sp/>this<sp/>restriction.</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/>*<sp/>===============================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="comment">/*-----------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/>*<sp/>DESIGN<sp/>REQUIREMENT:<sp/>Single<sp/>code<sp/>path</highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="83"><highlight class="comment"><sp/>*<sp/>The<sp/>SAME<sp/>source<sp/>file<sp/>must<sp/>compile<sp/>and<sp/>run<sp/>correctly<sp/>via:</highlight></codeline>
+<codeline lineno="84"><highlight class="comment"><sp/>*<sp/><sp/><sp/>1.<sp/>cgeist<sp/>→<sp/>ttl-opt<sp/>→<sp/>ttl-translate<sp/><sp/>(compiler<sp/>optimization<sp/>path)</highlight></codeline>
+<codeline lineno="85"><highlight class="comment"><sp/>*<sp/><sp/><sp/>2.<sp/>OpenCL<sp/>compiler<sp/>(e.g.<sp/>PoCL)<sp/>directly<sp/><sp/>(unoptimized<sp/>execution)</highlight></codeline>
+<codeline lineno="86"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="87"><highlight class="comment"><sp/>*<sp/>No<sp/>#ifdef<sp/>splits<sp/>between<sp/>the<sp/>two<sp/>paths.<sp/><sp/>Every<sp/>macro<sp/>must<sp/>expand<sp/>to</highlight></codeline>
+<codeline lineno="88"><highlight class="comment"><sp/>*<sp/>valid<sp/>C<sp/>/<sp/>OpenCL<sp/>C<sp/>in<sp/>both<sp/>contexts.</highlight></codeline>
+<codeline lineno="89"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="90"><highlight class="comment"><sp/>*<sp/>RESOLVED:<sp/>Compile-time<sp/>constant<sp/>enforcement<sp/>(scale/offset)</highlight></codeline>
+<codeline lineno="91"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="92"><highlight class="comment"><sp/>*<sp/>The<sp/>scale<sp/>and<sp/>offset<sp/>fields<sp/>in<sp/>TTL_1D/2D/3D<sp/>(si,<sp/>oi,<sp/>sj,<sp/>oj,<sp/>...)</highlight></codeline>
+<codeline lineno="93"><highlight class="comment"><sp/>*<sp/>MUST<sp/>be<sp/>compile-time<sp/>constants<sp/>for<sp/>correct<sp/>affine<sp/>analysis.<sp/>This<sp/>used</highlight></codeline>
+<codeline lineno="94"><highlight class="comment"><sp/>*<sp/>to<sp/>be<sp/>enforced<sp/>ONLY<sp/>by<sp/>the<sp/>compiler<sp/>downstream<sp/>(cgeist<sp/>rejects</highlight></codeline>
+<codeline lineno="95"><highlight class="comment"><sp/>*<sp/>non-affine<sp/>patterns<sp/>with<sp/>a<sp/>confusing<sp/>error<sp/>far<sp/>from<sp/>the<sp/>macro</highlight></codeline>
+<codeline lineno="96"><highlight class="comment"><sp/>*<sp/>expansion<sp/>site)<sp/>--<sp/>now<sp/>it&apos;s<sp/>enforced<sp/>right<sp/>at<sp/>the<sp/>TTL_1D/2D/3D<sp/>call</highlight></codeline>
+<codeline lineno="97"><highlight class="comment"><sp/>*<sp/>site,<sp/>with<sp/>a<sp/>real,<sp/>specific<sp/>diagnostic.</highlight></codeline>
+<codeline lineno="98"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="99"><highlight class="comment"><sp/>*<sp/>_Static_assert<sp/>doesn&apos;t<sp/>work<sp/>here<sp/>(it&apos;s<sp/>a<sp/>declaration,<sp/>not<sp/>an</highlight></codeline>
+<codeline lineno="100"><highlight class="comment"><sp/>*<sp/>expression<sp/>--<sp/>can&apos;t<sp/>appear<sp/>inside<sp/>TTL_1D/2D/3D&apos;s<sp/>array<sp/>subscripts),</highlight></codeline>
+<codeline lineno="101"><highlight class="comment"><sp/>*<sp/>and<sp/>the<sp/>classic<sp/>__builtin_constant_p<sp/>+<sp/>sizeof(int[cond?1:-1])<sp/>trick,</highlight></codeline>
+<codeline lineno="102"><highlight class="comment"><sp/>*<sp/>while<sp/>it<sp/>DOES<sp/>work<sp/>(verified<sp/>directly<sp/>against<sp/>cgeist<sp/>--<sp/>Clang&apos;s<sp/>Sema</highlight></codeline>
+<codeline lineno="103"><highlight class="comment"><sp/>*<sp/>checks<sp/>array-size<sp/>validity,<sp/>and<sp/>Polygeist<sp/>reuses<sp/>Sema<sp/>unmodified),</highlight></codeline>
+<codeline lineno="104"><highlight class="comment"><sp/>*<sp/>only<sp/>gives<sp/>a<sp/>generic<sp/>&quot;array<sp/>size<sp/>is<sp/>negative&quot;<sp/>error<sp/>with<sp/>no<sp/>domain</highlight></codeline>
+<codeline lineno="105"><highlight class="comment"><sp/>*<sp/>information.<sp/>A<sp/>second<sp/>attempt,<sp/>__attribute__((error(...)))<sp/>on<sp/>a</highlight></codeline>
+<codeline lineno="106"><highlight class="comment"><sp/>*<sp/>poisoned<sp/>function<sp/>gated<sp/>by<sp/>__builtin_constant_p<sp/>in<sp/>a<sp/>ternary,<sp/>gives<sp/>a</highlight></codeline>
+<codeline lineno="107"><highlight class="comment"><sp/>*<sp/>fully<sp/>custom<sp/>message<sp/>on<sp/>plain<sp/>clang<sp/>--<sp/>but<sp/>does<sp/>NOT<sp/>survive<sp/>cgeist:</highlight></codeline>
+<codeline lineno="108"><highlight class="comment"><sp/>*<sp/>verified<sp/>directly,<sp/>Polygeist&apos;s<sp/>custom<sp/>AST-to-MLIR<sp/>walker<sp/>doesn&apos;t</highlight></codeline>
+<codeline lineno="109"><highlight class="comment"><sp/>*<sp/>replicate<sp/>the<sp/>CodeGen-level<sp/>dead-branch<sp/>elimination<sp/>this<sp/>trick<sp/>needs,</highlight></codeline>
+<codeline lineno="110"><highlight class="comment"><sp/>*<sp/>so<sp/>it<sp/>conservatively<sp/>assumes<sp/>__builtin_constant_p<sp/>is<sp/>always<sp/>false<sp/>and</highlight></codeline>
+<codeline lineno="111"><highlight class="comment"><sp/>*<sp/>calls<sp/>the<sp/>poisoned<sp/>function<sp/>unconditionally,<sp/>breaking<sp/>even<sp/>the</highlight></codeline>
+<codeline lineno="112"><highlight class="comment"><sp/>*<sp/>correct/constant<sp/>case.</highlight></codeline>
+<codeline lineno="113"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="114"><highlight class="comment"><sp/>*<sp/>WORKING:<sp/>__attribute__((diagnose_if(...)))<sp/>(Clang-specific,<sp/>checked</highlight></codeline>
+<codeline lineno="115"><highlight class="comment"><sp/>*<sp/>during<sp/>Sema<sp/>--<sp/>same<sp/>phase<sp/>Polygeist<sp/>reuses<sp/>unmodified,<sp/>which<sp/>is<sp/>why</highlight></codeline>
+<codeline lineno="116"><highlight class="comment"><sp/>*<sp/>this<sp/>survives<sp/>cgeist<sp/>where<sp/>the<sp/>poison-function<sp/>trick<sp/>didn&apos;t).<sp/>Verified</highlight></codeline>
+<codeline lineno="117"><highlight class="comment"><sp/>*<sp/>directly:<sp/>the<sp/>constant<sp/>case<sp/>compiles<sp/>clean<sp/>and<sp/>inlines<sp/>away<sp/>completely</highlight></codeline>
+<codeline lineno="118"><highlight class="comment"><sp/>*<sp/>(identical<sp/>affine.load/store<sp/>MLIR<sp/>to<sp/>the<sp/>unchecked<sp/>version,<sp/>zero</highlight></codeline>
+<codeline lineno="119"><highlight class="comment"><sp/>*<sp/>codegen<sp/>cost);<sp/>the<sp/>non-constant<sp/>case<sp/>fails<sp/>with<sp/>the<sp/>exact<sp/>custom</highlight></codeline>
+<codeline lineno="120"><highlight class="comment"><sp/>*<sp/>message<sp/>below,<sp/>at<sp/>the<sp/>exact<sp/>usage<sp/>site,<sp/>on<sp/>both<sp/>cgeist<sp/>and<sp/>the</highlight></codeline>
+<codeline lineno="121"><highlight class="comment"><sp/>*<sp/>direct-exec<sp/>leg<sp/>(clang<sp/>-cl-std=...<sp/>-&gt;<sp/>SPIR-V).<sp/>Both<sp/>TTLCompiler<sp/>legs</highlight></codeline>
+<codeline lineno="122"><highlight class="comment"><sp/>*<sp/>are<sp/>Clang-based,<sp/>so<sp/>diagnose_if&apos;s<sp/>non-portability<sp/>to<sp/>GCC<sp/>isn&apos;t<sp/>a</highlight></codeline>
+<codeline lineno="123"><highlight class="comment"><sp/>*<sp/>practical<sp/>restriction<sp/>here.</highlight></codeline>
+<codeline lineno="124"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="125"><highlight class="comment"><sp/>*<sp/>IV<sp/>provenance<sp/>(as<sp/>opposed<sp/>to<sp/>scale/offset<sp/>constant-ness)<sp/>is<sp/>a</highlight></codeline>
+<codeline lineno="126"><highlight class="comment"><sp/>*<sp/>different,<sp/>harder<sp/>problem<sp/>--<sp/>see<sp/>the<sp/>C++<sp/>branch<sp/>below<sp/>and</highlight></codeline>
+<codeline lineno="127"><highlight class="comment"><sp/>*<sp/>TTL-CPP-STRUCTURED-ACCESS-DESIGN.md<sp/>§16<sp/>for<sp/>why<sp/>no<sp/>C-portable</highlight></codeline>
+<codeline lineno="128"><highlight class="comment"><sp/>*<sp/>equivalent<sp/>of<sp/>the<sp/>C++<sp/>_TTL_Induc<sp/>body-alias<sp/>check<sp/>was<sp/>found;<sp/>plain<sp/>C</highlight></codeline>
+<codeline lineno="129"><highlight class="comment"><sp/>*<sp/>keeps<sp/>the<sp/>name-mangled<sp/>rename<sp/>(_TTL_IV,<sp/>&quot;hide<sp/>it<sp/>behind<sp/>a<sp/>prefix/suffix</highlight></codeline>
+<codeline lineno="130"><highlight class="comment"><sp/>*<sp/>so<sp/>the<sp/>wrong<sp/>name<sp/>doesn&apos;t<sp/>exist&quot;)<sp/>as<sp/>its<sp/>only<sp/>IV-provenance<sp/>mechanism.</highlight></codeline>
+<codeline lineno="131"><highlight class="comment"><sp/>*<sp/>Every<sp/>angle<sp/>tried<sp/>to<sp/>give<sp/>it<sp/>C++&apos;s<sp/>type-based<sp/>protection<sp/>instead<sp/>was</highlight></codeline>
+<codeline lineno="132"><highlight class="comment"><sp/>*<sp/>ruled<sp/>out<sp/>directly,<sp/>not<sp/>assumed:</highlight></codeline>
+<codeline lineno="133"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>plain<sp/>C<sp/>`enum`<sp/>gives<sp/>zero<sp/>protection<sp/>on<sp/>its<sp/>own<sp/>--<sp/>implicit</highlight></codeline>
+<codeline lineno="134"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>int-to-enum<sp/>conversion<sp/>is<sp/>silently<sp/>allowed,<sp/>even<sp/>at<sp/>-Wall<sp/>-Wextra.</highlight></codeline>
+<codeline lineno="135"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Clang<sp/>DOES<sp/>have<sp/>a<sp/>warning<sp/>for<sp/>exactly<sp/>this</highlight></codeline>
+<codeline lineno="136"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>(-Wimplicit-int-enum-cast,<sp/>promotable<sp/>to<sp/>a<sp/>hard<sp/>error<sp/>via<sp/>a</highlight></codeline>
+<codeline lineno="137"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>_Pragma<sp/>right<sp/>in<sp/>this<sp/>header)<sp/>--<sp/>but<sp/>it<sp/>does<sp/>not<sp/>exist<sp/>in<sp/>Clang<sp/>18,</highlight></codeline>
+<codeline lineno="138"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>the<sp/>actual<sp/>pinned<sp/>toolchain<sp/>both<sp/>TTLCompiler<sp/>legs<sp/>use<sp/>(confirmed:</highlight></codeline>
+<codeline lineno="139"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>grepped<sp/>a<sp/>-Weverything<sp/>run<sp/>against<sp/>the<sp/>real<sp/>pinned<sp/>binary).<sp/>It</highlight></codeline>
+<codeline lineno="140"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>only<sp/>appears<sp/>in<sp/>much<sp/>newer<sp/>Clang.<sp/>So<sp/>this<sp/>specific<sp/>fix<sp/>is<sp/>blocked</highlight></codeline>
+<codeline lineno="141"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>on<sp/>a<sp/>toolchain<sp/>upgrade,<sp/>not<sp/>a<sp/>fundamental<sp/>language<sp/>limitation<sp/>--</highlight></codeline>
+<codeline lineno="142"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>if<sp/>this<sp/>project<sp/>ever<sp/>moves<sp/>off<sp/>Clang<sp/>18,<sp/>this<sp/>is<sp/>worth<sp/>retrying.</highlight></codeline>
+<codeline lineno="143"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>The<sp/>one<sp/>diagnostic<sp/>Clang<sp/>18<sp/>does<sp/>have<sp/>for<sp/>this</highlight></codeline>
+<codeline lineno="144"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>(-Wsign-conversion)<sp/>is<sp/>too<sp/>broad<sp/>to<sp/>promote<sp/>to<sp/>an<sp/>error:<sp/>it<sp/>fires</highlight></codeline>
+<codeline lineno="145"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>129<sp/>times<sp/>on<sp/>TTL&apos;s<sp/>own<sp/>existing<sp/>upstream<sp/>runtime<sp/>headers<sp/>alone.</highlight></codeline>
+<codeline lineno="146"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>C11<sp/>_Generic<sp/>(exact-type<sp/>dispatch,<sp/>which<sp/>would<sp/>sidestep<sp/>the</highlight></codeline>
+<codeline lineno="147"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>implicit-conversion<sp/>problem<sp/>entirely)<sp/>crashes<sp/>cgeist<sp/>unconditionally</highlight></codeline>
+<codeline lineno="148"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>--<sp/>confirmed<sp/>with<sp/>the<sp/>simplest<sp/>possible<sp/>_Generic<sp/>expression,<sp/>no</highlight></codeline>
+<codeline lineno="149"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>relation<sp/>to<sp/>IV-checking<sp/>specifically.<sp/>Polygeist&apos;s<sp/>MLIRScanner<sp/>has</highlight></codeline>
+<codeline lineno="150"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>no<sp/>visitor<sp/>for<sp/>GenericSelectionExpr<sp/>at<sp/>all.</highlight></codeline>
+<codeline lineno="151"><highlight class="comment"><sp/>*<sp/>-----------------------------------------------------------------------<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="comment">/*Compile-time-constant<sp/>checks<sp/>for<sp/>TTL_1D/2D/3D&apos;s<sp/>scale/offset.<sp/>Each</highlight></codeline>
+<codeline lineno="154"><highlight class="comment"><sp/>*<sp/>function<sp/>just<sp/>returns<sp/>its<sp/>argument<sp/>unchanged<sp/>(fully<sp/>inlined<sp/>away<sp/>by</highlight></codeline>
+<codeline lineno="155"><highlight class="comment"><sp/>*<sp/>cgeist/clang<sp/>for<sp/>any<sp/>real,<sp/>constant<sp/>call<sp/>--<sp/>verified:<sp/>zero<sp/>codegen</highlight></codeline>
+<codeline lineno="156"><highlight class="comment"><sp/>*<sp/>cost,<sp/>affine<sp/>recognition<sp/>unaffected)<sp/>--<sp/>diagnose_if<sp/>is<sp/>what<sp/>actually</highlight></codeline>
+<codeline lineno="157"><highlight class="comment"><sp/>*<sp/>does<sp/>the<sp/>work,<sp/>firing<sp/>only<sp/>when<sp/>the<sp/>argument<sp/>isn&apos;t<sp/>a<sp/>compile-time</highlight></codeline>
+<codeline lineno="158"><highlight class="comment"><sp/>*<sp/>constant.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159" refid="TTL_8h_1aad397453bb24fa7be1edeecee9d4d8ab" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="TTL_8h_1aad397453bb24fa7be1edeecee9d4d8ab" kindref="member">_ttl_check_constant_scale</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>scale)</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>__attribute__((diagnose_if(!__builtin_constant_p(scale),<sp/></highlight><highlight class="stringliteral">&quot;TTL_1D/2D/3D:<sp/>scale<sp/>must<sp/>be<sp/>a<sp/>compile-time<sp/>constant&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;error&quot;</highlight><highlight class="normal">)))<sp/>{</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>scale;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="164" refid="TTL_8h_1a88d67877ea688aa6806233f5b60f2499" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="TTL_8h_1a88d67877ea688aa6806233f5b60f2499" kindref="member">_ttl_check_constant_offset</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>offset)</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>__attribute__((diagnose_if(!__builtin_constant_p(offset),<sp/></highlight><highlight class="stringliteral">&quot;TTL_1D/2D/3D:<sp/>offset<sp/>must<sp/>be<sp/>a<sp/>compile-time<sp/>constant&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;error&quot;</highlight><highlight class="normal">)))<sp/>{</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>offset;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight><highlight class="comment">/*Renamed<sp/>from<sp/>the<sp/>earlier<sp/>v##_iv_ttl:<sp/>this<sp/>identifier<sp/>only<sp/>exists<sp/>if</highlight></codeline>
+<codeline lineno="171"><highlight class="comment"><sp/>*<sp/>TTL_LOOP<sp/>declared<sp/>it,<sp/>and<sp/>the<sp/>name<sp/>itself<sp/>now<sp/>says<sp/>so<sp/>directly<sp/>--</highlight></codeline>
+<codeline lineno="172"><highlight class="comment"><sp/>*<sp/>misuse<sp/>(an<sp/>identifier<sp/>TTL_LOOP<sp/>never<sp/>declared)<sp/>fails<sp/>with</highlight></codeline>
+<codeline lineno="173"><highlight class="comment"><sp/>*<sp/>&quot;use<sp/>of<sp/>undeclared<sp/>identifier<sp/>&apos;x_MUST_BE_DECLARED_BY_TTL_LOOP&apos;&quot;</highlight></codeline>
+<codeline lineno="174"><highlight class="comment"><sp/>*<sp/>instead<sp/>of<sp/>a<sp/>scarier,<sp/>unexplained-looking<sp/>&apos;x_iv_ttl&apos;.<sp/>Does<sp/>not<sp/>change</highlight></codeline>
+<codeline lineno="175"><highlight class="comment"><sp/>*<sp/>what&apos;s<sp/>enforced<sp/>(existence<sp/>of<sp/>this<sp/>exact<sp/>derived<sp/>name)<sp/>--<sp/>see</highlight></codeline>
+<codeline lineno="176"><highlight class="comment"><sp/>*<sp/>TTL-CPP-STRUCTURED-ACCESS-DESIGN.md<sp/>§16.4(ii),<sp/>§18<sp/>for<sp/>why<sp/>this,</highlight></codeline>
+<codeline lineno="177"><highlight class="comment"><sp/>*<sp/>not<sp/>the<sp/>C++<sp/>enum-typed<sp/>check<sp/>below,<sp/>is<sp/>what<sp/>actually<sp/>does<sp/>the</highlight></codeline>
+<codeline lineno="178"><highlight class="comment"><sp/>*<sp/>enforcement;<sp/>the<sp/>enum<sp/>only<sp/>adds<sp/>a<sp/>secondary,<sp/>narrower<sp/>check.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight><highlight class="comment">/*===============================================================================</highlight></codeline>
+<codeline lineno="181"><highlight class="comment"><sp/>*<sp/>Tiled<sp/>Loop<sp/>Nest</highlight></codeline>
+<codeline lineno="182"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="183"><highlight class="comment"><sp/>*<sp/>Each<sp/>dimension<sp/>is<sp/>(var,<sp/>start,<sp/>end,<sp/>tile_size).</highlight></codeline>
+<codeline lineno="184"><highlight class="comment"><sp/>*<sp/>Last<sp/>argument:<sp/>buffering<sp/>mode<sp/>---<sp/>TTL_DOUBLE_BUFFER<sp/>or<sp/>TTL_TILE_ONLY.</highlight></codeline>
+<codeline lineno="185"><highlight class="comment"><sp/>*<sp/>The<sp/>compiler<sp/>decides<sp/>what<sp/>to<sp/>pipeline<sp/>and<sp/>how<sp/>much<sp/>local<sp/>memory<sp/>to<sp/>use.</highlight></codeline>
+<codeline lineno="186"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="187"><highlight class="comment"><sp/>*<sp/><sp/><sp/>TTL_LOOP_3D(i,<sp/>0,<sp/>M,<sp/>64,</highlight></codeline>
+<codeline lineno="188"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>j,<sp/>0,<sp/>N,<sp/>64,</highlight></codeline>
+<codeline lineno="189"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>k,<sp/>0,<sp/>K,<sp/>64,</highlight></codeline>
+<codeline lineno="190"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TTL_DOUBLE_BUFFER,<sp/>{<sp/>body<sp/>})</highlight></codeline>
+<codeline lineno="191"><highlight class="comment"><sp/>*<sp/>===============================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight><highlight class="comment">/*Body-as-macro-argument,<sp/>matching<sp/>the<sp/>C++<sp/>branch&apos;s<sp/>call<sp/>syntax<sp/>exactly</highlight></codeline>
+<codeline lineno="194"><highlight class="comment"><sp/>*<sp/>(Rule<sp/>1:<sp/>single<sp/>code<sp/>path,<sp/>same<sp/>source/same<sp/>syntax<sp/>on<sp/>both<sp/>legs<sp/>--</highlight></codeline>
+<codeline lineno="195"><highlight class="comment"><sp/>*<sp/>TTL_LOOP_3D(...,<sp/>mode,<sp/>{<sp/>body<sp/>})<sp/>works<sp/>identically<sp/>for<sp/>C<sp/>and<sp/>C++<sp/>now).</highlight></codeline>
+<codeline lineno="196"><highlight class="comment"><sp/>*<sp/>Enforcement<sp/>itself<sp/>is<sp/>unchanged<sp/>from<sp/>before:<sp/>still<sp/>the<sp/>name-mangled</highlight></codeline>
+<codeline lineno="197"><highlight class="comment"><sp/>*<sp/>_TTL_IV(i)<sp/>rename,<sp/>still<sp/>plain<sp/>int<sp/>--<sp/>this<sp/>is<sp/>purely<sp/>a<sp/>call-shape</highlight></codeline>
+<codeline lineno="198"><highlight class="comment"><sp/>*<sp/>change<sp/>so<sp/>shared<sp/>kernel<sp/>sources<sp/>compile<sp/>under<sp/>both<sp/>language<sp/>modes.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>6<sp/>&quot;scripts/preprocess.c&quot;<sp/>2</highlight></codeline>
+    </programlisting>
+    <location file="5kCLefl_TTL/TTL.h"/>
+  </compounddef>
+</doxygen>
