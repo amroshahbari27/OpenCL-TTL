@@ -416,15 +416,25 @@ constexpr int _ttl_affine_idx(_TTL_Induc iv) {
 #define TTL_3D(name, i, si, oi, j, sj, oj, k, sk, ok) \
     _TTL_NAME(name)[_ttl_affine_idx<si, oi>(i)][_ttl_affine_idx<sj, oj>(j)][_ttl_affine_idx<sk, ok>(k)]
 
-/* _TTL_Induc (enum class) has no operator+, so the 2IV combiner form
- * casts back to int explicitly -- an ordinary expression context, not a
- * for-header, so this doesn't affect tile/pipeline attachment. */
+/* Routes through _ttl_affine_idx<1, 0> (identity scale/offset) for each
+ * operand, same as TTL_1D/2D/3D, instead of an explicit static_cast<int>.
+ * A prior version used the cast directly -- but an explicit cast to int
+ * FROM int is always legal in C++ regardless of where the value came
+ * from, so it silently accepted any unrelated int, giving zero
+ * provenance/type protection (the exact same "explicit cast launders
+ * anything" problem documented above for why the old _TTL_IV_TAG design
+ * never worked). Going through _ttl_affine_idx<1,0>(a) instead requires
+ * 'a'/'b' to actually be _TTL_Induc-typed, with no cast to hide behind --
+ * consistent with TTL_1D/2D/3D's own protection level. _ttl_affine_idx
+ * already returns plain int, so the two results add together normally;
+ * this is an ordinary expression context, not a for-header, so it
+ * doesn't affect tile/pipeline attachment either way. */
 #define TTL_1D_2IV(name, a, b) \
-    _TTL_NAME(name)[static_cast<int>(a) + static_cast<int>(b)]
+    _TTL_NAME(name)[_ttl_affine_idx<1, 0>(a) + _ttl_affine_idx<1, 0>(b)]
 #define TTL_2D_2IV(name, a1, b1, a2, b2) \
-    _TTL_NAME(name)[static_cast<int>(a1) + static_cast<int>(b1)][static_cast<int>(a2) + static_cast<int>(b2)]
+    _TTL_NAME(name)[_ttl_affine_idx<1, 0>(a1) + _ttl_affine_idx<1, 0>(b1)][_ttl_affine_idx<1, 0>(a2) + _ttl_affine_idx<1, 0>(b2)]
 #define TTL_3D_2IV(name, a1, b1, a2, b2, a3, b3) \
-    _TTL_NAME(name)[static_cast<int>(a1) + static_cast<int>(b1)][static_cast<int>(a2) + static_cast<int>(b2)][static_cast<int>(a3) + static_cast<int>(b3)]
+    _TTL_NAME(name)[_ttl_affine_idx<1, 0>(a1) + _ttl_affine_idx<1, 0>(b1)][_ttl_affine_idx<1, 0>(a2) + _ttl_affine_idx<1, 0>(b2)][_ttl_affine_idx<1, 0>(a3) + _ttl_affine_idx<1, 0>(b3)]
 
 #define TTL_LOOP_1D(i, i0, i1, t1, mode, ...) \
     _TTL_SCHED_PRAGMA(_TTL_MODE(mode)(t1)) \
