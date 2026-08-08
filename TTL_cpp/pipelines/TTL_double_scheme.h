@@ -83,7 +83,8 @@ struct TTL_import_double_buffering {
     TTL_sub_tensor<TENSORTYPE> step_buffering(const TTL_tile next_tile) {
         // For performance, compute everything possible before waiting for the
         // previous operations to finish.
-        const TTL_layout int_layout(next_tile.shape.width, next_tile.shape.height);
+        const TTL_layout int_layout(next_tile.shape.width,
+                                    next_tile.shape.width * next_tile.shape.height);
         const TTL_sub_tensor<TENSORTYPE> import_to(
             m_common.int_base[m_common.index], next_tile.shape, int_layout, m_common.ext_tensor_in, next_tile.offset);
 
@@ -101,7 +102,8 @@ struct TTL_import_double_buffering {
 
         m_common.index = (m_common.index + 1) % 2;
 
-        const TTL_layout prev_int_layout(m_prev_tile.shape.width, m_prev_tile.shape.height);
+        const TTL_layout prev_int_layout(m_prev_tile.shape.width,
+                                         m_prev_tile.shape.width * m_prev_tile.shape.height);
         const TTL_sub_tensor<TENSORTYPE> result(m_common.int_base[m_common.index],
                                                 m_prev_tile.shape,
                                                 prev_int_layout,
@@ -183,10 +185,20 @@ struct TTL_export_double_buffering {
      *
      */
     TTL_sub_tensor<TENSORTYPE> step_buffering(TTL_tile tile_current) {
-        const TTL_layout int_layout(m_prev_tile.shape.width, m_prev_tile.shape.height);
-        const TTL_tensor export_from(
+        const TTL_layout int_layout(m_prev_tile.shape.width,
+                                    m_prev_tile.shape.width * m_prev_tile.shape.height);
+        // Explicit <TENSORTYPE> required: CTAD off a TTL_local(TENSORTYPE*)
+        // argument deduces TENSORTYPE as the address-space-qualified
+        // pointee type itself (e.g. "__local int"), not plain "int" --
+        // that then hits TTL_tensor::write's by-value TENSORTYPE parameter,
+        // which OpenCL C++ rejects ("parameter may not be qualified with
+        // an address space"). The sibling import-side step_buffering above
+        // already spells this out explicitly; this (export) side didn't,
+        // and export double buffering was never exercised in C++ mode
+        // until now.
+        const TTL_tensor<TENSORTYPE> export_from(
             m_common.int_base[m_common.index], m_prev_tile.shape, int_layout, m_common.ext_tensor_in.elem_size);
-        const TTL_tensor export_to(m_common.ext_tensor_in.base,
+        const TTL_tensor<TENSORTYPE> export_to(m_common.ext_tensor_in.base,
                                    m_prev_tile.shape,
                                    m_common.ext_tensor_in.layout,
                                    m_prev_tile.offset,
@@ -197,8 +209,9 @@ struct TTL_export_double_buffering {
         if (m_prev_tile.empty() == false) TTL_export(export_from, export_to, m_event);
 
         m_common.index = (m_common.index + 1) % 2;  // TTL_ARRAYSIZE(m_common.int_base);
-        const TTL_layout curr_int_layout(tile_current.shape.width, tile_current.shape.height);
-        const TTL_sub_tensor result(m_common.int_base[m_common.index],
+        const TTL_layout curr_int_layout(tile_current.shape.width,
+                                         tile_current.shape.width * tile_current.shape.height);
+        const TTL_sub_tensor<TENSORTYPE> result(m_common.int_base[m_common.index],
                                     tile_current.shape,
                                     curr_int_layout,
                                     m_common.ext_tensor_in,

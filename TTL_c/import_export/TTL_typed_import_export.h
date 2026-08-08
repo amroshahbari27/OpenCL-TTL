@@ -115,6 +115,16 @@ __TTL_TRACE_FN(TTL_import_sub_tensor,
     TTL_import(import_int_tensor, import_ext_tensor, event __TTL_TRACE_LINE);
 }
 
+/** Blocking import into a sub-tensor returned by a buffering scheme. */
+static inline void __attribute__((overloadable))
+__TTL_TRACE_FN(TTL_blocking_import,
+               const __TTL_tensor_name(TTL_, , int_, TTL_TENSOR_TYPE, sub_, _t) internal_sub_tensor,
+               const __TTL_tensor_name(TTL_, const_, ext_, TTL_TENSOR_TYPE, , _t) external_tensor) {
+    TTL_event_t event = TTL_get_event();
+    TTL_import_sub_tensor(internal_sub_tensor, external_tensor, &event __TTL_TRACE_LINE);
+    TTL_wait(1, &event __TTL_TRACE_LINE);
+}
+
 /**
  * @brief  Export the external tensor to the internal tensor returning when complete
  *

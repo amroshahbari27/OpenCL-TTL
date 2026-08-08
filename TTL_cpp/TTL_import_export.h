@@ -60,22 +60,31 @@ void TTL_blocking_import(const TTL_tensor<TENSORTYPE> &internal_tensor, const TT
  *
  * @see TTL_import for full API and parameter information
  */
-template <typename TENSORTYPE>
-void TTL_import_sub_tensor(const TTL_sub_tensor<TENSORTYPE> &internal_sub_tensor,
-                           const TTL_tensor<TENSORTYPE> const_external_tensor, TTL_event *event) {
-    TTL_local(TENSORTYPE *) dst_address;
-    TTL_global(TENSORTYPE *) src_address;
+template <typename INT_TENSORTYPE, typename EXT_TENSORTYPE>
+void TTL_import_sub_tensor(const TTL_sub_tensor<INT_TENSORTYPE> &internal_sub_tensor,
+                           const TTL_tensor<EXT_TENSORTYPE> const_external_tensor, TTL_event *event) {
+    TTL_local(INT_TENSORTYPE *) dst_address;
+    TTL_global(EXT_TENSORTYPE *) src_address;
 
     const TTL_shape import_shape =
         TTL_import_pre_fill(internal_sub_tensor, const_external_tensor, &dst_address, &src_address);
 
-    const TTL_tensor<TENSORTYPE> import_int_tensor(
+    const TTL_tensor<INT_TENSORTYPE> import_int_tensor(
         dst_address, import_shape, internal_sub_tensor.tensor.layout, internal_sub_tensor.tensor.elem_size);
 
-    const TTL_tensor<TENSORTYPE> import_ext_tensor(
+    const TTL_tensor<EXT_TENSORTYPE> import_ext_tensor(
         src_address, import_shape, const_external_tensor.layout, TTL_offset(), const_external_tensor.elem_size);
 
-    TTL_import(import_int_tensor, import_ext_tensor, event);
+    TTL_import_base(import_int_tensor, import_ext_tensor, event);
+}
+
+/** Blocking import into a sub-tensor returned by a buffering scheme. */
+template <typename INT_TENSORTYPE, typename EXT_TENSORTYPE>
+void TTL_blocking_import(const TTL_sub_tensor<INT_TENSORTYPE> &internal_sub_tensor,
+                         const TTL_tensor<EXT_TENSORTYPE> &external_tensor) {
+    TTL_event event = TTL_get_event();
+    TTL_import_sub_tensor(internal_sub_tensor, external_tensor, &event);
+    TTL_wait(1, &event);
 }
 
 /**
@@ -195,14 +204,14 @@ static inline TTL_shape TTL_import_pre_fill(const TTL_sub_tensor<INT_TENSORTYPE>
                    //     1 /* Internal_sub_tensor.origin.shape.depth */
                    // 0);
 
-    *dst_address = internal_sub_tensor.tensor.base + x_offset +
+    *dst_address = (TTL_local(INT_TENSORTYPE *))(internal_sub_tensor.tensor.base + x_offset +
                    (y_offset * internal_sub_tensor.tensor.layout.row_spacing) +
-                   (z_offset * internal_sub_tensor.tensor.layout.plane_spacing);
+                   (z_offset * internal_sub_tensor.tensor.layout.plane_spacing));
 
-    *src_address = const_external_tensor.base + x_offset + (y_offset * const_external_tensor.layout.row_spacing) +
-                   (z_offset * const_external_tensor.layout.plane_spacing);
+    *src_address = (TTL_global(EXT_TENSORTYPE *))(const_external_tensor.base + x_offset + (y_offset * const_external_tensor.layout.row_spacing) +
+                   (z_offset * const_external_tensor.layout.plane_spacing));
 
-    TTL_clear_void_space(internal_sub_tensor.tensor.base,
+    TTL_clear_void_space((TTL_local(void *))internal_sub_tensor.tensor.base,
                          x_offset,
                          y_offset,
                          internal_sub_tensor.tensor.elem_size,

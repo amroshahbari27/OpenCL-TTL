@@ -26,7 +26,7 @@
  *
  * This is an implementation that can be included by defining TTL_COPY_3D
  */
-__attribute__((overloadable)) event_t async_work_group_copy_3D3D(
+static inline __attribute__((always_inline, overloadable)) event_t async_work_group_copy_3D3D(
     __local void *const dst, size_t dst_offset, const __global void *const src, size_t src_offset,
     size_t num_bytes_per_element, size_t num_elements_per_line, size_t num_lines, size_t num_planes,
     size_t src_total_line_length, size_t src_total_plane_spacing, size_t dst_total_line_length,
@@ -37,7 +37,7 @@ __attribute__((overloadable)) event_t async_work_group_copy_3D3D(
         __local uchar *dst_ptr = dst + ((dst_offset + (dst_total_plane_spacing * plane)) * num_bytes_per_element);
 
         for (size_t line = 0; line < num_lines; line++) {
-            async_work_group_copy(dst_ptr, src_ptr, num_bytes_per_element * num_elements_per_line, event);
+            event = async_work_group_copy(dst_ptr, src_ptr, num_bytes_per_element * num_elements_per_line, event);
 
             src_ptr += src_total_line_length * num_bytes_per_element;
             dst_ptr += dst_total_line_length * num_bytes_per_element;
@@ -52,7 +52,7 @@ __attribute__((overloadable)) event_t async_work_group_copy_3D3D(
  *
  * This is an implementation that can be included by defining TTL_COPY_3D
  */
-__attribute__((overloadable)) event_t async_work_group_copy_3D3D(
+static inline __attribute__((always_inline, overloadable)) event_t async_work_group_copy_3D3D(
     __global void *const dst, size_t dst_offset, const __local void *const src, size_t src_offset,
     size_t num_bytes_per_element, size_t num_elements_per_line, size_t num_lines, size_t num_planes,
     size_t src_total_line_length, size_t src_total_plane_spacing, size_t dst_total_line_length,
@@ -62,7 +62,7 @@ __attribute__((overloadable)) event_t async_work_group_copy_3D3D(
         __global uchar *dst_ptr = dst + ((dst_offset + (dst_total_plane_spacing * plane)) * num_bytes_per_element);
 
         for (size_t line = 0; line < num_lines; line++) {
-            async_work_group_copy(dst_ptr, src_ptr, num_bytes_per_element * num_elements_per_line, event);
+            event = async_work_group_copy(dst_ptr, src_ptr, num_bytes_per_element * num_elements_per_line, event);
 
             src_ptr += src_total_line_length * num_bytes_per_element;
             dst_ptr += dst_total_line_length * num_bytes_per_element;
