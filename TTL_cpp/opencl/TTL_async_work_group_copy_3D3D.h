@@ -32,9 +32,10 @@ __attribute__((overloadable)) event_t async_work_group_copy_3D3D(
     size_t src_total_line_length, size_t src_total_plane_spacing, size_t dst_total_line_length,
     size_t dst_total_plane_spacing, event_t event) {
     for (size_t plane = 0; plane < num_planes; plane++) {
-        const __global uchar *src_ptr =
-            src + ((src_offset + (src_total_plane_spacing * plane)) * num_bytes_per_element);
-        __local uchar *dst_ptr = dst + ((dst_offset + (dst_total_plane_spacing * plane)) * num_bytes_per_element);
+        const __global uchar *src_ptr = ((const __global uchar *)src) +
+            ((src_offset + (src_total_plane_spacing * plane)) * num_bytes_per_element);
+        __local uchar *dst_ptr = ((__local uchar *)dst) +
+            ((dst_offset + (dst_total_plane_spacing * plane)) * num_bytes_per_element);
 
         for (size_t line = 0; line < num_lines; line++) {
             async_work_group_copy(dst_ptr, src_ptr, num_bytes_per_element * num_elements_per_line, event);
@@ -58,8 +59,10 @@ __attribute__((overloadable)) event_t async_work_group_copy_3D3D(
     size_t src_total_line_length, size_t src_total_plane_spacing, size_t dst_total_line_length,
     size_t dst_total_plane_spacing, event_t event) {
     for (size_t plane = 0; plane < num_planes; plane++) {
-        const __local uchar *src_ptr = src + ((src_offset + (src_total_plane_spacing * plane)) * num_bytes_per_element);
-        __global uchar *dst_ptr = dst + ((dst_offset + (dst_total_plane_spacing * plane)) * num_bytes_per_element);
+        const __local uchar *src_ptr = ((const __local uchar *)src) +
+            ((src_offset + (src_total_plane_spacing * plane)) * num_bytes_per_element);
+        __global uchar *dst_ptr = ((__global uchar *)dst) +
+            ((dst_offset + (dst_total_plane_spacing * plane)) * num_bytes_per_element);
 
         for (size_t line = 0; line < num_lines; line++) {
             async_work_group_copy(dst_ptr, src_ptr, num_bytes_per_element * num_elements_per_line, event);

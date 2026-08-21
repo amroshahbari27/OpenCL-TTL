@@ -195,14 +195,14 @@ static inline TTL_shape TTL_import_pre_fill(const TTL_sub_tensor<INT_TENSORTYPE>
                    //     1 /* Internal_sub_tensor.origin.shape.depth */
                    // 0);
 
-    *dst_address = internal_sub_tensor.tensor.base + x_offset +
+    *dst_address = (TTL_local(INT_TENSORTYPE *))(internal_sub_tensor.tensor.base + x_offset +
                    (y_offset * internal_sub_tensor.tensor.layout.row_spacing) +
-                   (z_offset * internal_sub_tensor.tensor.layout.plane_spacing);
+                   (z_offset * internal_sub_tensor.tensor.layout.plane_spacing));
 
-    *src_address = const_external_tensor.base + x_offset + (y_offset * const_external_tensor.layout.row_spacing) +
-                   (z_offset * const_external_tensor.layout.plane_spacing);
+    *src_address = (TTL_global(EXT_TENSORTYPE *))(const_external_tensor.base + x_offset + (y_offset * const_external_tensor.layout.row_spacing) +
+                   (z_offset * const_external_tensor.layout.plane_spacing));
 
-    TTL_clear_void_space(internal_sub_tensor.tensor.base,
+    TTL_clear_void_space((TTL_local(void *))internal_sub_tensor.tensor.base,
                          x_offset,
                          y_offset,
                          internal_sub_tensor.tensor.elem_size,
